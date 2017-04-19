@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet library="css" name="admin-mod.css"/>
+                <title>Administracja</title>
+            </f:facet>
+        </h:head>
+
+        <h:body >
+            <b:navBar brand="Administracja" brandHref="#" inverse="true" style="z-index: 2;font-size: 18px; position: fixed !important; width: 100%">
+                <b:navbarLinks>
+                    <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" role="login">
+
+                        <div class="form-group">
+                            <b:inputText class="form-control" placeholder="Szukaj zgłoszonych postów, osób..." style="width: 300px"
+                                         >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="search" />
+                                </f:facet>
+                            </b:inputText>
+
+                        </div>
+
+                        <b:commandButton value="Szukaj" style=" margin-left: 10px;" look="primary" />
+                    </h:form>
+
+                    <b:dropButton value="Konto" style="margin-left: 450px" look="primary">
+                        <center>
+                            <h4> Zalogowany jako:<br/></h4><h3><b:label text="Admin/Mod" severity="primary"/> </h3> 
+                            <br/>
+                            <b:navLink value="Wyloguj" href="#"></b:navLink></center>
+
+                    </b:dropButton>
+
+                </b:navbarLinks>
+            </b:navBar>
+
+            <h:form style="padding-top: 70px">
+                <b:tabView tabPosition="left" contentStyle="border: 1px solid #ddd;padding:10px">
+                    <b:tab title="Zgłoszeni użytkownicy">
+                        <b:dataTable value="Zgłoszeni użytkownicy" var="uzy" >
+                            Datatable
+                        </b:dataTable>
+                    </b:tab>
+                    <b:tab title="Zgłoszone posty">
+                        <b:dataTable value="Zgłoszone posty" var="posty" >
+                            Datatable
+                        </b:dataTable>
+                    </b:tab>
+                </b:tabView>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>

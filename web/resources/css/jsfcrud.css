@@ -1,17 +1,103 @@
-.ui-widget {
-    font-size: 12px !important;
+body {
+    background: #F7F7F7;
+    color: #666666;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
 }
-.ui-layout-north {
-    z-index: 20 !important;
-    overflow: visible !important;;
+
+body {
+    width: 100%;
+    background: -webkit-linear-gradient(left, #8D38C9, #24d3d3, #8D38C9, #24d3d3);
+    background: linear-gradient(to right, #8D38C9, #24d3d3, #8D38C9, #24d3d3);
+    background-size: 600% 100%;
+    -webkit-animation: HeroBG 20s ease infinite;
+    animation: HeroBG 20s ease infinite;
 }
-.ui-layout-north .ui-layout-unit-content {
-    overflow: visible !important;
+
+@-webkit-keyframes HeroBG {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes HeroBG {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+.form-signin {
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+}
+.ui-datepicker-calendar {
+    background: #3B92D9 !important;
+    color: white !important;
+}
+.dataTables_info{
+    color: white !important;
+}
+.ui-widget{
+    font-size: 13px;   
+    border: none !important;
+}
+
+.ui-layout-west{
+    margin-top: 55px !important;
+    background-color: #033C73 !important;
+}
+.ui-layout-east .ui-widget-content {
+    background: #033C73 !important;
+}
+.ui-layout-west .ui-widget-content {
+    background: #033C73 !important;
+}
+
+.ui-layout-west .ui-widget-header {
+    background-color: #4A148C !important;
+    color: white;
+}
+.ui-layout-west .ui-layout-unit-content {
+    background-color: #033C73 !important;
 }
 .ui-widget-header {
     text-align: center;
     text-transform: uppercase;
 }
-.ui-button {
-    margin-top: 10px !important;
+.ui-layout-center {
+    margin-top: 55px !important;
 }
+.btn-glyphicon { padding:5px; background:#ffffff !important; margin-right:4px !important; }
+.icon-btn { padding: 1px 15px 3px 2px !important; border-radius:50px !important; color: white !important;}
+
+.brand_network {
+    color: #9D9D9D;
+    float: left;
+    position: absolute;
+    left: 70px;
+    top: 30px;
+    font-size: smaller;
+}
+
+.post-content {
+    margin-left:58px;
+}
+
+.badge-important {
+    margin-top: 3px;
+    margin-left: 25px;
+    position: absolute;
+}
+

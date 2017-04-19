@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet library="css" name="jsfcrud.css"/>
+                <title>Zaloguj się lub zarejestruj</title>
+            </f:facet>
+        </h:head>
+
+        <h:body >
+
+
+            <b:navBar brand="Bunch" brandHref="#" inverse="true">
+                <b:navbarLinks>
+                    <form class="navbar-form navbar-right hidden-md hidden-sm hidden-xs" role="login">
+                        <div class="form-group">
+                            <b:inputText type="text" class="form-control" placeholder="Login">
+                                <f:facet name="prepend">
+                                    <b:icon name="user" />
+                                </f:facet>
+                            </b:inputText>
+                        </div>
+                        <div class="form-group">
+                            <b:inputText type="password" class="form-control" placeholder="Hasło"
+                                   >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key" />
+                                </f:facet>
+                            </b:inputText>
+
+                        </div>
+
+                        <button type="login" class="btn btn-primary">Zaloguj</button>
+                        <b:selectBooleanCheckbox value="true" caption="Zapamiętaj mnie" style=" margin-left: 10px;"/>
+                    </form>
+
+                </b:navbarLinks>
+            </b:navBar>
+
+
+            <h:form styleClass="form-signin" prependId="false" style=" background: #E0E0E0">
+                <h2 class="form-signin-heading">Zarejestruj się </h2>
+                <b:inputText type="text" id="imie" placeholder="Imię" />
+                <b:inputText type="text" id="nazwisko" placeholder="Nazwisko" />
+                <b:inputSecret id="haslo" placeholder="Hasło" />
+                <b:inputSecret id="powtorzhaslo" placeholder="Powtórz hasło"/>
+
+                <b:inputText type="text" id="email" placeholder="Adres e-mail" />
+                <b:datepicker id="dataurodzenia" mode="popup" placeholder="Data urodzenia"/>
+                <b:selectBooleanCheckbox value="false" caption="Kobieta"/>
+                <b:selectBooleanCheckbox value="false" caption="Mężczyzna"/>
+                <b:commandButton look="primary btn-block" value="Zarejestruj" icon="log-in" size="lg"/>
+            </h:form>
+
+        </h:body>
+
+    </f:view>
+</html>

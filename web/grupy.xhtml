@@ -7,33 +7,52 @@
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
-        <ui:define name="body" > 
+        <ui:define name="body" >
+            <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
 
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="width: 90%; margin-left: 5% !important;">
+                $(function () {
+                    $('[data-toggle="popover"]').popover();
+                });
+            </script>
+
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="width: 100%">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <textarea class="form-control" rows="2" placeholder="Napisz o czym myślisz..."></textarea>
-                            </div>
-                        </div>
+                        <span>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">Nazwa Grupy <small>nazwagrupy@gmail.com</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zweryfikowana grupa"></i></h1>
+
+                        </span>
+                        <br/><br/>
+                        <i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags/nazwagrupy" class="tag">#nazwagrupy</a> <a href="/tags/zainteresowania" class="tag">#zainteresowania</a> <a href="/tags/polub" class="tag">#polub</a>
+                        <br/><br/><hr/>
+                        <span class="pull-left">
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty</a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-info-circle" aria-hidden="true"></i> Informacje</a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Zdjęcia <span class="badge">69</span></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">69</span></a>
+                            
+                        </span>
+                        <span class="pull-right">
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dołącz do grupy"></i></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-envelope-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wiadomość"></i></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Ignoruj"></i></a>
+                        </span>
                     </div>
                 </div>
-                <hr/>
-                <!-- przyklad postu. -->
+            </div>
+<!-- przyklad postu. -->
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Zimny Kierownik</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
+                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -85,10 +104,10 @@
                     <div class="panel-body">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Zimny Kierownik</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
+                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -156,10 +175,10 @@
                     <div class="panel-body">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Zimny Kierownik</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
+                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -213,10 +232,10 @@
                     <div class="panel-body">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Zimny Kierownik</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
+                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -335,9 +354,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
+            
         </ui:define> 
     </ui:composition> 
 </html>

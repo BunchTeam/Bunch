@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="facebook" type="javax.sql.DataSource">#Wed Apr 19 11:54:16 CEST 2017
+jdbcDriver=org.postgresql.Driver
+password=krosno2016
+userName=postgres
+jdbcUrl=jdbc\:postgresql\://localhost\:5433/facebook
+</Resource>
+</resources>

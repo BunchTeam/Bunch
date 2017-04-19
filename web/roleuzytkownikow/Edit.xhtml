@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoleuzytkownikowEditDlg" widgetVar="RoleuzytkownikowEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRoleuzytkownikowTitle}">
+            <h:form id="RoleuzytkownikowEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{roleuzytkownikowController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_idroli}" for="idroli" />
+                        <p:inputText id="idroli" value="#{roleuzytkownikowController.selected.idroli}" title="#{bundle.EditRoleuzytkownikowTitle_idroli}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_idroli}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_nazwa}" for="nazwa" />
+                        <p:inputText id="nazwa" value="#{roleuzytkownikowController.selected.nazwa}" title="#{bundle.EditRoleuzytkownikowTitle_nazwa}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_nazwa}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_przegladaniewszystkichpostow}" for="przegladaniewszystkichpostow" />
+                        <p:selectBooleanCheckbox id="przegladaniewszystkichpostow" value="#{roleuzytkownikowController.selected.przegladaniewszystkichpostow}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_przegladaniewszystkichpostow}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_edytowaniewszystkichpostow}" for="edytowaniewszystkichpostow" />
+                        <p:selectBooleanCheckbox id="edytowaniewszystkichpostow" value="#{roleuzytkownikowController.selected.edytowaniewszystkichpostow}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_edytowaniewszystkichpostow}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_usuwaniewszystkichpostow}" for="usuwaniewszystkichpostow" />
+                        <p:selectBooleanCheckbox id="usuwaniewszystkichpostow" value="#{roleuzytkownikowController.selected.usuwaniewszystkichpostow}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_usuwaniewszystkichpostow}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_przegladaniewszystkichgrup}" for="przegladaniewszystkichgrup" />
+                        <p:selectBooleanCheckbox id="przegladaniewszystkichgrup" value="#{roleuzytkownikowController.selected.przegladaniewszystkichgrup}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_przegladaniewszystkichgrup}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_usuwaniewszystkichgrup}" for="usuwaniewszystkichgrup" />
+                        <p:selectBooleanCheckbox id="usuwaniewszystkichgrup" value="#{roleuzytkownikowController.selected.usuwaniewszystkichgrup}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_usuwaniewszystkichgrup}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_przegladaniewszystkichkont}" for="przegladaniewszystkichkont" />
+                        <p:selectBooleanCheckbox id="przegladaniewszystkichkont" value="#{roleuzytkownikowController.selected.przegladaniewszystkichkont}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_przegladaniewszystkichkont}"/>
+                        <p:outputLabel value="#{bundle.EditRoleuzytkownikowLabel_usuwaniewszystkichkont}" for="usuwaniewszystkichkont" />
+                        <p:selectBooleanCheckbox id="usuwaniewszystkichkont" value="#{roleuzytkownikowController.selected.usuwaniewszystkichkont}" required="true" requiredMessage="#{bundle.EditRoleuzytkownikowRequiredMessage_usuwaniewszystkichkont}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{roleuzytkownikowController.update}" value="#{bundle.Save}" update="display,:RoleuzytkownikowListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RoleuzytkownikowEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RoleuzytkownikowEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

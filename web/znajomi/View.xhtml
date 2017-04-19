@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZnajomiViewDlg" widgetVar="ZnajomiViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewZnajomiTitle}">
+            <h:form id="ZnajomiViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{znajomiController.selected != null}">
+                        <h:outputText value="#{bundle.ViewZnajomiLabel_idznajomosci}"/>
+                        <h:outputText value="#{znajomiController.selected.idznajomosci}" title="#{bundle.ViewZnajomiTitle_idznajomosci}"/>
+                        <h:outputText value="#{bundle.ViewZnajomiLabel_dataznajomosci}"/>
+                        <h:outputText value="#{znajomiController.selected.dataznajomosci}" title="#{bundle.ViewZnajomiTitle_dataznajomosci}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewZnajomiLabel_zaproszenie}"/>
+                        <p:selectBooleanCheckbox value="#{znajomiController.selected.zaproszenie}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewZnajomiLabel_iduzytkownika}"/>
+                        <h:outputText value="#{znajomiController.selected.iduzytkownika}" title="#{bundle.ViewZnajomiTitle_iduzytkownika}"/>
+                        <h:outputText value="#{bundle.ViewZnajomiLabel_idznajomego}"/>
+                        <h:outputText value="#{znajomiController.selected.idznajomego}" title="#{bundle.ViewZnajomiTitle_idznajomego}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ZnajomiViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

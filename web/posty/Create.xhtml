@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PostyCreateDlg" widgetVar="PostyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePostyTitle}">
+            <h:form id="PostyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{postyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_idposta}" for="idposta" />
+                        <p:inputText id="idposta" value="#{postyController.selected.idposta}" title="#{bundle.CreatePostyTitle_idposta}" required="true" requiredMessage="#{bundle.CreatePostyRequiredMessage_idposta}"/>
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_tresc}" for="tresc" />
+                        <p:inputText id="tresc" value="#{postyController.selected.tresc}" title="#{bundle.CreatePostyTitle_tresc}" required="true" requiredMessage="#{bundle.CreatePostyRequiredMessage_tresc}"/>
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_dataposta}" for="dataposta" />
+                        <p:calendar id="dataposta" pattern="MM/dd/yyyy HH:mm:ss" value="#{postyController.selected.dataposta}" title="#{bundle.EditPostyTitle_dataposta}" required="true" requiredMessage="#{bundle.EditPostyRequiredMessage_dataposta}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_idkommentarzposta}" for="idkommentarzposta" />
+                        <p:inputText id="idkommentarzposta" value="#{postyController.selected.idkommentarzposta}" title="#{bundle.CreatePostyTitle_idkommentarzposta}" />
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_zgloszony}" for="zgloszony" />
+                        <p:selectBooleanCheckbox id="zgloszony" value="#{postyController.selected.zgloszony}" />
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_idgrupy}" for="idgrupy" />
+                        <p:selectOneMenu id="idgrupy" value="#{postyController.selected.idgrupy}" >
+                            <f:selectItems value="#{grupyController.itemsAvailableSelectOne}"
+                                           var="idgrupyItem"
+                                           itemValue="#{idgrupyItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePostyLabel_iduzytkownika}" for="iduzytkownika" />
+                        <p:selectOneMenu id="iduzytkownika" value="#{postyController.selected.iduzytkownika}" required="true" requiredMessage="#{bundle.EditPostyRequiredMessage_iduzytkownika}">
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="iduzytkownikaItem"
+                                           itemValue="#{iduzytkownikaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{postyController.create}" value="#{bundle.Save}" update="display,:PostyListForm:datalist,:growl" oncomplete="handleSubmit(args,'PostyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PostyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

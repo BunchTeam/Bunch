@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RefreshTokenCreateDlg" widgetVar="RefreshTokenCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRefreshTokenTitle}">
+            <h:form id="RefreshTokenCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{refreshTokenController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_accessTokens}" for="accessTokens" />
+                        <p:inputText id="accessTokens" value="#{refreshTokenController.selected.accessTokens}" title="#{bundle.CreateRefreshTokenTitle_accessTokens}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{refreshTokenController.selected.client}" >
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{refreshTokenController.selected.subject}" >
+                            <f:selectItems value="#{userSubjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_grantType}" for="grantType" />
+                        <p:inputText id="grantType" value="#{refreshTokenController.selected.grantType}" title="#{bundle.CreateRefreshTokenTitle_grantType}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_responseType}" for="responseType" />
+                        <p:inputText id="responseType" value="#{refreshTokenController.selected.responseType}" title="#{bundle.CreateRefreshTokenTitle_responseType}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_audiences}" for="audiences" />
+                        <p:inputText id="audiences" value="#{refreshTokenController.selected.audiences}" title="#{bundle.CreateRefreshTokenTitle_audiences}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_clientCodeVerifier}" for="clientCodeVerifier" />
+                        <p:inputText id="clientCodeVerifier" value="#{refreshTokenController.selected.clientCodeVerifier}" title="#{bundle.CreateRefreshTokenTitle_clientCodeVerifier}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_nonce}" for="nonce" />
+                        <p:inputText id="nonce" value="#{refreshTokenController.selected.nonce}" title="#{bundle.CreateRefreshTokenTitle_nonce}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_extraProperties}" for="extraProperties" />
+                        <p:inputText id="extraProperties" value="#{refreshTokenController.selected.extraProperties}" title="#{bundle.CreateRefreshTokenTitle_extraProperties}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_grantCode}" for="grantCode" />
+                        <p:inputText id="grantCode" value="#{refreshTokenController.selected.grantCode}" title="#{bundle.CreateRefreshTokenTitle_grantCode}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_tokenType}" for="tokenType" />
+                        <p:inputText id="tokenType" value="#{refreshTokenController.selected.tokenType}" title="#{bundle.CreateRefreshTokenTitle_tokenType}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_tokenKey}" for="tokenKey" />
+                        <p:inputText id="tokenKey" value="#{refreshTokenController.selected.tokenKey}" title="#{bundle.CreateRefreshTokenTitle_tokenKey}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_refreshToken}" for="refreshToken" />
+                        <p:inputText id="refreshToken" value="#{refreshTokenController.selected.refreshToken}" title="#{bundle.CreateRefreshTokenTitle_refreshToken}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_parameters}" for="parameters" />
+                        <p:inputText id="parameters" value="#{refreshTokenController.selected.parameters}" title="#{bundle.CreateRefreshTokenTitle_parameters}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_expiresIn}" for="expiresIn" />
+                        <p:inputText id="expiresIn" value="#{refreshTokenController.selected.expiresIn}" title="#{bundle.CreateRefreshTokenTitle_expiresIn}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_issuedAt}" for="issuedAt" />
+                        <p:inputText id="issuedAt" value="#{refreshTokenController.selected.issuedAt}" title="#{bundle.CreateRefreshTokenTitle_issuedAt}" />
+                        <p:outputLabel value="#{bundle.CreateRefreshTokenLabel_issuer}" for="issuer" />
+                        <p:inputText id="issuer" value="#{refreshTokenController.selected.issuer}" title="#{bundle.CreateRefreshTokenTitle_issuer}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{refreshTokenController.create}" value="#{bundle.Save}" update="display,:RefreshTokenListForm:datalist,:growl" oncomplete="handleSubmit(args,'RefreshTokenCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RefreshTokenCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

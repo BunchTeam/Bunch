@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoleuzytkownikowViewDlg" widgetVar="RoleuzytkownikowViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRoleuzytkownikowTitle}">
+            <h:form id="RoleuzytkownikowViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{roleuzytkownikowController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_idroli}"/>
+                        <h:outputText value="#{roleuzytkownikowController.selected.idroli}" title="#{bundle.ViewRoleuzytkownikowTitle_idroli}"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_nazwa}"/>
+                        <h:outputText value="#{roleuzytkownikowController.selected.nazwa}" title="#{bundle.ViewRoleuzytkownikowTitle_nazwa}"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_przegladaniewszystkichpostow}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.przegladaniewszystkichpostow}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_edytowaniewszystkichpostow}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.edytowaniewszystkichpostow}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_usuwaniewszystkichpostow}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.usuwaniewszystkichpostow}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_przegladaniewszystkichgrup}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.przegladaniewszystkichgrup}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_usuwaniewszystkichgrup}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.usuwaniewszystkichgrup}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_przegladaniewszystkichkont}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.przegladaniewszystkichkont}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoleuzytkownikowLabel_usuwaniewszystkichkont}"/>
+                        <p:selectBooleanCheckbox value="#{roleuzytkownikowController.selected.usuwaniewszystkichkont}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RoleuzytkownikowViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

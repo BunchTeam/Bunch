@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzatgrupowyCreateDlg" widgetVar="CzatgrupowyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCzatgrupowyTitle}">
+            <h:form id="CzatgrupowyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czatgrupowyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCzatgrupowyLabel_idczatgrupowy}" for="idczatgrupowy" />
+                        <p:inputText id="idczatgrupowy" value="#{czatgrupowyController.selected.idczatgrupowy}" title="#{bundle.CreateCzatgrupowyTitle_idczatgrupowy}" required="true" requiredMessage="#{bundle.CreateCzatgrupowyRequiredMessage_idczatgrupowy}"/>
+                        <p:outputLabel value="#{bundle.CreateCzatgrupowyLabel_tresc}" for="tresc" />
+                        <p:inputText id="tresc" value="#{czatgrupowyController.selected.tresc}" title="#{bundle.CreateCzatgrupowyTitle_tresc}" required="true" requiredMessage="#{bundle.CreateCzatgrupowyRequiredMessage_tresc}"/>
+                        <p:outputLabel value="#{bundle.CreateCzatgrupowyLabel_datawyslania}" for="datawyslania" />
+                        <p:calendar id="datawyslania" pattern="MM/dd/yyyy HH:mm:ss" value="#{czatgrupowyController.selected.datawyslania}" title="#{bundle.EditCzatgrupowyTitle_datawyslania}" required="true" requiredMessage="#{bundle.EditCzatgrupowyRequiredMessage_datawyslania}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCzatgrupowyLabel_idgrupy}" for="idgrupy" />
+                        <p:selectOneMenu id="idgrupy" value="#{czatgrupowyController.selected.idgrupy}" required="true" requiredMessage="#{bundle.EditCzatgrupowyRequiredMessage_idgrupy}">
+                            <f:selectItems value="#{grupyController.itemsAvailableSelectOne}"
+                                           var="idgrupyItem"
+                                           itemValue="#{idgrupyItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCzatgrupowyLabel_idnadawcy}" for="idnadawcy" />
+                        <p:selectOneMenu id="idnadawcy" value="#{czatgrupowyController.selected.idnadawcy}" required="true" requiredMessage="#{bundle.EditCzatgrupowyRequiredMessage_idnadawcy}">
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="idnadawcyItem"
+                                           itemValue="#{idnadawcyItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{czatgrupowyController.create}" value="#{bundle.Save}" update="display,:CzatgrupowyListForm:datalist,:growl" oncomplete="handleSubmit(args,'CzatgrupowyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CzatgrupowyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

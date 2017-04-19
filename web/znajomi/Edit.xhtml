@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZnajomiEditDlg" widgetVar="ZnajomiEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditZnajomiTitle}">
+            <h:form id="ZnajomiEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{znajomiController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditZnajomiLabel_idznajomosci}" for="idznajomosci" />
+                        <p:inputText id="idznajomosci" value="#{znajomiController.selected.idznajomosci}" title="#{bundle.EditZnajomiTitle_idznajomosci}" required="true" requiredMessage="#{bundle.EditZnajomiRequiredMessage_idznajomosci}"/>
+                        <p:outputLabel value="#{bundle.EditZnajomiLabel_dataznajomosci}" for="dataznajomosci" />
+                        <p:calendar id="dataznajomosci" pattern="MM/dd/yyyy" value="#{znajomiController.selected.dataznajomosci}" title="#{bundle.EditZnajomiTitle_dataznajomosci}" required="true" requiredMessage="#{bundle.EditZnajomiRequiredMessage_dataznajomosci}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditZnajomiLabel_zaproszenie}" for="zaproszenie" />
+                        <p:selectBooleanCheckbox id="zaproszenie" value="#{znajomiController.selected.zaproszenie}" required="true" requiredMessage="#{bundle.EditZnajomiRequiredMessage_zaproszenie}"/>
+                        <p:outputLabel value="#{bundle.EditZnajomiLabel_iduzytkownika}" for="iduzytkownika" />
+                        <p:selectOneMenu id="iduzytkownika" value="#{znajomiController.selected.iduzytkownika}" required="true" requiredMessage="#{bundle.EditZnajomiRequiredMessage_iduzytkownika}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="iduzytkownikaItem"
+                                           itemValue="#{iduzytkownikaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditZnajomiLabel_idznajomego}" for="idznajomego" />
+                        <p:selectOneMenu id="idznajomego" value="#{znajomiController.selected.idznajomego}" required="true" requiredMessage="#{bundle.EditZnajomiRequiredMessage_idznajomego}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="idznajomegoItem"
+                                           itemValue="#{idznajomegoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{znajomiController.update}" value="#{bundle.Save}" update="display,:ZnajomiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ZnajomiEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ZnajomiEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

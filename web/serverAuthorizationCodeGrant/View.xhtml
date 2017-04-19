@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServerAuthorizationCodeGrantViewDlg" widgetVar="ServerAuthorizationCodeGrantViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewServerAuthorizationCodeGrantTitle}">
+            <h:form id="ServerAuthorizationCodeGrantViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serverAuthorizationCodeGrantController.selected != null}">
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_issuedAt}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.issuedAt}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_issuedAt}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_expiresIn}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.expiresIn}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_expiresIn}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_client}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.client}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_client}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_approvedScopes}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.approvedScopes}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_approvedScopes}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_subject}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.subject}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_subject}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_audience}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.audience}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_audience}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_clientCodeChallenge}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.clientCodeChallenge}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_clientCodeChallenge}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_requestedScopes}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.requestedScopes}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_requestedScopes}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_nonce}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.nonce}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_nonce}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_extraProperties}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.extraProperties}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_extraProperties}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_responseType}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.responseType}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_responseType}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_redirectUri}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.redirectUri}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_redirectUri}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_code}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.code}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewServerAuthorizationCodeGrantLabel_codeVerifier}"/>
+                        <h:outputText value="#{serverAuthorizationCodeGrantController.selected.codeVerifier}" title="#{bundle.ViewServerAuthorizationCodeGrantTitle_codeVerifier}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ServerAuthorizationCodeGrantViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

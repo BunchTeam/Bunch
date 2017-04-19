@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserSubjectCreateDlg" widgetVar="UserSubjectCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUserSubjectTitle}">
+            <h:form id="UserSubjectCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userSubjectController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUserSubjectLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{userSubjectController.selected.login}" title="#{bundle.CreateUserSubjectTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreateUserSubjectLabel_roles}" for="roles" />
+                        <p:inputText id="roles" value="#{userSubjectController.selected.roles}" title="#{bundle.CreateUserSubjectTitle_roles}" />
+                        <p:outputLabel value="#{bundle.CreateUserSubjectLabel_properties}" for="properties" />
+                        <p:inputText id="properties" value="#{userSubjectController.selected.properties}" title="#{bundle.CreateUserSubjectTitle_properties}" />
+                        <p:outputLabel value="#{bundle.CreateUserSubjectLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{userSubjectController.selected.id}" title="#{bundle.CreateUserSubjectTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateUserSubjectLabel_authenticationMethod}" for="authenticationMethod" />
+                        <p:inputText id="authenticationMethod" value="#{userSubjectController.selected.authenticationMethod}" title="#{bundle.CreateUserSubjectTitle_authenticationMethod}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{userSubjectController.create}" value="#{bundle.Save}" update="display,:UserSubjectListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserSubjectCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UserSubjectCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzatEditDlg" widgetVar="CzatEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCzatTitle}">
+            <h:form id="CzatEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czatController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCzatLabel_idczat}" for="idczat" />
+                        <p:inputText id="idczat" value="#{czatController.selected.idczat}" title="#{bundle.EditCzatTitle_idczat}" required="true" requiredMessage="#{bundle.EditCzatRequiredMessage_idczat}"/>
+                        <p:outputLabel value="#{bundle.EditCzatLabel_tresc}" for="tresc" />
+                        <p:inputText id="tresc" value="#{czatController.selected.tresc}" title="#{bundle.EditCzatTitle_tresc}" required="true" requiredMessage="#{bundle.EditCzatRequiredMessage_tresc}"/>
+                        <p:outputLabel value="#{bundle.EditCzatLabel_datawyslania}" for="datawyslania" />
+                        <p:calendar id="datawyslania" pattern="MM/dd/yyyy HH:mm:ss" value="#{czatController.selected.datawyslania}" title="#{bundle.EditCzatTitle_datawyslania}" required="true" requiredMessage="#{bundle.EditCzatRequiredMessage_datawyslania}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCzatLabel_idnadawcy}" for="idnadawcy" />
+                        <p:selectOneMenu id="idnadawcy" value="#{czatController.selected.idnadawcy}" required="true" requiredMessage="#{bundle.EditCzatRequiredMessage_idnadawcy}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="idnadawcyItem"
+                                           itemValue="#{idnadawcyItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCzatLabel_idodbiorcy}" for="idodbiorcy" />
+                        <p:selectOneMenu id="idodbiorcy" value="#{czatController.selected.idodbiorcy}" required="true" requiredMessage="#{bundle.EditCzatRequiredMessage_idodbiorcy}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="idodbiorcyItem"
+                                           itemValue="#{idodbiorcyItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{czatController.update}" value="#{bundle.Save}" update="display,:CzatListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CzatEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CzatEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

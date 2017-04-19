@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UzytkownicyCreateDlg" widgetVar="UzytkownicyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUzytkownicyTitle}">
+            <h:form id="UzytkownicyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{uzytkownicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_iduzytkownika}" for="iduzytkownika" />
+                        <p:inputText id="iduzytkownika" value="#{uzytkownicyController.selected.iduzytkownika}" title="#{bundle.CreateUzytkownicyTitle_iduzytkownika}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_iduzytkownika}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{uzytkownicyController.selected.login}" title="#{bundle.CreateUzytkownicyTitle_login}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_login}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{uzytkownicyController.selected.haslo}" title="#{bundle.CreateUzytkownicyTitle_haslo}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_haslo}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{uzytkownicyController.selected.email}" title="#{bundle.CreateUzytkownicyTitle_email}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{uzytkownicyController.selected.imie}" title="#{bundle.CreateUzytkownicyTitle_imie}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_imie}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{uzytkownicyController.selected.nazwisko}" title="#{bundle.CreateUzytkownicyTitle_nazwisko}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_nazwisko}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_dataurodzenia}" for="dataurodzenia" />
+                        <p:calendar id="dataurodzenia" pattern="MM/dd/yyyy" value="#{uzytkownicyController.selected.dataurodzenia}" title="#{bundle.EditUzytkownicyTitle_dataurodzenia}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_kodpocztowy}" for="kodpocztowy" />
+                        <p:inputText id="kodpocztowy" value="#{uzytkownicyController.selected.kodpocztowy}" title="#{bundle.CreateUzytkownicyTitle_kodpocztowy}" />
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_miasto}" for="miasto" />
+                        <p:inputText id="miasto" value="#{uzytkownicyController.selected.miasto}" title="#{bundle.CreateUzytkownicyTitle_miasto}" required="true" requiredMessage="#{bundle.CreateUzytkownicyRequiredMessage_miasto}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_ulica}" for="ulica" />
+                        <p:inputText id="ulica" value="#{uzytkownicyController.selected.ulica}" title="#{bundle.CreateUzytkownicyTitle_ulica}" />
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_zgloszony}" for="zgloszony" />
+                        <p:selectBooleanCheckbox id="zgloszony" value="#{uzytkownicyController.selected.zgloszony}" required="true" requiredMessage="#{bundle.EditUzytkownicyRequiredMessage_zgloszony}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_plec}" for="plec" />
+                        <p:selectBooleanCheckbox id="plec" value="#{uzytkownicyController.selected.plec}" required="true" requiredMessage="#{bundle.EditUzytkownicyRequiredMessage_plec}"/>
+                        <p:outputLabel value="#{bundle.CreateUzytkownicyLabel_idroli}" for="idroli" />
+                        <p:selectOneMenu id="idroli" value="#{uzytkownicyController.selected.idroli}" required="true" requiredMessage="#{bundle.EditUzytkownicyRequiredMessage_idroli}">
+                            <f:selectItems value="#{roleuzytkownikowController.itemsAvailableSelectOne}"
+                                           var="idroliItem"
+                                           itemValue="#{idroliItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{uzytkownicyController.create}" value="#{bundle.Save}" update="display,:UzytkownicyListForm:datalist,:growl" oncomplete="handleSubmit(args,'UzytkownicyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UzytkownicyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

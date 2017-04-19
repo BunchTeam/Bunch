@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UzytkownicygrupEditDlg" widgetVar="UzytkownicygrupEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUzytkownicygrupTitle}">
+            <h:form id="UzytkownicygrupEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{uzytkownicygrupController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUzytkownicygrupLabel_iduzytkownikagrupy}" for="iduzytkownikagrupy" />
+                        <p:inputText id="iduzytkownikagrupy" value="#{uzytkownicygrupController.selected.iduzytkownikagrupy}" title="#{bundle.EditUzytkownicygrupTitle_iduzytkownikagrupy}" required="true" requiredMessage="#{bundle.EditUzytkownicygrupRequiredMessage_iduzytkownikagrupy}"/>
+                        <p:outputLabel value="#{bundle.EditUzytkownicygrupLabel_zaproszenie}" for="zaproszenie" />
+                        <p:selectBooleanCheckbox id="zaproszenie" value="#{uzytkownicygrupController.selected.zaproszenie}" required="true" requiredMessage="#{bundle.EditUzytkownicygrupRequiredMessage_zaproszenie}"/>
+                        <p:outputLabel value="#{bundle.EditUzytkownicygrupLabel_idgrupy}" for="idgrupy" />
+                        <p:selectOneMenu id="idgrupy" value="#{uzytkownicygrupController.selected.idgrupy}" required="true" requiredMessage="#{bundle.EditUzytkownicygrupRequiredMessage_idgrupy}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{grupyController.itemsAvailableSelectOne}"
+                                           var="idgrupyItem"
+                                           itemValue="#{idgrupyItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditUzytkownicygrupLabel_iduzytkownika}" for="iduzytkownika" />
+                        <p:selectOneMenu id="iduzytkownika" value="#{uzytkownicygrupController.selected.iduzytkownika}" required="true" requiredMessage="#{bundle.EditUzytkownicygrupRequiredMessage_iduzytkownika}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="iduzytkownikaItem"
+                                           itemValue="#{iduzytkownikaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{uzytkownicygrupController.update}" value="#{bundle.Save}" update="display,:UzytkownicygrupListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UzytkownicygrupEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UzytkownicygrupEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

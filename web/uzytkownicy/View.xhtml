@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UzytkownicyViewDlg" widgetVar="UzytkownicyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUzytkownicyTitle}">
+            <h:form id="UzytkownicyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{uzytkownicyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_iduzytkownika}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.iduzytkownika}" title="#{bundle.ViewUzytkownicyTitle_iduzytkownika}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_login}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.login}" title="#{bundle.ViewUzytkownicyTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_haslo}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.haslo}" title="#{bundle.ViewUzytkownicyTitle_haslo}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_email}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.email}" title="#{bundle.ViewUzytkownicyTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_imie}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.imie}" title="#{bundle.ViewUzytkownicyTitle_imie}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_nazwisko}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.nazwisko}" title="#{bundle.ViewUzytkownicyTitle_nazwisko}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_dataurodzenia}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.dataurodzenia}" title="#{bundle.ViewUzytkownicyTitle_dataurodzenia}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_kodpocztowy}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.kodpocztowy}" title="#{bundle.ViewUzytkownicyTitle_kodpocztowy}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_miasto}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.miasto}" title="#{bundle.ViewUzytkownicyTitle_miasto}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_ulica}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.ulica}" title="#{bundle.ViewUzytkownicyTitle_ulica}"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_zgloszony}"/>
+                        <p:selectBooleanCheckbox value="#{uzytkownicyController.selected.zgloszony}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_plec}"/>
+                        <p:selectBooleanCheckbox value="#{uzytkownicyController.selected.plec}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewUzytkownicyLabel_idroli}"/>
+                        <h:outputText value="#{uzytkownicyController.selected.idroli}" title="#{bundle.ViewUzytkownicyTitle_idroli}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UzytkownicyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BearerAccessTokenCreateDlg" widgetVar="BearerAccessTokenCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBearerAccessTokenTitle}">
+            <h:form id="BearerAccessTokenCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bearerAccessTokenController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{bearerAccessTokenController.selected.client}" >
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{bearerAccessTokenController.selected.subject}" >
+                            <f:selectItems value="#{userSubjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_grantType}" for="grantType" />
+                        <p:inputText id="grantType" value="#{bearerAccessTokenController.selected.grantType}" title="#{bundle.CreateBearerAccessTokenTitle_grantType}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_responseType}" for="responseType" />
+                        <p:inputText id="responseType" value="#{bearerAccessTokenController.selected.responseType}" title="#{bundle.CreateBearerAccessTokenTitle_responseType}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_audiences}" for="audiences" />
+                        <p:inputText id="audiences" value="#{bearerAccessTokenController.selected.audiences}" title="#{bundle.CreateBearerAccessTokenTitle_audiences}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_clientCodeVerifier}" for="clientCodeVerifier" />
+                        <p:inputText id="clientCodeVerifier" value="#{bearerAccessTokenController.selected.clientCodeVerifier}" title="#{bundle.CreateBearerAccessTokenTitle_clientCodeVerifier}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_nonce}" for="nonce" />
+                        <p:inputText id="nonce" value="#{bearerAccessTokenController.selected.nonce}" title="#{bundle.CreateBearerAccessTokenTitle_nonce}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_extraProperties}" for="extraProperties" />
+                        <p:inputText id="extraProperties" value="#{bearerAccessTokenController.selected.extraProperties}" title="#{bundle.CreateBearerAccessTokenTitle_extraProperties}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_grantCode}" for="grantCode" />
+                        <p:inputText id="grantCode" value="#{bearerAccessTokenController.selected.grantCode}" title="#{bundle.CreateBearerAccessTokenTitle_grantCode}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_tokenType}" for="tokenType" />
+                        <p:inputText id="tokenType" value="#{bearerAccessTokenController.selected.tokenType}" title="#{bundle.CreateBearerAccessTokenTitle_tokenType}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_tokenKey}" for="tokenKey" />
+                        <p:inputText id="tokenKey" value="#{bearerAccessTokenController.selected.tokenKey}" title="#{bundle.CreateBearerAccessTokenTitle_tokenKey}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_refreshToken}" for="refreshToken" />
+                        <p:inputText id="refreshToken" value="#{bearerAccessTokenController.selected.refreshToken}" title="#{bundle.CreateBearerAccessTokenTitle_refreshToken}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_parameters}" for="parameters" />
+                        <p:inputText id="parameters" value="#{bearerAccessTokenController.selected.parameters}" title="#{bundle.CreateBearerAccessTokenTitle_parameters}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_expiresIn}" for="expiresIn" />
+                        <p:inputText id="expiresIn" value="#{bearerAccessTokenController.selected.expiresIn}" title="#{bundle.CreateBearerAccessTokenTitle_expiresIn}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_issuedAt}" for="issuedAt" />
+                        <p:inputText id="issuedAt" value="#{bearerAccessTokenController.selected.issuedAt}" title="#{bundle.CreateBearerAccessTokenTitle_issuedAt}" />
+                        <p:outputLabel value="#{bundle.CreateBearerAccessTokenLabel_issuer}" for="issuer" />
+                        <p:inputText id="issuer" value="#{bearerAccessTokenController.selected.issuer}" title="#{bundle.CreateBearerAccessTokenTitle_issuer}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bearerAccessTokenController.create}" value="#{bundle.Save}" update="display,:BearerAccessTokenListForm:datalist,:growl" oncomplete="handleSubmit(args,'BearerAccessTokenCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BearerAccessTokenCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserSubjectViewDlg" widgetVar="UserSubjectViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUserSubjectTitle}">
+            <h:form id="UserSubjectViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userSubjectController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUserSubjectLabel_login}"/>
+                        <h:outputText value="#{userSubjectController.selected.login}" title="#{bundle.ViewUserSubjectTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewUserSubjectLabel_roles}"/>
+                        <h:outputText value="#{userSubjectController.selected.roles}" title="#{bundle.ViewUserSubjectTitle_roles}"/>
+                        <h:outputText value="#{bundle.ViewUserSubjectLabel_properties}"/>
+                        <h:outputText value="#{userSubjectController.selected.properties}" title="#{bundle.ViewUserSubjectTitle_properties}"/>
+                        <h:outputText value="#{bundle.ViewUserSubjectLabel_id}"/>
+                        <h:outputText value="#{userSubjectController.selected.id}" title="#{bundle.ViewUserSubjectTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUserSubjectLabel_authenticationMethod}"/>
+                        <h:outputText value="#{userSubjectController.selected.authenticationMethod}" title="#{bundle.ViewUserSubjectTitle_authenticationMethod}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UserSubjectViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

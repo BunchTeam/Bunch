@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzatgrupowyViewDlg" widgetVar="CzatgrupowyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCzatgrupowyTitle}">
+            <h:form id="CzatgrupowyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czatgrupowyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCzatgrupowyLabel_idczatgrupowy}"/>
+                        <h:outputText value="#{czatgrupowyController.selected.idczatgrupowy}" title="#{bundle.ViewCzatgrupowyTitle_idczatgrupowy}"/>
+                        <h:outputText value="#{bundle.ViewCzatgrupowyLabel_tresc}"/>
+                        <h:outputText value="#{czatgrupowyController.selected.tresc}" title="#{bundle.ViewCzatgrupowyTitle_tresc}"/>
+                        <h:outputText value="#{bundle.ViewCzatgrupowyLabel_datawyslania}"/>
+                        <h:outputText value="#{czatgrupowyController.selected.datawyslania}" title="#{bundle.ViewCzatgrupowyTitle_datawyslania}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCzatgrupowyLabel_idgrupy}"/>
+                        <h:outputText value="#{czatgrupowyController.selected.idgrupy}" title="#{bundle.ViewCzatgrupowyTitle_idgrupy}"/>
+                        <h:outputText value="#{bundle.ViewCzatgrupowyLabel_idnadawcy}"/>
+                        <h:outputText value="#{czatgrupowyController.selected.idnadawcy}" title="#{bundle.ViewCzatgrupowyTitle_idnadawcy}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CzatgrupowyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmocjeViewDlg" widgetVar="EmocjeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmocjeTitle}">
+            <h:form id="EmocjeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{emocjeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmocjeLabel_idemocji}"/>
+                        <h:outputText value="#{emocjeController.selected.idemocji}" title="#{bundle.ViewEmocjeTitle_idemocji}"/>
+                        <h:outputText value="#{bundle.ViewEmocjeLabel_nazwa}"/>
+                        <h:outputText value="#{emocjeController.selected.nazwa}" title="#{bundle.ViewEmocjeTitle_nazwa}"/>
+                        <h:outputText value="#{bundle.ViewEmocjeLabel_indeksemocji}"/>
+                        <h:outputText value="#{emocjeController.selected.indeksemocji}" title="#{bundle.ViewEmocjeTitle_indeksemocji}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmocjeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RefreshTokenEditDlg" widgetVar="RefreshTokenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRefreshTokenTitle}">
+            <h:form id="RefreshTokenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{refreshTokenController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_accessTokens}" for="accessTokens" />
+                        <p:inputText id="accessTokens" value="#{refreshTokenController.selected.accessTokens}" title="#{bundle.EditRefreshTokenTitle_accessTokens}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{refreshTokenController.selected.client}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{refreshTokenController.selected.subject}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{userSubjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_grantType}" for="grantType" />
+                        <p:inputText id="grantType" value="#{refreshTokenController.selected.grantType}" title="#{bundle.EditRefreshTokenTitle_grantType}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_responseType}" for="responseType" />
+                        <p:inputText id="responseType" value="#{refreshTokenController.selected.responseType}" title="#{bundle.EditRefreshTokenTitle_responseType}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_audiences}" for="audiences" />
+                        <p:inputText id="audiences" value="#{refreshTokenController.selected.audiences}" title="#{bundle.EditRefreshTokenTitle_audiences}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_clientCodeVerifier}" for="clientCodeVerifier" />
+                        <p:inputText id="clientCodeVerifier" value="#{refreshTokenController.selected.clientCodeVerifier}" title="#{bundle.EditRefreshTokenTitle_clientCodeVerifier}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_nonce}" for="nonce" />
+                        <p:inputText id="nonce" value="#{refreshTokenController.selected.nonce}" title="#{bundle.EditRefreshTokenTitle_nonce}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_extraProperties}" for="extraProperties" />
+                        <p:inputText id="extraProperties" value="#{refreshTokenController.selected.extraProperties}" title="#{bundle.EditRefreshTokenTitle_extraProperties}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_grantCode}" for="grantCode" />
+                        <p:inputText id="grantCode" value="#{refreshTokenController.selected.grantCode}" title="#{bundle.EditRefreshTokenTitle_grantCode}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_tokenType}" for="tokenType" />
+                        <p:inputText id="tokenType" value="#{refreshTokenController.selected.tokenType}" title="#{bundle.EditRefreshTokenTitle_tokenType}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_tokenKey}" for="tokenKey" />
+                        <p:inputText id="tokenKey" value="#{refreshTokenController.selected.tokenKey}" title="#{bundle.EditRefreshTokenTitle_tokenKey}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_refreshToken}" for="refreshToken" />
+                        <p:inputText id="refreshToken" value="#{refreshTokenController.selected.refreshToken}" title="#{bundle.EditRefreshTokenTitle_refreshToken}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_parameters}" for="parameters" />
+                        <p:inputText id="parameters" value="#{refreshTokenController.selected.parameters}" title="#{bundle.EditRefreshTokenTitle_parameters}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_expiresIn}" for="expiresIn" />
+                        <p:inputText id="expiresIn" value="#{refreshTokenController.selected.expiresIn}" title="#{bundle.EditRefreshTokenTitle_expiresIn}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_issuedAt}" for="issuedAt" />
+                        <p:inputText id="issuedAt" value="#{refreshTokenController.selected.issuedAt}" title="#{bundle.EditRefreshTokenTitle_issuedAt}" />
+                        <p:outputLabel value="#{bundle.EditRefreshTokenLabel_issuer}" for="issuer" />
+                        <p:inputText id="issuer" value="#{refreshTokenController.selected.issuer}" title="#{bundle.EditRefreshTokenTitle_issuer}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{refreshTokenController.update}" value="#{bundle.Save}" update="display,:RefreshTokenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RefreshTokenEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RefreshTokenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

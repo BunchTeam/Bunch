@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServerAuthorizationCodeGrantEditDlg" widgetVar="ServerAuthorizationCodeGrantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServerAuthorizationCodeGrantTitle}">
+            <h:form id="ServerAuthorizationCodeGrantEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serverAuthorizationCodeGrantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_issuedAt}" for="issuedAt" />
+                        <p:inputText id="issuedAt" value="#{serverAuthorizationCodeGrantController.selected.issuedAt}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_issuedAt}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_expiresIn}" for="expiresIn" />
+                        <p:inputText id="expiresIn" value="#{serverAuthorizationCodeGrantController.selected.expiresIn}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_expiresIn}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{serverAuthorizationCodeGrantController.selected.client}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_approvedScopes}" for="approvedScopes" />
+                        <p:inputText id="approvedScopes" value="#{serverAuthorizationCodeGrantController.selected.approvedScopes}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_approvedScopes}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{serverAuthorizationCodeGrantController.selected.subject}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{userSubjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_audience}" for="audience" />
+                        <p:inputText id="audience" value="#{serverAuthorizationCodeGrantController.selected.audience}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_audience}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_clientCodeChallenge}" for="clientCodeChallenge" />
+                        <p:inputText id="clientCodeChallenge" value="#{serverAuthorizationCodeGrantController.selected.clientCodeChallenge}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_clientCodeChallenge}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_requestedScopes}" for="requestedScopes" />
+                        <p:inputText id="requestedScopes" value="#{serverAuthorizationCodeGrantController.selected.requestedScopes}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_requestedScopes}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_nonce}" for="nonce" />
+                        <p:inputText id="nonce" value="#{serverAuthorizationCodeGrantController.selected.nonce}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_nonce}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_extraProperties}" for="extraProperties" />
+                        <p:inputText id="extraProperties" value="#{serverAuthorizationCodeGrantController.selected.extraProperties}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_extraProperties}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_responseType}" for="responseType" />
+                        <p:inputText id="responseType" value="#{serverAuthorizationCodeGrantController.selected.responseType}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_responseType}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_redirectUri}" for="redirectUri" />
+                        <p:inputText id="redirectUri" value="#{serverAuthorizationCodeGrantController.selected.redirectUri}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_redirectUri}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{serverAuthorizationCodeGrantController.selected.code}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_code}" />
+                        <p:outputLabel value="#{bundle.EditServerAuthorizationCodeGrantLabel_codeVerifier}" for="codeVerifier" />
+                        <p:inputText id="codeVerifier" value="#{serverAuthorizationCodeGrantController.selected.codeVerifier}" title="#{bundle.EditServerAuthorizationCodeGrantTitle_codeVerifier}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serverAuthorizationCodeGrantController.update}" value="#{bundle.Save}" update="display,:ServerAuthorizationCodeGrantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServerAuthorizationCodeGrantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServerAuthorizationCodeGrantEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

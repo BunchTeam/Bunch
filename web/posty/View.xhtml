@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PostyViewDlg" widgetVar="PostyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPostyTitle}">
+            <h:form id="PostyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{postyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPostyLabel_idposta}"/>
+                        <h:outputText value="#{postyController.selected.idposta}" title="#{bundle.ViewPostyTitle_idposta}"/>
+                        <h:outputText value="#{bundle.ViewPostyLabel_tresc}"/>
+                        <h:outputText value="#{postyController.selected.tresc}" title="#{bundle.ViewPostyTitle_tresc}"/>
+                        <h:outputText value="#{bundle.ViewPostyLabel_dataposta}"/>
+                        <h:outputText value="#{postyController.selected.dataposta}" title="#{bundle.ViewPostyTitle_dataposta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPostyLabel_idkommentarzposta}"/>
+                        <h:outputText value="#{postyController.selected.idkommentarzposta}" title="#{bundle.ViewPostyTitle_idkommentarzposta}"/>
+                        <h:outputText value="#{bundle.ViewPostyLabel_zgloszony}"/>
+                        <p:selectBooleanCheckbox value="#{postyController.selected.zgloszony}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPostyLabel_idgrupy}"/>
+                        <h:outputText value="#{postyController.selected.idgrupy}" title="#{bundle.ViewPostyTitle_idgrupy}"/>
+                        <h:outputText value="#{bundle.ViewPostyLabel_iduzytkownika}"/>
+                        <h:outputText value="#{postyController.selected.iduzytkownika}" title="#{bundle.ViewPostyTitle_iduzytkownika}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PostyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

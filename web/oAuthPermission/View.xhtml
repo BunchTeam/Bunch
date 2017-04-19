@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OAuthPermissionViewDlg" widgetVar="OAuthPermissionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOAuthPermissionTitle}">
+            <h:form id="OAuthPermissionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{oAuthPermissionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOAuthPermissionLabel_httpVerbs}"/>
+                        <h:outputText value="#{oAuthPermissionController.selected.httpVerbs}" title="#{bundle.ViewOAuthPermissionTitle_httpVerbs}"/>
+                        <h:outputText value="#{bundle.ViewOAuthPermissionLabel_uris}"/>
+                        <h:outputText value="#{oAuthPermissionController.selected.uris}" title="#{bundle.ViewOAuthPermissionTitle_uris}"/>
+                        <h:outputText value="#{bundle.ViewOAuthPermissionLabel_description}"/>
+                        <h:outputText value="#{oAuthPermissionController.selected.description}" title="#{bundle.ViewOAuthPermissionTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewOAuthPermissionLabel_permission}"/>
+                        <h:outputText value="#{oAuthPermissionController.selected.permission}" title="#{bundle.ViewOAuthPermissionTitle_permission}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OAuthPermissionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PowiadomieniaopostachEditDlg" widgetVar="PowiadomieniaopostachEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPowiadomieniaopostachTitle}">
+            <h:form id="PowiadomieniaopostachEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{powiadomieniaopostachController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPowiadomieniaopostachLabel_idpowiadomienia}" for="idpowiadomienia" />
+                        <p:inputText id="idpowiadomienia" value="#{powiadomieniaopostachController.selected.idpowiadomienia}" title="#{bundle.EditPowiadomieniaopostachTitle_idpowiadomienia}" required="true" requiredMessage="#{bundle.EditPowiadomieniaopostachRequiredMessage_idpowiadomienia}"/>
+                        <p:outputLabel value="#{bundle.EditPowiadomieniaopostachLabel_datapowiadomienia}" for="datapowiadomienia" />
+                        <p:calendar id="datapowiadomienia" pattern="MM/dd/yyyy HH:mm:ss" value="#{powiadomieniaopostachController.selected.datapowiadomienia}" title="#{bundle.EditPowiadomieniaopostachTitle_datapowiadomienia}" required="true" requiredMessage="#{bundle.EditPowiadomieniaopostachRequiredMessage_datapowiadomienia}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPowiadomieniaopostachLabel_idinterakcji}" for="idinterakcji" />
+                        <p:selectOneMenu id="idinterakcji" value="#{powiadomieniaopostachController.selected.idinterakcji}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{interakcjeController.itemsAvailableSelectOne}"
+                                           var="idinterakcjiItem"
+                                           itemValue="#{idinterakcjiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPowiadomieniaopostachLabel_idposta}" for="idposta" />
+                        <p:selectOneMenu id="idposta" value="#{powiadomieniaopostachController.selected.idposta}" required="true" requiredMessage="#{bundle.EditPowiadomieniaopostachRequiredMessage_idposta}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{postyController.itemsAvailableSelectOne}"
+                                           var="idpostaItem"
+                                           itemValue="#{idpostaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPowiadomieniaopostachLabel_iduzytkownika}" for="iduzytkownika" />
+                        <p:selectOneMenu id="iduzytkownika" value="#{powiadomieniaopostachController.selected.iduzytkownika}" required="true" requiredMessage="#{bundle.EditPowiadomieniaopostachRequiredMessage_iduzytkownika}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{uzytkownicyController.itemsAvailableSelectOne}"
+                                           var="iduzytkownikaItem"
+                                           itemValue="#{iduzytkownikaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{powiadomieniaopostachController.update}" value="#{bundle.Save}" update="display,:PowiadomieniaopostachListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PowiadomieniaopostachEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PowiadomieniaopostachEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

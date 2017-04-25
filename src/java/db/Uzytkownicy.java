@@ -5,9 +5,19 @@
  */
 package db;
 
+import com.jsf.dao.LoginDAO;
+import com.jsf.util.DataConnect;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -355,5 +365,5 @@ public class Uzytkownicy implements Serializable {
     public String toString() {
         return "lib.Uzytkownicy[ iduzytkownika=" + iduzytkownika + " ]";
     }
-    
+
 }

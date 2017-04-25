@@ -17,7 +17,7 @@
         <p:growl id="growl" life="3000" />
 
         <p:layout fullPage="true">
-            <b:navBar brand="Bunch" brandHref="#" inverse="true" style=" z-index: 2 !important; font-size: 18px; position: fixed !important; width: 100%">
+            <b:navBar brand="Bunch" brandHref="index.xhtml" inverse="true" style=" z-index: 2 !important; font-size: 18px; position: fixed !important; width: 100%">
                 <b:navbarLinks>
                     <h:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs" role="login">
 
@@ -36,20 +36,25 @@
 
                     <b:dropButton value="Twoje konto" style="margin-left: 450px" look="primary">
                         <center>
-                            <b:label id="imienazwisko" text="Imię nazwisko" severity="primary" style=" font-size: 20px !important" /></center>
+                            <b:label id="imienazwisko" text="#{login.user}" severity="primary" style=" font-size: 20px !important" /></center>
                         <br/>
 
                         <h:form>
                             <img src="images/profil.png" alt="" style="width: 50px; height: 50px"/>
-                            <b:commandButton value="Pokaż profil" look="info"  size="sm"/><br/>
+                            <b:commandButton value="Pokaż profil" action="strona_profilowa.xhtml" look="info"  size="sm"/><br/>
 
                         </h:form>
 
                         <center>
                             <br/>
-
-                            <b:navLink value="Ustawienia" href="#" iconAwesome="cog" icon-spin="true"></b:navLink>
-                            <b:navLink value="Wyloguj" href="#" iconAwesome="sign-out" icon-spin="true"></b:navLink></center>
+                            <h:form>
+                                 <h:commandLink action="edycja_profilu.xhtml" value="Ustawienia"></h:commandLink>
+                         
+                                
+                            <br></br>
+                            <h:commandLink action="#{login.logout}" value="Wyloguj"></h:commandLink>
+                            </h:form>
+                            </center>
 
                     </b:dropButton>
 
@@ -81,7 +86,7 @@
                       <hr/>
                         <small><a href="#" style="color: white ">Bunch.pl</a></small><br/>
                                 <small><a href="#" style="color: white">Co nowego?</a></small><br/>
-                                    <small><a href="#" style="color: white">Wersja mobilna</a></small><br/>
+                                    <small><a href="#"  style="color: white">Wersja mobilna</a></small><br/>
                                         </div>
                                         </p:layoutUnit>
                                         <p:layoutUnit position="center"  >

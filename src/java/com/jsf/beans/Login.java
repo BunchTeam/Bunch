@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.jsf.dao.LoginDAO;
 import com.jsf.util.SessionUtils;
+import db.Uzytkownicy;
 
 @ManagedBean
 @SessionScoped
@@ -20,7 +21,27 @@ public class Login implements Serializable {
 	private String pwd;
 	private String msg;
 	private String user;
+        
+        private String imie;
+        private String nazwisko;
 
+        public String getImie() {
+		return imie;
+	}
+
+	public void setImie(String imie) {
+		this.imie = imie;
+	}
+        
+        public String getNazwisko() {
+		return nazwisko;
+	}
+
+	public void setNazwisko(String nazwisko) {
+		this.nazwisko = nazwisko;
+	}
+        
+        
 	public String getPwd() {
 		return pwd;
 	}
@@ -51,8 +72,8 @@ public class Login implements Serializable {
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);
-			//return "admin";
-                        return "index";
+			//return "admin";                      
+                        return "index";                     
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -62,11 +83,32 @@ public class Login implements Serializable {
 			return "login";
 		}
 	}
-
-	//logout event, invalidate session
+        
+        
+        public String pobierzdane() {
+		boolean valid = LoginDAO.pobierz(user);
+		if (valid) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", user);
+                        session.setAttribute("imie", imie);
+                        session.setAttribute("nazwisko", nazwisko);
+			//return "admin";                      
+                        return "index";                     
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
+			return "login";
+		}
+	}
+        
+              
+   	//logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
-	}
+		return "logowanie_rejestracja";
+	}      
 }

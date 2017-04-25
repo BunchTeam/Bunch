@@ -21,6 +21,19 @@ public class SessionUtils {
 				.getExternalContext().getSession(false);
 		return session.getAttribute("username").toString();
 	}
+        
+        public static String getImie() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		return session.getAttribute("imie").toString();
+	}
+        
+        public static String getNazwisko() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		return session.getAttribute("nazwisko").toString();
+	}
+        
 
 	public static String getUserId() {
 		HttpSession session = getSession();

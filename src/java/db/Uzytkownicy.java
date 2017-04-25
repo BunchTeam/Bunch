@@ -136,6 +136,11 @@ public class Uzytkownicy implements Serializable {
     @JoinColumn(name = "idroli", referencedColumnName = "idroli")
     @ManyToOne(optional = false)
     private Roleuzytkownikow idroli;
+    
+
+
+    
+    
 
     public Uzytkownicy() {
     }
@@ -366,4 +371,6 @@ public class Uzytkownicy implements Serializable {
         return "lib.Uzytkownicy[ iduzytkownika=" + iduzytkownika + " ]";
     }
 
+   
+    
 }

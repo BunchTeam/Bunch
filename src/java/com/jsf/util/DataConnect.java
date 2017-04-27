@@ -12,7 +12,7 @@ public class DataConnect {
             //		"jdbc:mysql://localhost:3306/cardb", "pankaj", "pankaj123");
 
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/facebook", "postgres", "postgres");
+            Connection con = DriverManager.getConnection("jdbc:postgresql://beta.ur.edu.pl:5432/facebook", "postgres", "!Q2w3e4r");
 
             return con;
         } catch (Exception ex) {

@@ -178,7 +178,7 @@ public class Login implements Serializable {
 
                 try {
                     con = DataConnect.getConnection();
-                    ps = con.prepareStatement("Select imie, nazwisko, email, plec, dataurodzenia, kodpocztowy, miasto, ulica, zgłoszony from uzytkownicy where login = ?");
+                    ps = con.prepareStatement("Select imie, nazwisko, email, plec, dataurodzenia, kodpocztowy, miasto, ulica, zgloszony from uzytkownicy where login = ?");
                     ps.setString(1, user);
 
                     ResultSet rs = ps.executeQuery();
@@ -192,7 +192,7 @@ public class Login implements Serializable {
                         setKodpocztowy(rs.getString("kodpocztowy"));
                         setMiasto(rs.getString("miasto"));
                         setUlica(rs.getString("ulica"));
-                        setZgloszony(rs.getBoolean("zgłoszony"));
+                        setZgloszony(rs.getBoolean("zgloszony"));
                         
                         
                        // setImieNazwisko(rs.getString("imie")+" "+rs.getString("nazwisko"));

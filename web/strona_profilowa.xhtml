@@ -2,11 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
+       
         <ui:define name="body" > 
             <script>
                 $(function() {
@@ -25,7 +29,7 @@
                             <div align="center">
                                 <img class="thumbnail img-responsive" src="images/profil.png" width="300px" height="300px"/>
                             </div>
-                            <div class="media-body">
+                            
                                 <hr/>
                                 <h3><strong>O mnie</strong></h3>
                                 <h4><label style="color: #333333 !important; font-weight: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -37,12 +41,13 @@
                                 <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.miasto}</label></h4>
                                 <hr/>
                                 <h3><strong>Płeć</strong></h3>
-                               <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.plec}</label></h4>
+                                <h4><label id="labelplec" style="color: #333333 !important; font-weight: normal !important;">#{login.plec}</label></h4>
+                           
                                 <hr/>
                                 <h3><strong>Data urodzenia</strong></h3>
                                 <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.dataurodzenia}</label></h4>
                                 <hr/>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -382,7 +387,6 @@
                     </div>
                 </div>
             </div>
-
         </ui:define> 
     </ui:composition> 
 </html>

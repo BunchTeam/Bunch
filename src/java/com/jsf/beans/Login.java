@@ -199,9 +199,9 @@ public class Login implements Serializable {
     }
 
     public String zarejestruj() {
-        
- boolean plecbool;
- 
+
+        boolean plecbool;
+
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String imie_rej = request.getParameter("rejestracja:imie_rej");
         //    System.out.println("imie_rej = " + imie_rej);
@@ -238,22 +238,22 @@ public class Login implements Serializable {
 
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date3 = formatter.format(date2);
-             //System.out.println("data = " + date3);
+        //System.out.println("data = " + date3);
         String plec_rej = request.getParameter("rejestracja:plec_rej");
         //     System.out.println("plec_rej = " + plec_rej)
-        
+
         if (plec_rej.equalsIgnoreCase("true") || plec_rej.equalsIgnoreCase("false")) {
-   plecbool = Boolean.valueOf(plec_rej);
-} else {  
- plecbool = false;
-         System.out.println("error "); 
-}
-        
-        java.sql.Date sqlDate2 = java.sql.Date.valueOf( date3 ); 
-     //   System.out.println("data = " + sqlDate2);
+            plecbool = Boolean.valueOf(plec_rej);
+        } else {
+            plecbool = false;
+            System.out.println("error ");
+        }
+
+        java.sql.Date sqlDate2 = java.sql.Date.valueOf(date3);
+        //   System.out.println("data = " + sqlDate2);
 
         int i = 0;
-      if ((haslo_rej).equals(powtorzhaslo_rej)) {
+        if ((haslo_rej).equals(powtorzhaslo_rej)) {
 
             Connection con = null;
             PreparedStatement ps = null;
@@ -297,10 +297,111 @@ public class Login implements Serializable {
         } else {
             return "blad";
         }
-        
+
         // return null;
     }
+ public String zarejestruj2() {
 
+        boolean plecbool;
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String imie_rej = request.getParameter("rejestracja:imie_rej");
+        //    System.out.println("imie_rej = " + imie_rej);
+        String nazwisko_rej = request.getParameter("rejestracja:nazwisko_rej");
+        //    System.out.println("nazwisko_rej = " + nazwisko_rej);
+        String login_rej = request.getParameter("rejestracja:login_rej");
+        //      System.out.println("login_rej = " + login_rej);
+        String haslo_rej = request.getParameter("rejestracja:haslo_rej");
+        //    System.out.println("haslo_rej = " + haslo_rej);
+        String powtorzhaslo_rej = request.getParameter("rejestracja:powtorzhaslo_rej");
+        //    System.out.println("powtorzhaslo_rej = " + powtorzhaslo_rej);
+        String miasto_rej = request.getParameter("rejestracja:miasto_rej");
+        //     System.out.println("miasto_rej = " + miasto_rej);
+        String email_rej = request.getParameter("rejestracja:email_rej");
+        //     System.out.println("email_rej = " + email_rej);
+
+        String kod_rej = request.getParameter("rejestracja:kod_rej");
+        //    System.out.println("kod_rej = " + kod_rej);
+        String ulica_rej = request.getParameter("rejestracja:ulica_rej");
+        //    System.out.println("ulica_rej = " + ulica_rej);
+
+//        String profile_date_year = request.getParameter("rejestracja:profile_date_year");
+//        //  System.out.println("profile_date_year = " + profile_date_year);
+//        int rok = Integer.parseInt(profile_date_year);
+//        String profile_date_month = request.getParameter("rejestracja:profile_date_month");
+//        //   System.out.println("profile_date_month = " + profile_date_month);
+//        int miesiac = Integer.parseInt(profile_date_month);
+//        String profile_date_day = request.getParameter("rejestracja:profile_date_day");
+//        //   System.out.println("profile_date_day = " + profile_date_day);
+//        int dzien = Integer.parseInt(profile_date_day);
+//
+//        Date date2 = new GregorianCalendar(rok, miesiac - 1, dzien).getTime();
+//        // System.out.println("data = " + date2);
+//
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = formatter.format(getDataurodzenia());
+        //System.out.println("data = " + date3);
+        //String plec_rej = request.getParameter("rejestracja:plec_rej");
+        //     System.out.println("plec_rej = " + plec_rej)
+
+//        if (plec_rej.equalsIgnoreCase("true") || plec_rej.equalsIgnoreCase("false")) {
+//            plecbool = Boolean.valueOf(plec_rej);
+//        } else {
+//            plecbool = false;
+//            System.out.println("error ");
+//        }
+
+        java.sql.Date sqlDate2 = java.sql.Date.valueOf(date3);
+        //   System.out.println("data = " + sqlDate2);
+
+        int i = 0;
+        if ((haslo_rej).equals(powtorzhaslo_rej)) {
+
+            Connection con = null;
+            PreparedStatement ps = null;
+
+            try {
+
+                con = DataConnect.getConnection();
+                if (con != null) {
+                    String sql = "INSERT INTO uzytkownicy(login, haslo, email, imie, nazwisko, dataurodzenia, kodpocztowy, miasto, ulica, idroli, zgloszony, plec ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1, login_rej);
+                    ps.setString(2, haslo_rej);
+                    ps.setString(3, email_rej);
+                    ps.setString(4, imie_rej);
+                    ps.setString(5, nazwisko_rej);
+                    ps.setDate(6, sqlDate2);
+                    ps.setString(7, kod_rej);
+                    ps.setString(8, miasto_rej);
+                    ps.setString(9, ulica_rej);
+                    ps.setInt(10, 2);
+                    ps.setBoolean(11, false);
+                    ps.setBoolean(12, isPlec());
+
+                    i = ps.executeUpdate();
+                    System.out.println("Dodano uzytkownika");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    con.close();
+                    ps.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (i > 0) {
+            return "sukces";
+        } else {
+            return "blad";
+        }
+
+        // return null;
+    }
     public String aktualizujProfil() {
 
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

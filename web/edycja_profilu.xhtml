@@ -19,28 +19,24 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3 class="panel-title pull-left">Twoje imię i nazwisko</h3>
-                        <br/><br/>
-                        <form class="form-horizontal">
-                            <label for="First_name">Imię</label>
-                            <input type="text" class="form-control" id="First_name" name="noweimie" value="#{login.imie}"/>
-                            <hr/>
-                            <label for="Last_name">Nazwisko</label>
-                            <input type="email" class="form-control" id="Last_name" value="#{login.nazwisko}"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
                         <h3 class="panel-title pull-left">Twoje dane</h3>
                         <br/><br/>
-                        <form class="form-horizontal">
+                        <h:form id="formaImie" class="form-horizontal">
+                            <label for="First_name">Imię</label>
+                            <h:inputText class="form-control"  id="imie1" value="#{login.imie}"></h:inputText>  
+                            <hr/>
+                            <label for="Last_name">Nazwisko</label>
+                            <h:inputText class="form-control" id="nazwisko1" value="#{login.nazwisko}"></h:inputText>  
+
+                            <br/><br/>
+
                             <label for="e_mail">E-mail</label>
-                            <input type="email" class="form-control" id="e_mail" value="#{login.email}"/>
+                            <h:inputText class="form-control" id="e_mail1" value="#{login.email}"></h:inputText>  
                             <hr/>
                             <label for="kod_pocztowy">Kod pocztowy</label>
-                            <input type="text" class="form-control" id="kod_pocztowy" value="#{login.kodpocztowy}"/>
+                            <h:inputText class="form-control" id="kod_pocztowy1" value="#{login.kodpocztowy}"></h:inputText>  
                             <hr/>
+
                             <label for="ulica">Ulica</label>
                             <input type="text" class="form-control" id="ulica" value="#{login.ulica}"/>
                         </form>
@@ -53,7 +49,7 @@
                         <p>Informacje widoczne na Twoim profilu:</p>
                         <form class="form-horizontal">
                             <label for="Your_location">Miasto</label>
-                            <input type="text" class="form-control" id="Your_location" value="#{login.miasto}"/>
+                            <input type="text" class="form-control" id="miasto1" value="#{login.miasto}"/>
                             <hr/>
                             <label for="Your_gender">Płeć</label>
                             <b:selectOneMenu value="#{login.plec}">
@@ -66,6 +62,8 @@
                         </form>
                     </div>
                 </div>
+
+
                 <hr/>
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -84,14 +82,8 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <h:form>
-<h:commandButton  type="login" action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
-<h:commandButton  type="login" action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
-</h:form>          
-                    
-                    
-<!-- <button class="btn btn-danger"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Anuluj</button>
-                    <button class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Zaktualizuj profil</button> -->
+        
+
                     <br/>
                     <hr/>
                 </div>

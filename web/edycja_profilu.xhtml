@@ -5,12 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    
-    
 
-        
-        
+
+
+
+
+
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
@@ -47,177 +47,123 @@
                             <h:inputText class="form-control" id="ulica1" value="#{login.ulica}"></h:inputText>  
 
 
-                            <label for="Your_location">Miasto</label>
-                            <input type="text" class="form-control" id="miasto1" value="#{login.miasto}"/>
+                            <label for="miasto">Miasto</label>
+                            <h:inputText class="form-control" id="miasto1" value="#{login.miasto}"></h:inputText> 
                             <hr/>
                             <label for="Your_gender">Płeć</label>
 
-                            <h:selectOneRadio id="plec_rej" value ="#{login.plec1}">
+                            <h:selectOneRadio id="plec1" value ="#{login.plec}">
                                 <f:selectItem itemValue="#{false}" itemLabel="Mężczyzna" />
                                 <f:selectItem itemValue="#{true}" itemLabel="Kobieta"/>
-
                             </h:selectOneRadio>
 
-                            <hr/>
-                            <label>Rok urodzenia</label>
-                            <div class="form-inline" id="birth-date">
-                                <select id="profile_date_year" name="profile[date][year]" class="form-control">
-                                    <option value="" selected="selected">Rok</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2000">2000</option>
-                                    <option value="1999">1999</option>
-                                    <option value="1998">1998</option>
-                                    <option value="1997">1997</option>
-                                    <option value="1996">1996</option>
-                                    <option value="1995">1995</option>
-                                    <option value="1994">1994</option>
-                                    <option value="1993">1993</option>
-                                    <option value="1992">1992</option>
-                                    <option value="1991">1991</option>
-                                    <option value="1990">1990</option>
-                                    <option value="1989">1989</option>
-                                    <option value="1988">1988</option>
-                                    <option value="1987">1987</option>
-                                    <option value="1986">1986</option>
-                                    <option value="1985">1985</option>
-                                    <option value="1984">1984</option>
-                                    <option value="1983">1983</option>
-                                    <option value="1982">1982</option>
-                                    <option value="1981">1981</option>
-                                    <option value="1980">1980</option>
-                                    <option value="1979">1979</option>
-                                    <option value="1978">1978</option>
-                                    <option value="1977">1977</option>
-                                    <option value="1976">1976</option>
-                                    <option value="1975">1975</option>
-                                    <option value="1974">1974</option>
-                                    <option value="1973">1973</option>
-                                    <option value="1972">1972</option>
-                                    <option value="1971">1971</option>
-                                    <option value="1970">1970</option>
-                                    <option value="1969">1969</option>
-                                    <option value="1968">1968</option>
-                                    <option value="1967">1967</option>
-                                    <option value="1966">1966</option>
-                                    <option value="1965">1965</option>
-                                    <option value="1964">1964</option>
-                                    <option value="1963">1963</option>
-                                    <option value="1962">1962</option>
-                                    <option value="1961">1961</option>
-                                    <option value="1960">1960</option>
-                                    <option value="1959">1959</option>
-                                    <option value="1958">1958</option>
-                                    <option value="1957">1957</option>
-                                    <option value="1956">1956</option>
-                                    <option value="1955">1955</option>
-                                    <option value="1954">1954</option>
-                                    <option value="1953">1953</option>
-                                    <option value="1952">1952</option>
-                                    <option value="1951">1951</option>
-                                    <option value="1950">1950</option>
-                                    <option value="1949">1949</option>
-                                    <option value="1948">1948</option>
-                                    <option value="1947">1947</option>
-                                    <option value="1946">1946</option>
-                                    <option value="1945">1945</option>
-                                    <option value="1944">1944</option>
-                                    <option value="1943">1943</option>
-                                    <option value="1942">1942</option>
-                                    <option value="1941">1941</option>
-                                    <option value="1940">1940</option>
 
-                                </select>
-                                <select id="profile_date_month" name="profile[date][month]" class="form-control">
-                                    <option value="" selected="selected">Miesiąc</option>
-                                    <option value="1">Styczeń</option>
-                                    <option value="2">Luty</option>
-                                    <option value="3">Marzec</option>
-                                    <option value="4">Kwiecień</option>
-                                    <option value="5">Maj</option>
-                                    <option value="6">Czerwiec</option>
-                                    <option value="7">Lipiec</option>
-                                    <option value="8">Sierpień</option>
-                                    <option value="9">Wrzesień</option>
-                                    <option value="10">Październik</option>
-                                    <option value="11">Listopad</option>
-                                    <option value="12">Grudzień</option>
-                                </select>
-                                <select id="profile_date_day" name="profile[date][day]" class="form-control">
-                                    <option value="" selected="selected">Dzień</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                </select>
+
+                            <hr/>
+
+                            <label>Data urodzenia</label>
+
+                            <div class="form-inline" id="birth-date">
+                                <h:selectOneMenu  id="profile_date_year" class="form-control" value="Rok">
+                                    <f:selectItem itemValue = "2003" itemLabel = "2003" /> 
+                                    <f:selectItem itemValue = "2002" itemLabel = "2002" /> 
+                                    <f:selectItem itemValue = "2001" itemLabel = "2001" /> 
+                                    <f:selectItem itemValue = "2000" itemLabel = "2000" /> 
+                                    <f:selectItem itemValue = "1999" itemLabel = "1999" /> 
+                                    <f:selectItem itemValue = "1998" itemLabel = "1998" /> 
+                                    <f:selectItem itemValue = "1997" itemLabel = "1997" /> 
+                                    <f:selectItem itemValue = "1996" itemLabel = "1996" /> 
+                                    <f:selectItem itemValue = "1995" itemLabel = "1995" /> 
+                                    <f:selectItem itemValue = "1994" itemLabel = "1994" /> 
+                                    <f:selectItem itemValue = "1993" itemLabel = "1993" /> 
+                                    <f:selectItem itemValue = "1992" itemLabel = "1992" /> 
+                                    <f:selectItem itemValue = "1991" itemLabel = "1991" /> 
+                                    <f:selectItem itemValue = "1990" itemLabel = "1990" />
+                                    <f:selectItem itemValue = "1989" itemLabel = "1989" />
+                                    <f:selectItem itemValue = "1988" itemLabel = "1988" />
+                                    <f:selectItem itemValue = "1987" itemLabel = "1987" />
+                                    <f:selectItem itemValue = "1986" itemLabel = "1986" />
+                                    <f:selectItem itemValue = "1985" itemLabel = "1985" />
+                                    <f:selectItem itemValue = "1984" itemLabel = "1984" />
+                                    <f:selectItem itemValue = "1983" itemLabel = "1983" />
+                                    <f:selectItem itemValue = "1982" itemLabel = "1982" />
+                                    <f:selectItem itemValue = "1981" itemLabel = "1981" />
+                                    <f:selectItem itemValue = "1980" itemLabel = "1980" />
+
+
+
+                                </h:selectOneMenu> 
+                                <h:selectOneMenu  id="profile_date_month"  class="form-control" value="Miesiąc">
+                                    <f:selectItem itemValue = "1" itemLabel = "Styczeń" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "Luty" /> 
+                                    <f:selectItem itemValue = "3" itemLabel = "Marzec" /> 
+                                    <f:selectItem itemValue = "4" itemLabel = "Kwiecień" /> 
+                                    <f:selectItem itemValue = "5" itemLabel = "Maj" /> 
+                                    <f:selectItem itemValue = "6" itemLabel = "Czerwiec" /> 
+                                    <f:selectItem itemValue = "7" itemLabel = "Lipiec" /> 
+                                    <f:selectItem itemValue = "8" itemLabel = "Sierpień" /> 
+                                    <f:selectItem itemValue = "9" itemLabel = "Wrzesień" /> 
+                                    <f:selectItem itemValue = "10" itemLabel = "Październik" /> 
+                                    <f:selectItem itemValue = "11" itemLabel = "Listopad" /> 
+                                    <f:selectItem itemValue = "12" itemLabel = "Grudzień" /> 
+
+                                </h:selectOneMenu>
+                                <h:selectOneMenu  id="profile_date_day" class="form-control" value="Dzień">
+                                    <f:selectItem itemValue = "1" itemLabel = "1" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "2" /> 
+                                    <f:selectItem itemValue = "3" itemLabel = "3" /> 
+                                    <f:selectItem itemValue = "4" itemLabel = "4" /> 
+                                    <f:selectItem itemValue = "5" itemLabel = "5" /> 
+                                    <f:selectItem itemValue = "6" itemLabel = "6" /> 
+                                    <f:selectItem itemValue = "7" itemLabel = "7" /> 
+                                    <f:selectItem itemValue = "8" itemLabel = "8" /> 
+                                    <f:selectItem itemValue = "9" itemLabel = "9" /> 
+                                    <f:selectItem itemValue = "10" itemLabel = "10" /> 
+                                    <f:selectItem itemValue = "11" itemLabel = "11" /> 
+                                    <f:selectItem itemValue = "12" itemLabel = "12" /> 
+                                    <f:selectItem itemValue = "13" itemLabel = "13" /> 
+                                    <f:selectItem itemValue = "14" itemLabel = "14" /> 
+                                    <f:selectItem itemValue = "15" itemLabel = "15" /> 
+                                    <f:selectItem itemValue = "16" itemLabel = "16" /> 
+                                    <f:selectItem itemValue = "17" itemLabel = "17" /> 
+                                    <f:selectItem itemValue = "18" itemLabel = "18" /> 
+                                    <f:selectItem itemValue = "19" itemLabel = "19" /> 
+                                    <f:selectItem itemValue = "20" itemLabel = "20" /> 
+                                    <f:selectItem itemValue = "21" itemLabel = "21" /> 
+                                    <f:selectItem itemValue = "22" itemLabel = "22" /> 
+                                    <f:selectItem itemValue = "23" itemLabel = "23" /> 
+                                    <f:selectItem itemValue = "24" itemLabel = "24" /> 
+                                    <f:selectItem itemValue = "25" itemLabel = "25" /> 
+                                    <f:selectItem itemValue = "26" itemLabel = "26" /> 
+                                    <f:selectItem itemValue = "27" itemLabel = "27" /> 
+                                    <f:selectItem itemValue = "28" itemLabel = "28" /> 
+                                    <f:selectItem itemValue = "29" itemLabel = "29" /> 
+                                    <f:selectItem itemValue = "30" itemLabel = "30" /> 
+                                    <f:selectItem itemValue = "31" itemLabel = "31" />
+                                </h:selectOneMenu> 
                             </div>
                             <hr/>
+                            
+                            
+                            <label for="e_mail">Stare Hasło</label>
+                            <h:inputText class="form-control" id="starehaslo"></h:inputText>  
+                            
+                            <label for="e_mail">Nowe Hasło</label>
+                            <h:inputText class="form-control" id="nowehaslo"></h:inputText>  
+                            <label for="e_mail">Powtórz nowe Hasło</label>
+                            <h:inputText class="form-control" id="nowehaslo1"></h:inputText>  
+                            
+                            
+                            <hr></hr>
                             <h:commandButton   action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
                             <h:commandButton   action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
 
                         </h:form>
                     </div>
                 </div>
-
-
-                <hr/>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="panel-title pull-left">Ustawienia konta</h3>
-                        <hr/>
-                        <h4>Zmiana hasła</h4>
-                        <br/>
-                        <label for="stare_haslo">Stare hasło</label>
-                        <input type="password" class="form-control" id="stare_haslo" placeholder="Stare hasło"/>
-                        <hr/>
-                        <label for="nowe_haslo">Nowe hasło</label>
-                        <input type="password" class="form-control" id="nowe_haslo" placeholder="Nowe hasło"/>
-                        <br/>
-                        <label for="pow_nowe_haslo">Powtórz nowe hasło</label>
-                        <input type="password" class="form-control" id="pow_nowe_haslo" placeholder="Powtórz nowe hasło"/>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <h:form>
-                        <h:commandButton  type="login" action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
-                        <h:commandButton  type="login" action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
-                    </h:form>                  
-
                     <br/>
                     <hr/>
                 </div>
-            </div>
-
-
-
         </ui:define> 
     </ui:composition> 
 </html>

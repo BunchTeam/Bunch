@@ -302,6 +302,8 @@ public class Login implements Serializable {
     }
 
     public String aktualizujProfil() {
+        
+boolean plecbool1;
 
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String imie1 = request.getParameter("formaImie:imie1");
@@ -314,7 +316,49 @@ public class Login implements Serializable {
         System.out.println("kod_pocztowy1 = " + kod_pocztowy1);
         String ulica1 = request.getParameter("formaImie:ulica1");
         System.out.println("ulica1 = " + ulica1);
+        String miasto1 = request.getParameter("formaImie:miasto1");
+        System.out.println("miasto1 = " + miasto1);
 
+        String plec1 = request.getParameter("formaImie:plec1");
+        //     System.out.println("plec_rej = " + plec_rej)
+        
+        if (plec1.equalsIgnoreCase("true") || plec1.equalsIgnoreCase("false")) {
+   plecbool1 = Boolean.valueOf(plec1);
+} else {  
+ plecbool1 = false;
+         System.out.println("error "); 
+}
+        
+        
+        
+         String profile_date_year = request.getParameter("formaImie:profile_date_year");
+        //  System.out.println("profile_date_year = " + profile_date_year);
+        int rok = Integer.parseInt(profile_date_year);
+        String profile_date_month = request.getParameter("formaImie:profile_date_month");
+        //   System.out.println("profile_date_month = " + profile_date_month);
+        int miesiac = Integer.parseInt(profile_date_month);
+        String profile_date_day = request.getParameter("formaImie:profile_date_day");
+        //   System.out.println("profile_date_day = " + profile_date_day);
+        int dzien = Integer.parseInt(profile_date_day);
+
+        Date date2 = new GregorianCalendar(rok, miesiac - 1, dzien).getTime();
+        // System.out.println("data = " + date2);
+
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date3 = formatter.format(date2);
+             //System.out.println("data = " + date3);
+
+         java.sql.Date sqlDate3 = java.sql.Date.valueOf( date3 );
+             
+              String starehaslo = request.getParameter("formaImie:starehaslo");
+        System.out.println("starehaslo = " + starehaslo);
+             
+         String nowehaslo = request.getParameter("formaImie:nowehaslo");
+        System.out.println("miasnowehasloto1 = " + nowehaslo);
+        
+         String nowehaslo1 = request.getParameter("formaImie:nowehaslo1");
+        System.out.println("nowehaslo1 = " + nowehaslo1);
+        
         // String txtAnotherProperty= request.getParameter("txtAnotherProperty");
         //    System.out.println("txtAnotherProperty = " + txtAnotherProperty);
         // String noweimie = (FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("noweimie")).toString();
@@ -328,24 +372,50 @@ public class Login implements Serializable {
         // String nazwisko1 = map.get("imienazwisko:Last_name");
         // String noweimie = (FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("noweimie")).toString();
         //  System.out.println( "Nowe imie to "+ noweimie);
-        Connection con = null;
+        
+         Connection con = null;
         PreparedStatement ps = null;
+        
+        if (nowehaslo.equals("")){
+       
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ? WHERE login = ?");
-            //  ps.setString(1, "Bartłomiej");
-            // ps.setString(2, "Zimny");
-            System.out.println("Imie = " + imie);
-            ps.setString(1, imie);
-            System.out.println("Nazwisko = " + nazwisko);
-            ps.setString(2, nazwisko);
-            System.out.println("User = " + user);
-            ps.setString(3, user);
+            ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ?, email = ?, kodpocztowy = ?, ulica = ?, miasto = ?, plec = ?, dataurodzenia = ? WHERE login = ?");
+            ps.setString(1, imie1);
+            ps.setString(2, nazwisko1);
+            ps.setString(3, e_mail1);
+            ps.setString(4, kod_pocztowy1);
+            ps.setString(5, ulica1);
+            ps.setString(6, miasto1);
+            ps.setBoolean(7, plecbool1);
+            ps.setDate(8, sqlDate3);
+            ps.setString(9, user);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
             System.out.println("Error ->" + e.getMessage());
             return (null);
+        }
+        }else{
+            try {
+            con = DataConnect.getConnection();
+             ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ?, email = ?, kodpocztowy = ?, ulica = ?, miasto = ?, plec = ?, dataurodzenia = ?, haslo = ? WHERE login = ?");
+            ps.setString(1, imie1);
+            ps.setString(2, nazwisko1);
+            ps.setString(3, e_mail1);
+            ps.setString(4, kod_pocztowy1);
+            ps.setString(5, ulica1);
+            ps.setString(6, miasto1);
+            ps.setBoolean(7, plecbool1);
+            ps.setDate(8, sqlDate3);
+            ps.setString(9, nowehaslo);
+            ps.setString(10, user);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            System.out.println("Error ->" + e.getMessage());
+            return (null);
+        }
         }
         return null;
     }

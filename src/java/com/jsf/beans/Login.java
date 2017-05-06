@@ -16,7 +16,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import java.util.Map;
+
 
 @ManagedBean
 @SessionScoped
@@ -30,7 +33,7 @@ public class Login implements Serializable {
 
     private String imie;
     private String nazwisko;
-    
+
     private Integer iduzytkownika;
     private String email;
     private Date dataurodzenia;
@@ -38,8 +41,8 @@ public class Login implements Serializable {
     private String miasto;
     private String ulica;
     private boolean zgloszony;
-    private boolean plec;
-    
+    private String plec;
+
     private String imienazwisko;
 
     /////////////
@@ -50,7 +53,7 @@ public class Login implements Serializable {
     public void setIduzytkownika(Integer iduzytkownika) {
         this.iduzytkownika = iduzytkownika;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -99,19 +102,14 @@ public class Login implements Serializable {
         this.zgloszony = zgloszony;
     }
 
-    public boolean getPlec() {
+    public String getPlec() {
         return plec;
     }
 
-    public void setPlec(boolean plec) {
+    public void setPlec(String plec) {
         this.plec = plec;
     }
-    
-    
-    
-    
-    
-    
+
     //////////////
     public String getImie() {
         return imie;
@@ -128,7 +126,7 @@ public class Login implements Serializable {
     public void setNazwisko(String nazwisko) {
         this.nazwisko = nazwisko;
     }
-    
+
     public String getImieNazwisko() {
         return imienazwisko;
     }
@@ -161,6 +159,49 @@ public class Login implements Serializable {
         this.user = user;
     }
 
+    public String aktualizujProfil() {
+        
+      
+                
+      //   Map<String, String> map = FacesContext.getCurrentInstance().getRequestParameterMap();
+ //   String imie1 = map.get("imienazwisko:First_name");
+   // String nazwisko1 = map.get("imienazwisko:Last_name");
+        
+      
+       // String noweimie = (FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("noweimie")).toString();
+       
+      //  System.out.println( "Nowe imie to "+ noweimie);
+      
+      
+      
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute("username", user);
+        //return "admin";
+        ///////
+       // System.out.println("D");
+        {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+        con = DataConnect.getConnection();
+        ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ? WHERE login = ?");
+        //  ps.setString(1, "Bartłomiej");
+        // ps.setString(2, "Zimny");
+        ps.setString(1, imie);
+        ps.setString(2, nazwisko);
+        ps.setString(3, user);
+        ps.executeUpdate();
+        ps.close();
+        } catch (Exception e) {
+        System.out.println("Error ->" + e.getMessage());
+        return (null);
+        }
+        }
+        ///////
+        return "index";
+         
+    }
+
     //validate login
     public String validateUsernamePassword() {
         boolean valid = LoginDAO.validate(user, pwd);
@@ -170,6 +211,7 @@ public class Login implements Serializable {
             //return "admin";  
             ///////
             System.out.println("D");
+            
 
             {
 
@@ -187,23 +229,27 @@ public class Login implements Serializable {
                         setImie(rs.getString("imie"));
                         setNazwisko(rs.getString("nazwisko"));
                         setEmail(rs.getString("email"));
-                        setPlec(rs.getBoolean("plec"));
+
+                        // setPlec(rs.getBoolean("plec"));
+                        if (rs.getBoolean("plec") == false) {
+                            setPlec("Mężczyzna");
+                        } else {
+                            setPlec("Kobieta");
+                        }
                         setDataurodzenia(rs.getDate("dataurodzenia"));
                         setKodpocztowy(rs.getString("kodpocztowy"));
                         setMiasto(rs.getString("miasto"));
                         setUlica(rs.getString("ulica"));
                         setZgloszony(rs.getBoolean("zgloszony"));
-                        
-                        
-                       // setImieNazwisko(rs.getString("imie")+" "+rs.getString("nazwisko"));
-                        
+
+                        // setImieNazwisko(rs.getString("imie")+" "+rs.getString("nazwisko"));
                         found = true;
                     }
                     rs.close();
-                 } catch (Exception e) {
-            System.out.println("Error ->" + e.getMessage());
-            return (null);
-                 }
+                } catch (Exception e) {
+                    System.out.println("Error ->" + e.getMessage());
+                    return (null);
+                }
 
             }
 

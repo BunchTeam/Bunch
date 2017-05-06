@@ -21,10 +21,10 @@
                         <br/><br/>
                         <form class="form-horizontal">
                             <label for="First_name">Imię</label>
-                            <input type="text" class="form-control" id="First_name" placeholder="Imię" value="Imie"/>
+                            <input type="text" class="form-control" id="First_name" name="noweimie" value="#{login.imie}"/>
                             <hr/>
                             <label for="Last_name">Nazwisko</label>
-                            <input type="email" class="form-control" id="Last_name" placeholder="Nazwisko" value="Nazwisko"/>
+                            <input type="email" class="form-control" id="Last_name" value="#{login.nazwisko}"/>
                         </form>
                     </div>
                 </div>
@@ -34,13 +34,13 @@
                         <br/><br/>
                         <form class="form-horizontal">
                             <label for="e_mail">E-mail</label>
-                            <input type="email" class="form-control" id="e_mail" placeholder="E mail" value="E mail"/>
+                            <input type="email" class="form-control" id="e_mail" value="#{login.email}"/>
                             <hr/>
                             <label for="kod_pocztowy">Kod pocztowy</label>
-                            <input type="text" class="form-control" id="kod_pocztowy" placeholder="Kod pocztowy" value="Kod pocztowy"/>
+                            <input type="text" class="form-control" id="kod_pocztowy" value="#{login.kodpocztowy}"/>
                             <hr/>
                             <label for="ulica">Ulica</label>
-                            <input type="text" class="form-control" id="ulica" placeholder="Ulica" value="Ulica"/>
+                            <input type="text" class="form-control" id="ulica" value="#{login.ulica}"/>
                         </form>
                     </div>
                 </div>
@@ -80,10 +80,10 @@
                         <br/><br/>
                         <form class="form-horizontal">
                             <label for="Your_location">Miasto</label>
-                            <input type="text" class="form-control" id="Your_location" placeholder="Miasto"/>
+                            <input type="text" class="form-control" id="Your_location" value="#{login.miasto}"/>
                             <hr/>
                             <label for="Your_gender">Płeć</label>
-                            <input type="text" class="form-control" id="Your_gender" placeholder="Kobieta/Mężczyzna"/>
+                            <input type="text" class="form-control" id="Your_gender" value="#{login.plec}"/>
                             <hr/>
                             <label>Rok urodzenia</label>
                             <div class="form-inline" id="birth-date">
@@ -209,27 +209,31 @@
                     </div>
                 </div>
                 <hr/>
-                 <div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <h3 class="panel-title pull-left">Ustawienia konta</h3>
                         <hr/>
-                                <h4>Zmiana hasła</h4>
-                                <br/>
-                                                <label for="stare_haslo">Stare hasło</label>
-                            <input type="password" class="form-control" id="stare_haslo" placeholder="Stare hasło"/>
-                            <hr/>
-                            <label for="nowe_haslo">Nowe hasło</label>
-                            <input type="password" class="form-control" id="nowe_haslo" placeholder="Nowe hasło"/>
-                            <br/>
-                            <label for="pow_nowe_haslo">Powtórz nowe hasło</label>
-                            <input type="password" class="form-control" id="pow_nowe_haslo" placeholder="Powtórz nowe hasło"/>
-                                    </div>
+                        <h4>Zmiana hasła</h4>
+                        <br/>
+                        <label for="stare_haslo">Stare hasło</label>
+                        <input type="password" class="form-control" id="stare_haslo" placeholder="Stare hasło"/>
+                        <hr/>
+                        <label for="nowe_haslo">Nowe hasło</label>
+                        <input type="password" class="form-control" id="nowe_haslo" placeholder="Nowe hasło"/>
+                        <br/>
+                        <label for="pow_nowe_haslo">Powtórz nowe hasło</label>
+                        <input type="password" class="form-control" id="pow_nowe_haslo" placeholder="Powtórz nowe hasło"/>
+                    </div>
                 </div>
                 <div class="panel panel-default">
-
-
-                    <button class="btn btn-danger"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Anuluj</button>
-                    <button class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Zaktualizuj profil</button>
+                    <h:form>
+<h:commandButton  type="login" action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
+<h:commandButton  type="login" action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
+</h:form>          
+                    
+                    
+<!-- <button class="btn btn-danger"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Anuluj</button>
+                    <button class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Zaktualizuj profil</button> -->
                     <br/>
                     <hr/>
                 </div>
@@ -237,7 +241,7 @@
 
 
 
-                                    </ui:define> 
-                                    </ui:composition> 
-                                    </html>
+        </ui:define> 
+    </ui:composition> 
+</html>
 

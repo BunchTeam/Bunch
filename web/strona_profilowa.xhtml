@@ -31,17 +31,11 @@
                             </div>
                             
                                 <hr/>
-                                <h3><strong>O mnie</strong></h3>
-                                <h4><label style="color: #333333 !important; font-weight: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Curabitur vel gravida metus,non ultrices sapien.  Morbi odio metus,
-                                        dapibus non nibh id amet.</label></h4>
-                                <p></p>
-                                <hr/>
                                 <h3><strong>Miasto</strong></h3>
                                 <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.miasto}</label></h4>
                                 <hr/>
                                 <h3><strong>Płeć</strong></h3>
-                                <h4><label id="labelplec" style="color: #333333 !important; font-weight: normal !important;">#{login.plec}</label></h4>
+                                <h4><label id="labelplec" style="color: #333333 !important; font-weight: normal !important;">#{login.plectoString()}</label></h4>
                            
                                 <hr/>
                                 <h3><strong>Data urodzenia</strong></h3>
@@ -58,15 +52,12 @@
                     <div class="panel-body">
                         <span>
                             <h1 class="panel-title pull-left" style="font-size:30px;">#{login.imie}  #{login.nazwisko} <small>#{login.email}</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zweryfikowany profil"></i></h1>
-
                         </span>
-                        <br/><br/>
-                        <i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags/projekt" class="tag">#projekt</a> <a href="/tags/YOLOzimny" class="tag">#YOLOzimny</a> <a href="/tags/kierownik" class="tag">#kierownik</a>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty</a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Zdjęcia <span class="badge">69</span></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Znajomi <span class="badge">69</span></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty<span class="badge">69</span></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy <span class="badge">69</span></a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi <span class="badge">69</span></a>
                         </span>
                         <span class="pull-right">
                             <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wyślij e-mail"></i></a>

@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 
 @ManagedBean
@@ -41,7 +42,7 @@ public class Login implements Serializable {
     private String miasto;
     private String ulica;
     private boolean zgloszony;
-    private String plec;
+    private boolean plec;
 
     private String imienazwisko;
 
@@ -101,15 +102,6 @@ public class Login implements Serializable {
     public void setZgloszony(boolean zgloszony) {
         this.zgloszony = zgloszony;
     }
-
-    public String getPlec() {
-        return plec;
-    }
-
-    public void setPlec(String plec) {
-        this.plec = plec;
-    }
-
     //////////////
     public String getImie() {
         return imie;
@@ -159,6 +151,20 @@ public class Login implements Serializable {
         this.user = user;
     }
 
+    public boolean isPlec() {
+        return plec;
+    }
+
+    public void setPlec(boolean plec) {
+        this.plec = plec;
+    }
+    public String plectoString()
+    {
+        if (this.plec)
+            return "Kobieta";
+         else
+            return "Mężczyzna";
+    }
     public String aktualizujProfil() {
         
       
@@ -172,7 +178,7 @@ public class Login implements Serializable {
        
       //  System.out.println( "Nowe imie to "+ noweimie);
       
-      
+
       
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("username", user);
@@ -187,13 +193,14 @@ public class Login implements Serializable {
         ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ? WHERE login = ?");
         //  ps.setString(1, "Bartłomiej");
         // ps.setString(2, "Zimny");
+        System.out.println("Error ->" + imie);
         ps.setString(1, imie);
         ps.setString(2, nazwisko);
         ps.setString(3, user);
         ps.executeUpdate();
         ps.close();
         } catch (Exception e) {
-        System.out.println("Error ->" + e.getMessage());
+        System.out.println("Error aktualizujProfil->" + e.getMessage());
         return (null);
         }
         }
@@ -229,13 +236,7 @@ public class Login implements Serializable {
                         setImie(rs.getString("imie"));
                         setNazwisko(rs.getString("nazwisko"));
                         setEmail(rs.getString("email"));
-
-                        // setPlec(rs.getBoolean("plec"));
-                        if (rs.getBoolean("plec") == false) {
-                            setPlec("Mężczyzna");
-                        } else {
-                            setPlec("Kobieta");
-                        }
+                        setPlec(rs.getBoolean("plec"));
                         setDataurodzenia(rs.getDate("dataurodzenia"));
                         setKodpocztowy(rs.getString("kodpocztowy"));
                         setMiasto(rs.getString("miasto"));
@@ -247,7 +248,7 @@ public class Login implements Serializable {
                     }
                     rs.close();
                 } catch (Exception e) {
-                    System.out.println("Error ->" + e.getMessage());
+                    System.out.println("Error validateUsernamePassword ->" + e.getMessage());
                     return (null);
                 }
 

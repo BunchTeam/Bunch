@@ -39,7 +39,7 @@
 
                             <label for="ulica">Ulica</label>
                             <input type="text" class="form-control" id="ulica" value="#{login.ulica}"/>
-                        </form>
+                        </h:form>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -82,7 +82,10 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-        
+                    <h:form>
+                        <h:commandButton  type="login" action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
+                        <h:commandButton  type="login" action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
+                    </h:form>                  
 
                     <br/>
                     <hr/>

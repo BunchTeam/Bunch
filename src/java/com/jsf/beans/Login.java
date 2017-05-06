@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Map;
-
+import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean
 @SessionScoped
@@ -30,6 +30,9 @@ public class Login implements Serializable {
     private String pwd;
     private String msg;
     private String user;
+
+    private String imie1;
+    private String nazwisko1;
 
     private String imie;
     private String nazwisko;
@@ -159,47 +162,86 @@ public class Login implements Serializable {
         this.user = user;
     }
 
+    public String getImie1() {
+        return imie1;
+    }
+
+    public void setImie1(String imie1) {
+        this.imie1 = imie1;
+    }
+
+    public String getNazwisko1() {
+        return nazwisko1;
+    }
+
+    public void setNazwisko1(String nazwisko1) {
+        this.nazwisko1 = nazwisko1;
+    }
+    
+    
+
     public String aktualizujProfil() {
+
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String imie1 = request.getParameter("formaImie:imie1");
+        System.out.println("imie1 = " + imie1);
+        String nazwisko1 = request.getParameter("formaImie:nazwisko1");
+        System.out.println("nazwisko1 = " + nazwisko1);
+        String e_mail1 = request.getParameter("formaImie:e_mail1");
+        System.out.println("e_mail1 = " + e_mail1);
+        String kod_pocztowy1 = request.getParameter("formaImie:kod_pocztowy1");
+        System.out.println("kod_pocztowy1 = " + kod_pocztowy1);
+        String ulica1 = request.getParameter("formaImie:ulica1");
+        System.out.println("ulica1 = " + ulica1);
         
-      
-                
-      //   Map<String, String> map = FacesContext.getCurrentInstance().getRequestParameterMap();
- //   String imie1 = map.get("imienazwisko:First_name");
-   // String nazwisko1 = map.get("imienazwisko:Last_name");
+       // String txtAnotherProperty= request.getParameter("txtAnotherProperty");
+    //    System.out.println("txtAnotherProperty = " + txtAnotherProperty);
         
-      
-       // String noweimie = (FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("noweimie")).toString();
-       
-      //  System.out.println( "Nowe imie to "+ noweimie);
-      
-      
-      
+    //    imie = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("imie");
+        
+    //    System.out.println("Imie = " + imie);
+    //    System.out.println("Nazwisko = " + nazwisko);
+    //    System.out.println("User = " + user);
+        
+        
+        
+        /*
+        
+        //   Map<String, String> map = FacesContext.getCurrentInstance().getRequestParameterMap();
+        //   String imie1 = map.get("imienazwisko:First_name");
+        // String nazwisko1 = map.get("imienazwisko:Last_name");
+        // String noweimie = (FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap().get("noweimie")).toString();
+        //  System.out.println( "Nowe imie to "+ noweimie);
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("username", user);
         //return "admin";
         ///////
-       // System.out.println("D");
+        // System.out.println("D");
         {
-        Connection con = null;
-        PreparedStatement ps = null;
-        try {
-        con = DataConnect.getConnection();
-        ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ? WHERE login = ?");
-        //  ps.setString(1, "Bartłomiej");
-        // ps.setString(2, "Zimny");
-        ps.setString(1, imie);
-        ps.setString(2, nazwisko);
-        ps.setString(3, user);
-        ps.executeUpdate();
-        ps.close();
-        } catch (Exception e) {
-        System.out.println("Error ->" + e.getMessage());
-        return (null);
-        }
+            Connection con = null;
+            PreparedStatement ps = null;
+            try {
+                con = DataConnect.getConnection();
+                ps = con.prepareStatement("UPDATE uzytkownicy SET imie = ?, nazwisko = ? WHERE login = ?");
+                //  ps.setString(1, "Bartłomiej");
+                // ps.setString(2, "Zimny");
+                System.out.println("Imie = " + imie);
+                ps.setString(1, imie);
+                System.out.println("Nazwisko = " + nazwisko);
+                ps.setString(2, nazwisko);
+                System.out.println("User = " + user);
+                ps.setString(3, user);
+                ps.executeUpdate();
+                ps.close();
+            } catch (Exception e) {
+                System.out.println("Error ->" + e.getMessage());
+                return (null);
+            }
         }
         ///////
+         */
         return "index";
-         
+
     }
 
     //validate login
@@ -210,8 +252,7 @@ public class Login implements Serializable {
             session.setAttribute("username", user);
             //return "admin";  
             ///////
-            System.out.println("D");
-            
+            //  System.out.println("D");
 
             {
 

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
@@ -17,73 +18,33 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3 class="panel-title pull-left">Twoje imię i nazwisko</h3>
-                        <br/><br/>
-                        <form class="form-horizontal">
-                            <label for="First_name">Imię</label>
-                            <input type="text" class="form-control" id="First_name" name="noweimie" value="#{login.imie}"/>
-                            <hr/>
-                            <label for="Last_name">Nazwisko</label>
-                            <input type="email" class="form-control" id="Last_name" value="#{login.nazwisko}"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
                         <h3 class="panel-title pull-left">Twoje dane</h3>
                         <br/><br/>
-                        <form class="form-horizontal">
+                        <h:form id="formaImie" class="form-horizontal">
+                            <label for="First_name">Imię</label>
+                            <h:inputText class="form-control"  id="imie1" value="#{login.imie}"></h:inputText>  
+                            <hr/>
+                            <label for="Last_name">Nazwisko</label>
+                            <h:inputText class="form-control" id="nazwisko1" value="#{login.nazwisko}"></h:inputText>  
+
+                            <br/><br/>
+
                             <label for="e_mail">E-mail</label>
-                            <input type="email" class="form-control" id="e_mail" value="#{login.email}"/>
+                            <h:inputText class="form-control" id="e_mail1" value="#{login.email}"></h:inputText>  
                             <hr/>
                             <label for="kod_pocztowy">Kod pocztowy</label>
-                            <input type="text" class="form-control" id="kod_pocztowy" value="#{login.kodpocztowy}"/>
+                            <h:inputText class="form-control" id="kod_pocztowy1" value="#{login.kodpocztowy}"></h:inputText>  
                             <hr/>
+
                             <label for="ulica">Ulica</label>
-                            <input type="text" class="form-control" id="ulica" value="#{login.ulica}"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="panel-title pull-left">Opisz siebie w pięciu wyrazach ;)</h3>
-                        <br/><br/>
-                        <form class="form-horizontal">
-                            <input type="text" class="form-control" id="keywords" placeholder="Lubię #filmy #gotowanie #podróże #krosno #informatyke"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="panel-title pull-left">Twoje zdjęcie</h3>
-                        <br/><br/>
-                        <div align="center">
-                            <div class="col-lg-12 col-md-12">
-                                <img class="img-thumbnail img-responsive" src="images/profil.png" width="300px" height="300px"/>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <button class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Wgraj zdjęcie!</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="panel-title pull-left">Uzupełnij informacje o sobie</h3>
-                        <br/><br/>
-                        <p>Informacje widoczne na Twoim profilu:</p>
-                        <br/><br/>
-                        <form class="form-horizontal">
-                            <label>Napisz coś o sobie np. zainteresowania</label>
-                            <textarea class="form-control" rows="3"></textarea>
-                        </form>
-                        <br/><br/>
-                        <form class="form-horizontal">
+                            <h:inputText class="form-control" id="ulica1" value="#{login.ulica}"></h:inputText>  
+
+                           
                             <label for="Your_location">Miasto</label>
-                            <input type="text" class="form-control" id="Your_location" value="#{login.miasto}"/>
+                            <input type="text" class="form-control" id="miasto1" value="#{login.miasto}"/>
                             <hr/>
                             <label for="Your_gender">Płeć</label>
-                            <input type="text" class="form-control" id="Your_gender" value="#{login.plec}"/>
+                            <input type="text" class="form-control" id="plec1" value="#{login.plec}"/>
                             <hr/>
                             <label>Rok urodzenia</label>
                             <div class="form-inline" id="birth-date">
@@ -205,9 +166,24 @@
                                     <option value="31">31</option>
                                 </select>
                             </div>
-                        </form>
+                       
+                            
+                            
+                             <hr/>
+                            
+                            
+                            
+                            
+                            
+                            <h:commandButton   action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
+                            <h:commandButton   action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
+
+                        </h:form>
+
                     </div>
                 </div>
+
+
                 <hr/>
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -226,14 +202,8 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <h:form>
-<h:commandButton  type="login" action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
-<h:commandButton  type="login" action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
-</h:form>          
-                    
-                    
-<!-- <button class="btn btn-danger"><i class="fa fa-fw fa-times" aria-hidden="true"></i> Anuluj</button>
-                    <button class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Zaktualizuj profil</button> -->
+        
+
                     <br/>
                     <hr/>
                 </div>

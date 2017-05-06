@@ -33,31 +33,169 @@
                                 </f:facet>
                             </b:inputText>                
                         </div>
-                  
-                         <h:commandButton  type="login" action="#{login.validateUsernamePassword}" value="Zaloguj" class="btn btn-primary"></h:commandButton>
+
+                        <h:commandButton  type="login" action="#{login.validateUsernamePassword}" value="Zaloguj" class="btn btn-primary"></h:commandButton>
                         <b:selectBooleanCheckbox value="true" caption="Zapamiętaj mnie" style=" margin-left: 10px;"/>
-               
+
                     </h:form>
                 </b:navbarLinks>
-          
+
             </b:navBar>
-            
+
             <h:form styleClass="form-signin" id="rejestracja" style=" background: #E0E0E0">
                 <h2 class="form-signin-heading">Zarejestruj się </h2>
-                <b:inputText type="text" id="imie" placeholder="Imię" />
-                <b:inputText type="text" id="nazwisko" placeholder="Nazwisko" />
-                <b:inputText type="text" id="login" placeholder="Login" />
-                <b:inputSecret id="haslo" placeholder="Hasło" />
-                <b:inputSecret id="powtorzhaslo" placeholder="Powtórz hasło"/>
-                <b:inputText type="text" id="miasto" placeholder="Miasto" />
+                <label for="First_name">Imię</label>
+                <h:inputText class="form-control" id="imie_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText> 
+                <h:message for="imie_rej" style="color:red" />
+                <br></br>
 
-                <b:inputText type="text" id="email" placeholder="Adres e-mail" />
-                <b:datepicker id="dataurodzenia" mode="popup" placeholder="Data urodzenia"/>
-                <b:selectBooleanCheckbox value="false" caption="Kobieta"/>
-                <b:selectBooleanCheckbox value="false" caption="Mężczyzna"/>
-                <b:commandButton look="primary btn-block" value="Zarejestruj" icon="log-in" size="lg"/>
+                <label for="First_name">Nazwisko</label>
+                <h:inputText class="form-control" id="nazwisko_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
+                <h:message for="nazwisko_rej" style="color:red" />
+                <br></br>
+
+                <label for="First_name">Login</label>
+                <h:inputText class="form-control" id="login_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
+                <h:message for="login_rej" style="color:red" />
+                <br></br>
+
+                <label for="First_name">Hasło</label>
+                <h:inputText class="form-control" id="haslo_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
+                <h:message for="haslo_rej" style="color:red" />
+                <br></br>
+
+                <label for="First_name">Powtórz hasło</label>
+                <h:inputText class="form-control" id="powtorzhaslo_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
+                <h:message for="powtorzhaslo_rej" style="color:red" />
+                <br></br>
+
+                <label for="First_name">Miasto</label>
+                <h:inputText class="form-control" id="miasto_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
+                <h:message for="miasto_rej" style="color:red" />
+                <br></br>
+
+                <label for="First_name">Email</label>
+                <h:inputText class="form-control" id="email_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>
+                <h:message for="email_rej" style="color:red" />
+                <br></br>
+
+                <label>Data urodzenia</label>
+
+                <div class="form-inline" id="birth-date">
+                    <h:selectOneMenu  id="profile_date_year" class="form-control" value="Rok">
+                        <f:selectItem itemValue = "2003" itemLabel = "2003" /> 
+                        <f:selectItem itemValue = "2002" itemLabel = "2002" /> 
+                        <f:selectItem itemValue = "2001" itemLabel = "2001" /> 
+                        <f:selectItem itemValue = "2000" itemLabel = "2000" /> 
+                        <f:selectItem itemValue = "1999" itemLabel = "1999" /> 
+                        <f:selectItem itemValue = "1998" itemLabel = "1998" /> 
+                        <f:selectItem itemValue = "1997" itemLabel = "1997" /> 
+                        <f:selectItem itemValue = "1996" itemLabel = "1996" /> 
+                        <f:selectItem itemValue = "1995" itemLabel = "1995" /> 
+                        <f:selectItem itemValue = "1994" itemLabel = "1994" /> 
+                        <f:selectItem itemValue = "1993" itemLabel = "1993" /> 
+                        <f:selectItem itemValue = "1992" itemLabel = "1992" /> 
+                        <f:selectItem itemValue = "1991" itemLabel = "1991" /> 
+                        <f:selectItem itemValue = "1990" itemLabel = "1990" />
+                        <f:selectItem itemValue = "1989" itemLabel = "1989" />
+                        <f:selectItem itemValue = "1988" itemLabel = "1988" />
+                        <f:selectItem itemValue = "1987" itemLabel = "1987" />
+                        <f:selectItem itemValue = "1986" itemLabel = "1986" />
+                        <f:selectItem itemValue = "1985" itemLabel = "1985" />
+                        <f:selectItem itemValue = "1984" itemLabel = "1984" />
+                        <f:selectItem itemValue = "1983" itemLabel = "1983" />
+                        <f:selectItem itemValue = "1982" itemLabel = "1982" />
+                        <f:selectItem itemValue = "1981" itemLabel = "1981" />
+                        <f:selectItem itemValue = "1980" itemLabel = "1980" />
+
+
+
+                    </h:selectOneMenu> 
+                    <h:selectOneMenu  id="profile_date_month"  class="form-control" value="Miesiąc">
+                        <f:selectItem itemValue = "1" itemLabel = "Styczeń" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "Luty" /> 
+                        <f:selectItem itemValue = "3" itemLabel = "Marzec" /> 
+                        <f:selectItem itemValue = "4" itemLabel = "Kwiecień" /> 
+                        <f:selectItem itemValue = "5" itemLabel = "Maj" /> 
+                        <f:selectItem itemValue = "6" itemLabel = "Czerwiec" /> 
+                        <f:selectItem itemValue = "7" itemLabel = "Lipiec" /> 
+                        <f:selectItem itemValue = "8" itemLabel = "Sierpień" /> 
+                        <f:selectItem itemValue = "9" itemLabel = "Wrzesień" /> 
+                        <f:selectItem itemValue = "10" itemLabel = "Październik" /> 
+                        <f:selectItem itemValue = "11" itemLabel = "Listopad" /> 
+                        <f:selectItem itemValue = "12" itemLabel = "Grudzień" /> 
+
+                    </h:selectOneMenu>
+                    <h:selectOneMenu  id="profile_date_day" class="form-control" value="Dzień">
+                        <f:selectItem itemValue = "1" itemLabel = "1" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "2" /> 
+                        <f:selectItem itemValue = "3" itemLabel = "3" /> 
+                        <f:selectItem itemValue = "4" itemLabel = "4" /> 
+                        <f:selectItem itemValue = "5" itemLabel = "5" /> 
+                        <f:selectItem itemValue = "6" itemLabel = "6" /> 
+                        <f:selectItem itemValue = "7" itemLabel = "7" /> 
+                        <f:selectItem itemValue = "8" itemLabel = "8" /> 
+                        <f:selectItem itemValue = "9" itemLabel = "9" /> 
+                        <f:selectItem itemValue = "10" itemLabel = "10" /> 
+                        <f:selectItem itemValue = "11" itemLabel = "11" /> 
+                        <f:selectItem itemValue = "12" itemLabel = "12" /> 
+                        <f:selectItem itemValue = "13" itemLabel = "13" /> 
+                        <f:selectItem itemValue = "14" itemLabel = "14" /> 
+                        <f:selectItem itemValue = "15" itemLabel = "15" /> 
+                        <f:selectItem itemValue = "16" itemLabel = "16" /> 
+                        <f:selectItem itemValue = "17" itemLabel = "17" /> 
+                        <f:selectItem itemValue = "18" itemLabel = "18" /> 
+                        <f:selectItem itemValue = "19" itemLabel = "19" /> 
+                        <f:selectItem itemValue = "20" itemLabel = "20" /> 
+                        <f:selectItem itemValue = "21" itemLabel = "21" /> 
+                        <f:selectItem itemValue = "22" itemLabel = "22" /> 
+                        <f:selectItem itemValue = "23" itemLabel = "23" /> 
+                        <f:selectItem itemValue = "24" itemLabel = "24" /> 
+                        <f:selectItem itemValue = "25" itemLabel = "25" /> 
+                        <f:selectItem itemValue = "26" itemLabel = "26" /> 
+                        <f:selectItem itemValue = "27" itemLabel = "27" /> 
+                        <f:selectItem itemValue = "28" itemLabel = "28" /> 
+                        <f:selectItem itemValue = "29" itemLabel = "29" /> 
+                        <f:selectItem itemValue = "30" itemLabel = "30" /> 
+                        <f:selectItem itemValue = "31" itemLabel = "31" />
+                    </h:selectOneMenu> 
+                </div>
+
+                <br></br>
+
+                <!-- <b:inputText type="text" id="imie_rej" placeholder="Imię" />
+                 <b:inputText type="text" id="nazwisko_rej" placeholder="Nazwisko" />
+                 <b:inputText type="text" id="login_rej" placeholder="Login" />
+                 <b:inputSecret id="haslo_rej" placeholder="Hasło" />
+                 <b:inputSecret id="powtorzhaslo_rej" placeholder="Powtórz hasło"/>
+                 <b:inputText type="text" id="miasto_rej" placeholder="Miasto" />
+ 
+                 <b:inputText type="text" id="email_rej" placeholder="Adres e-mail" />
+                 <b:datepicker id="dataurodzenia_rej" mode="popup" placeholder="Data urodzenia"/>
+                -->
+                <!-- <b:selectBooleanCheckbox value="false" caption="Kobieta"/>
+                <b:selectBooleanCheckbox value="false" caption="Mężczyzna"/> -->
+
+                <h:selectOneRadio id="plec_rej" value ="" required="true" requiredMessage="Pole nie może być puste">
+                    <f:selectItem itemValue="#{false}" itemLabel="Mężczyzna" />
+                    <f:selectItem itemValue="#{true}" itemLabel="Kobieta"/>
+                </h:selectOneRadio>
+                <h:message for="plec_rej" style="color:red" />
+                <br></br>
+
+
+                <label for="First_name">Kod pocztowy</label>
+                <h:inputText class="form-control" id="kod_rej"></h:inputText>  
+                <br></br>
+                
+                <label for="First_name">Ulica</label>
+                <h:inputText class="form-control" id="ulica_rej"></h:inputText>   
+                <br></br>
+
+
+                <b:commandButton look="primary btn-block" value="Zarejestruj" action="#{login.zarejestruj}" icon="log-in" size="lg"/>
             </h:form>
-            
+
         </h:body>
     </f:view>
 </html>

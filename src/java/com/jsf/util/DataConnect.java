@@ -1,7 +1,9 @@
 package com.jsf.util;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.Properties;
 
 public class DataConnect {
 
@@ -28,4 +30,5 @@ public class DataConnect {
         } catch (Exception ex) {
         }
     }
+
 }

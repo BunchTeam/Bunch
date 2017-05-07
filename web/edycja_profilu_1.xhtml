@@ -52,15 +52,10 @@
                             <hr/>
                             <label for="Your_gender">Płeć</label>
 
-                           <!-- <h:selectOneRadio id="plec1" value ="#{login.plec}">
+                            <h:selectOneRadio id="plec1" value ="#{login.plec}">
                                 <f:selectItem itemValue="#{false}" itemLabel="Mężczyzna" />
                                 <f:selectItem itemValue="#{true}" itemLabel="Kobieta"/>
-                            </h:selectOneRadio> -->
-                            <b:selectOneMenu value="#{login.plec}">
-                                <f:selectItem itemLabel="Mężczyzna" itemValue="false"/>
-                                <f:selectItem itemLabel="Kobieta" itemValue="true"/>
-                            </b:selectOneMenu>
-
+                            </h:selectOneRadio>
 
 
 
@@ -68,7 +63,7 @@
 
                             <label>Data urodzenia</label>
 
-                     <!--       <div class="form-inline" id="birth-date">
+                            <div class="form-inline" id="birth-date">
                                 <h:selectOneMenu  id="profile_date_year" class="form-control" value="Rok">
                                     <f:selectItem itemValue = "2003" itemLabel = "2003" /> 
                                     <f:selectItem itemValue = "2002" itemLabel = "2002" /> 
@@ -146,30 +141,29 @@
                                     <f:selectItem itemValue = "30" itemLabel = "30" /> 
                                     <f:selectItem itemValue = "31" itemLabel = "31" />
                                 </h:selectOneMenu> 
-                            </div>-->
-                            <b:dateTimePicker value="#{login.dataurodzenia}" showTime="false" format="DD.MM.YYYY"/> 
+                            </div>
                             <hr/>
-
-
+                            
+                            
                             <label for="e_mail">Stare Hasło</label>
                             <h:inputText class="form-control" id="starehaslo"></h:inputText>  
-
+                            
                             <label for="e_mail">Nowe Hasło</label>
                             <h:inputText class="form-control" id="nowehaslo"></h:inputText>  
                             <label for="e_mail">Powtórz nowe Hasło</label>
                             <h:inputText class="form-control" id="nowehaslo1"></h:inputText>  
-
-
+                            
+                            
                             <hr></hr>
                             <h:commandButton   action="strona_profilowa" value="Anuluj" class="btn btn-primary"></h:commandButton>
-                            <h:commandButton   action="#{login.aktualizujProfil2}" value="Edytuj" class="btn btn-primary"></h:commandButton>
+                            <h:commandButton   action="#{login.aktualizujProfil}" value="Edytuj" class="btn btn-primary"></h:commandButton>
 
                         </h:form>
                     </div>
                 </div>
-                <br/>
-                <hr/>
-            </div>
+                    <br/>
+                    <hr/>
+                </div>
         </ui:define> 
     </ui:composition> 
 </html>

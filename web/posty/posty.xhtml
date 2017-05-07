@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+
+
+
+    <ui:composition template="/template.xhtml"> 
+        <ui:define name="title"> 
+            <h:outputText value="Bunch"></h:outputText> 
+        </ui:define> 
+        <ui:define name="body" >
+            <c:forEach var="var" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList()}" >
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="pull-left">
+                            <a href="#">
+                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                            </a>
+                        </div>
+                        <h4><a href="#" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta}</i></a></small></small>
+                        </h4>
+                        <span>
+                            <div class="navbar-right">
+                                <div class="dropdown">
+                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
+                                        <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
+                                        <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignoruj</a></li>
+                                        <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Otrzymuj powiadomienia</a></li>
+                                        <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Ukryj</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </span>
+                        <hr/>
+                        <div class="post-content">
+                            <!--                            <p>Przykład postu.</p>-->
+                            <p>#{var.tresc}</p>
+                        </div>
+                        <hr/>
+                        <div>
+                            <div class="pull-right btn-group-xs">
+                                <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Lubię</a>
+                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
+                                <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Udostępnij</a>
+                            </div>
+                            <br/>
+                        </div>
+                        <hr/>
+                        <div class="media">
+                            <div class="pull-left">
+                                <a href="#">
+                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <textarea class="form-control" rows="1" placeholder="Skomentuj"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </ui:define>
+    </ui:composition> 
+</html>

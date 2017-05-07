@@ -56,34 +56,50 @@
                         </div>
                         <hr/>
                         <div class="media">
-                            <div class="media-body">
-                                <textarea class="form-control" rows="1" style="width: 90%; float: left;" placeholder="Skomentuj"></textarea><a class="btn icon-btn btn-success" href="#" style="margin-left:20px;margin-right: 20px;"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
+                            <div class="dropdown">
+                                <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
+                                <ul class="dropdown-menu">
+                                    <div class="media">
+                                        <div class="pull-left">
+                                            <a href="#">
+                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
+                                            </a>
+                                        </div>
+                                        <div class="media-body" style="height: 40px;">
+                                            <textarea class="form-control" rows="3" placeholder="Skomentuj"></textarea> <a style="float: right;" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>
+                                        </div>
+                                    </div>
+                                </ul>
                             </div>
                             <hr/>
                         </div>
                         <div>
-                            <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-th-list img-circle text-success"></span>Pokaż więcej komentarzy...</a>
-                            <hr/>
-                            <div class="post-content">
-                                <div class="panel-default">
-                                    <div class="panel-body">
-                                        <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
-                                            <div class="pull-left">
-                                                <a href="#">
-                                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                                </a>
-                                            </div>
+                            <b:accordion expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
+                                <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
+                                    <hr/>
+                                    <div class="post-content">
+                                        <div class="panel-default">
+                                            <div class="panel-body">
+                                                <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
+                                                    <div class="pull-left">
+                                                        <a href="#">
+                                                            <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
+                                                        </a>
+                                                    </div>
 
-                                            <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
-                                            <hr/>
-                                            <div class="post-content">
-                                                #{kom.tresc}
-                                                <hr/>
+                                                    <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                    <hr/>
+                                                    <div class="post-content">
+                                                        #{kom.tresc}
+                                                        <hr/>
+                                                    </div>
+                                                </c:forEach>
                                             </div>
-                                        </c:forEach>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </b:panel>
+                            </b:accordion>
                         </div>
                     </div>
                 </div>

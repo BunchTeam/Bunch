@@ -8,8 +8,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -120,22 +122,29 @@ public class PostyController implements Serializable {
     public List<Posty> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    public List<Posty> getPosty()
-    {
-       List<Posty> posty = new ArrayList<>();
-       for(Posty p : items)
-       if (p.getIdkommentarzposta()>0)
-           posty.add(p);
-       return posty;
-    }
-    public List<Posty> getKomentarze(Integer i)
-    {
-       List<Posty> posty = new ArrayList<>();
-       for(Posty p : items)
-       if (p.getIdkommentarzposta()==i)
-           posty.add(p);
-       return posty;
-    }
+//    public List<Posty> getPosty()
+//    {
+//       List<Posty> posty = new ArrayList<>();
+//       for(Posty p : items)
+//       if (p.getIdkommentarzposta()>0)
+//           posty.add(p);
+//       return posty;
+//    }
+//    public List<Posty> getKomentarze(Integer i)
+//    {
+//       List<Posty> posty = new ArrayList<>();
+//       for(Posty p : items)
+//       if (p.getIdkommentarzposta()==i)
+//           posty.add(p);
+//       return posty;
+//    }
+//    public List<Posty> getPosty(List<Integer> id)
+//    {
+//        List<Posty> items = this.getItems();
+//        List<Posty> posty = new ArrayList<Posty>();
+//        Set<Integer> secondSet = id.stream().collect(Collectors.toSet());
+//List<Integer> f = items.stream().foreach(p-> if (secondSet.contains(p.
+//    }
     @FacesConverter(forClass = Posty.class)
     public static class PostyControllerConverter implements Converter {
 

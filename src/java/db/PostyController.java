@@ -138,13 +138,14 @@ public class PostyController implements Serializable {
 //           posty.add(p);
 //       return posty;
 //    }
-//    public List<Posty> getPosty(List<Integer> id)
-//    {
-//        List<Posty> items = this.getItems();
-//        List<Posty> posty = new ArrayList<Posty>();
-//        Set<Integer> secondSet = id.stream().collect(Collectors.toSet());
-//List<Integer> f = items.stream().foreach(p-> if (secondSet.contains(p.
-//    }
+    public List<Posty> getPosty(List<Integer> id)
+    {
+    List<Posty> items = this.getItems();
+    Set<Integer> secondSet = id.stream().collect(Collectors.toSet());
+    List<Posty> posty  = new ArrayList<>();
+    items.stream().filter(p->(secondSet.contains(p.getIduzytkownika().getIduzytkownika()))).forEach(p->posty.add(p));
+    return posty;
+    }
     @FacesConverter(forClass = Posty.class)
     public static class PostyControllerConverter implements Converter {
 

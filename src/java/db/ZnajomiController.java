@@ -4,6 +4,7 @@ import db.util.JsfUtil;
 import db.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -118,7 +119,19 @@ public class ZnajomiController implements Serializable {
     public List<Znajomi> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-
+    public List<Znajomi> getItems(Integer id) {
+        List<Znajomi> znajomi = new ArrayList<Znajomi>();
+        this.getItems().stream().filter(p->p.getIdznajomego().getIduzytkownika().equals(id)).forEach(p->znajomi.add(p));
+        return znajomi; 
+    }
+    public List<Integer> getId(Integer id)
+    {
+       List<Integer> ids = new ArrayList<Integer>();
+       this.getItems(id).stream().forEach(p->{ids.add(p.getIduzytkownika().getIduzytkownika());ids.add(p.getIdznajomego().getIduzytkownika());});
+       List<Integer> idy = new ArrayList<Integer>();
+       ids.stream().distinct().forEach(p->idy.add(p));
+       return idy;
+    }
     @FacesConverter(forClass = Znajomi.class)
     public static class ZnajomiControllerConverter implements Converter {
 

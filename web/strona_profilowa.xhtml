@@ -106,11 +106,11 @@
                             <br/>
                         </div>
                         <hr/>
-                        <div class="media">
-                            <div class="dropdown">
+                        
+                            <div class="dropdown" >
                                 <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
                                     <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" style="z-index: 2!important;">
                                     <div class="media">
                                         <div class="pull-left">
                                             <a href="#">
@@ -123,10 +123,9 @@
                                     </div>
                                 </ul>
                             </div>
-                            <hr/>
-                        </div>
-                        <div>
-                            <b:accordion expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
+                           <br/>
+                        
+                                <b:accordion  style="z-index: -1;" expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
                                 <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
                                     <hr/>
                                     <div class="post-content">
@@ -151,7 +150,6 @@
                                     </div>
                                 </b:panel>
                             </b:accordion>
-                        </div>
                     </div>
                 </div>
             </c:forEach>

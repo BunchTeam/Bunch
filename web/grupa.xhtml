@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
@@ -22,18 +24,14 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span>
-                            <h1 class="panel-title pull-left" style="font-size:30px;">Nazwa Grupy <small>nazwagrupy@gmail.com</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zweryfikowana grupa"></i></h1>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">#{grupyController.getGrupy(param['id']).nazwa}</h1>
 
                         </span>
-                        <br/><br/>
-                        <i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags/nazwagrupy" class="tag">#nazwagrupy</a> <a href="/tags/zainteresowania" class="tag">#zainteresowania</a> <a href="/tags/polub" class="tag">#polub</a>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty</a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-info-circle" aria-hidden="true"></i> Informacje</a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Zdjęcia <span class="badge">69</span></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">69</span></a>
-                            
+                            <a href="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty <span class="badge">#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).filter(p->p.idkommentarzposta==0).toList().size()}</span></a>
+                            <a href="czlonkowiegrupy.xhtml?id=#{param['id']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).toList().size()}</span></a>
+
                         </span>
                         <span class="pull-right">
                             <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dołącz do grupy"></i></a>
@@ -43,16 +41,16 @@
                     </div>
                 </div>
             </div>
-<!-- przyklad postu. -->
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <c:forEach var="var" items="#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).filter(p->p.idkommentarzposta==0).toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
+                        <h4><a href="#" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -63,10 +61,6 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
                                         <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignoruj</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Otrzymuj powiadomienia</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Ukryj</a></li>
-                                        <li role="separator" class="divider"></li>
                                         <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
                                     </ul>
                                 </div>
@@ -74,287 +68,65 @@
                         </span>
                         <hr/>
                         <div class="post-content">
-                            <p>Przykład postu.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
+                            <p>#{var.tresc}</p>
                         </div>
                         <hr/>
                         <div>
-                             <div class="pull-right btn-group-xs">
-                                <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Lubię</a>
-                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Udostępnij</a>
+                            <div class="pull-right btn-group-xs">
+                                <c:forEach var="emo" items="#{emocjeController.items}" >
+                                    #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
+                                </c:forEach>
                             </div>
                             <br/>
                         </div>
                         <hr/>
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <textarea class="form-control" rows="1" placeholder="Skomentuj"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- przyklad udostepnienia -->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="pull-left">
-                            <a href="#">
-                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
-                            </a>
-                        </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
-                        </h4>
-                        <span>
-                            <div class="navbar-right">
-                                <div class="dropdown">
-                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                        <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignoruj</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Otrzymuj powiadomienia</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Ukryj</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </span>
-                        <hr/>
-                        <div class="post-content">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+
+                        <div class="dropdown" >
+                            <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
+                            <ul class="dropdown-menu" style="z-index: 2!important;">
+                                <div class="media">
                                     <div class="pull-left">
                                         <a href="#">
-                                            <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                                            <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
                                         </a>
                                     </div>
-                                    <h4><a href="#" style="text-decoration:none;"><strong>Staszek</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>15 godzin temu</i></a></small></small>
-                                    </h4>
-                                    <hr/>
-                                    <div class="post-content">
-                                        przykład udostępnienia postu.
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
+                                    <div class="media-body" style="height: 40px;">
+                                        <textarea class="form-control" rows="3" placeholder="Skomentuj"></textarea> <a style="float: right;" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>
                                     </div>
                                 </div>
-                            </div>
+                            </ul>
                         </div>
-                        <hr/>
-                        <div>
-                            <div class="pull-right btn-group-xs">
-                                <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Lubię</a>
-                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Udostępnij</a>
-                            </div>
+                        <br/>
 
-                            <br/>
-                        </div>
-                        <hr/>
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <textarea class="form-control" rows="1" placeholder="Skomentuj"></textarea>
-                            </div>
-                        </div>
+                        <b:accordion  style="z-index: -1;" expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
+                            <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
+                                <hr/>
+                                <div class="post-content">
+                                    <div class="panel-default">
+                                        <div class="panel-body">
+                                            <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
+                                                <div class="pull-left">
+                                                    <a href="#">
+                                                        <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
+                                                    </a>
+                                                </div>
+
+                                                <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                <hr/>
+                                                <div class="post-content">
+                                                    #{kom.tresc}
+                                                    <hr/>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
                     </div>
                 </div>
-                <!-- przyklad postu z grafika. -->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="pull-left">
-                            <a href="#">
-                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
-                            </a>
-                        </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
-                        </h4>
-                        <span>
-                            <div class="navbar-right">
-                                <div class="dropdown">
-                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                        <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignoruj</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Otrzymuj powiadomienia</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Ukryj</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </span>
-                        <hr/>
-                        <div class="post-content">
-                            <p>przykład postu z grafiką.</p>
-                            <img class="img-responsive" src="https://media.giphy.com/media/j1QQj6To9Pbxu/giphy.gif"/>
-                            <p><br/><a href="/tags/christmas" class="tag">#wściekły</a> <a href="/tags/caturday" class="tag">#ZimnyKierownikTHEBEST</a></p>
-                        </div>
-                        <hr/>
-                        <div>
-                            <div class="pull-right btn-group-xs">
-                                <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Lubię</a>
-                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Udostępnij</a>
-                            </div>
-
-                            <br/>
-                        </div>
-                        <hr/>
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <textarea class="form-control" rows="1" placeholder="Skomentuj"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- post z komentarzami. -->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="pull-left">
-                            <a href="#">
-                                <img class="media-object img-circle" src="images/grupa.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
-                            </a>
-                        </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>Grupa</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 42 minuty temu</i></a></small></small>
-                        </h4>
-                        <span>
-                            <div class="navbar-right">
-                                <div class="dropdown">
-                                    <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                        <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-ban" aria-hidden="true"></i> Ignoruj</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-bell" aria-hidden="true"></i> Otrzymuj powiadomienia</a></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Ukryj</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </span>
-                        <hr/>
-                        <div class="post-content">
-                            <p>przykład postu z komentami.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel gravida metus, non ultrices sapien. Morbi odio metus, dapibus non nibh id amet.</p>
-                        </div>
-                        <hr/>
-                        <div>
-                            <div class="pull-right btn-group-xs">
-                                <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Lubię</a>
-                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Udostępnij</a>
-                            </div>
-                            <br/>
-                        </div>
-                        <hr/>
-                        <div>
-
-                                <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-th-list img-circle text-success"></span>Pokaż więcej komentarzy...</a>
-
-                            <hr/>
-                            <div class="post-content">
-                                <div class="panel-default">
-                                    <div class="panel-body">
-                                        <div class="pull-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                            </a>
-                                        </div>
-                                        <h4><a href="#" style="text-decoration:none;"><strong>Staszek</strong></a></h4>
-                                        <hr/>
-                                        <div class="post-content">
-                                            przykład komentarza.<br/><br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at arcu sapien. Donec laoreet, nisl quis tempor hendrerit, libero augue blandit turpis, in dignissim odio mauris eu tortor. Ut hendrerit
-                                            ipsum elit, a elementum nulla ultrices eu. In posuere mollis efficitur. Maecenas justo turpis, tristique sit amet ultricies quis, molestie eget ex. Nam vestibulum consequat tincidunt. Morbi vitae placerat sapien. Phasellus quis
-                                            mi tincidunt sem scelerisque tincidunt. Ut viverra porttitor sagittis. Phasellus aliquam auctor purus, id sollicitudin mauris pulvinar ac. Vivamus vel erat nec orci ultricies iaculis quis sit amet augue. Vestibulum aliquam felis
-                                            lorem, interdum porttitor sapien sodales ac. Maecenas id ullamcorper risus. Suspendisse id dui sed urna rutrum pharetra. Nam eu lectus et orci vestibulum bibendum. Mauris et pulvinar dui, ac facilisis leo.
-                                            <br/><small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 12 minut temu</i></a></small></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="post-content">
-                                <div class="panel-default">
-                                    <div class="panel-body">
-                                        <div class="pull-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                            </a>
-                                        </div>
-                                        <h4><a href="#" style="text-decoration:none;"><strong>Ruda</strong></a></h4>
-                                        <hr/>
-                                        <div class="post-content">
-                                            kolejny komentarz.<br/><br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at arcu sapien. Donec laoreet, nisl quis tempor hendrerit, libero augue blandit turpis, in dignissim odio mauris eu tortor. Ut hendrerit
-                                            ipsum elit, a elementum nulla ultrices eu. In posuere mollis efficitur. Maecenas justo turpis, tristique sit amet ultricies quis, molestie eget ex. Nam vestibulum consequat tincidunt. Morbi vitae placerat sapien. Phasellus quis
-                                            mi tincidunt sem scelerisque tincidunt. Ut viverra porttitor sagittis. Phasellus aliquam auctor purus, id sollicitudin mauris pulvinar ac. Vivamus vel erat nec orci ultricies iaculis quis sit amet augue. Vestibulum aliquam felis
-                                            lorem, interdum porttitor sapien sodales ac. Maecenas id ullamcorper risus. Suspendisse id dui sed urna rutrum pharetra. Nam eu lectus et orci vestibulum bibendum. Mauris et pulvinar dui, ac facilisis leo.
-                                            <br/><small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 9 minut temu</i></a></small></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="post-content">
-                                <div class="panel-default">
-                                    <div class="panel-body">
-                                        <div class="pull-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                            </a>
-                                        </div>
-                                        <h4><a href="#" style="text-decoration:none;"><strong>Pies Zimnego Kierownika</strong></a></h4>
-                                        <hr/>
-                                        <div class="post-content">
-                                            jeszcze jeden komentarz.<br/><br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at arcu sapien. Donec laoreet, nisl quis tempor hendrerit, libero augue blandit turpis, in dignissim odio mauris eu tortor.
-                                            Ut hendrerit ipsum elit, a elementum nulla ultrices eu. In posuere mollis efficitur. Maecenas justo turpis, tristique sit amet ultricies quis, molestie eget ex. Nam vestibulum consequat tincidunt. Morbi vitae placerat sapien. Phasellus
-                                            quis mi tincidunt sem scelerisque tincidunt. Ut viverra porttitor sagittis. Phasellus aliquam auctor purus, id sollicitudin mauris pulvinar ac. Vivamus vel erat nec orci ultricies iaculis quis sit amet augue. Vestibulum aliquam
-                                            felis lorem, interdum porttitor sapien sodales ac. Maecenas id ullamcorper risus. Suspendisse id dui sed urna rutrum pharetra. Nam eu lectus et orci vestibulum bibendum. Mauris et pulvinar dui, ac facilisis leo.
-                                            <br/><small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i> 2 minuty temu</i></a></small></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <textarea class="form-control" rows="1" placeholder="Skomentuj"></textarea>
-                            </div>
-                            <hr/>
-                        </div>
-                    </div>
-                </div>
-            
+            </c:forEach>
         </ui:define> 
     </ui:composition> 
 </html>

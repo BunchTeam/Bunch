@@ -69,7 +69,13 @@
                 </h:form>
                 <hr/>
                 <b:panel title="Grupy" look="primary" collapsed="true" style="border: none !important"   >
-                    <ui:include src="/grupy/Grupy_Uzytkownika.xhtml"/>
+                    <c:forEach var="var" items="#{grupyController.items.stream().toList()}">
+                        <b:iconAwesome name="users"/>
+                        <b:button outcome="grupa" look="link" value="#{var.nazwa}" >
+                            <f:param name="id" value="#{var.idgrupy}"/>
+                        </b:button>
+                        <br/>
+                    </c:forEach> 
                 </b:panel>
                 <b:panel title="Powiadomienia" look="primary" collapsed="true" style="border: none !important"  >
                     <c:forEach var="var" items="#{powiadomieniaopostachController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList()}">

@@ -10,7 +10,7 @@
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
         <ui:define name="body" > 
-            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).map(m->m.idznajomego.iduzytkownika).toList()).stream().filter(p->p.idkommentarzposta==0).toList()}" >
+            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">

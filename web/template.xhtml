@@ -85,10 +85,13 @@
                 <!--                <b:panel title="Wiadomości" look="primary" collapsed="true" style="border: none !important"   >
                                 </b:panel>-->
                 <b:panel title="Znajomi" look="primary" collapsed="true" style="border: none !important"  >
-                    <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList()}">
+                    <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList()}">
                         <i class="fa fa-fw fa-user" aria-hidden="true"></i>
-                        <b:button outcome="strona_profilowa" look="link" value="#{var.idznajomego.imie} #{var.idznajomego.nazwisko}" >
+                        <b:button outcome="strona_profilowa" look="link" value="#{var.idznajomego.imie} #{var.idznajomego.nazwisko}" rendered="#{var.idznajomego.iduzytkownika!=login.iduzytkownika}">
                             <f:param name="osoba" value="#{var.idznajomego.iduzytkownika}" />
+                        </b:button>
+                         <b:button outcome="strona_profilowa" look="link" value="#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}" rendered="#{var.iduzytkownika.iduzytkownika!=login.iduzytkownika}">
+                            <f:param name="osoba" value="#{var.iduzytkownika.iduzytkownika}" />
                         </b:button>
                         <br/>
                     </c:forEach> 

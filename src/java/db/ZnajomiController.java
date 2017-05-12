@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -143,6 +144,13 @@ public class ZnajomiController implements Serializable {
                ids.add(zna.getIduzytkownika().getIduzytkownika());
        }
        return ids;
+    }
+    public List<Integer> tolist(List<Znajomi> znajomi, Integer id)
+    {
+       List<Integer> lista = new ArrayList<>();
+       znajomi.stream().mapToInt(p->p.getIduzytkownika().getIduzytkownika()).distinct().forEach(p->{if(p!=id)lista.add(p);});
+       znajomi.stream().mapToInt(p->p.getIdznajomego().getIduzytkownika()).distinct().forEach(p->{if(p!=id)lista.add(p);});
+       return lista;
     }
     @FacesConverter(forClass = Znajomi.class)
     public static class ZnajomiControllerConverter implements Converter {

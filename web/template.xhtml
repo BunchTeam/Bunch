@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <title><ui:insert name="title">Bunch</ui:insert></title>
@@ -48,20 +49,20 @@
                         <center>
                             <br/>
                             <h:form>
-                                 <h:commandLink action="edycja_profilu.xhtml" value="Ustawienia"></h:commandLink>
-                         
-                                
-                            <br></br>
-                            <h:commandLink action="#{login.logout}" value="Wyloguj"></h:commandLink>
+                                <h:commandLink action="edycja_profilu.xhtml" value="Ustawienia"></h:commandLink>
+
+
+                                <br></br>
+                                <h:commandLink action="#{login.logout}" value="Wyloguj"></h:commandLink>
                             </h:form>
-                            </center>
+                        </center>
 
                     </b:dropButton>
 
                 </b:navbarLinks>
             </b:navBar>
 
-            <p:layoutUnit position="west" size="220"  style="position: fixed !important" >
+            <p:layoutUnit position="west" size="270"  style="position: fixed !important" >
                 <hr/>
                 <h:form>
                     <b:commandButton value="Aktualności" look="info" style="width: 100%; font-size: 16px" iconAwesome="circle-o-notch " icon-spin="true" />
@@ -71,30 +72,44 @@
                     <ui:include src="/grupy/Grupy_Uzytkownika.xhtml"/>
                 </b:panel>
                 <b:panel title="Powiadomienia" look="primary" collapsed="true" style="border: none !important"  >
+                    <c:forEach var="var" items="#{powiadomieniaopostachController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList()}">
+                        <b:icon name="bell"/>
+                        <b:button outcome="strona_profilowa" look="link" value="#{var.idposta.iduzytkownika.imie} #{var.idposta.iduzytkownika.nazwisko} #{powiadomienia.getStrona(var)}" >
+                            <f:param name="post" value="#{var.idposta.idposta}"/>
+                        </b:button>
+                        <br/>
+                    </c:forEach> 
                 </b:panel>
-                <b:panel title="Zaproszenia" look="primary" collapsed="true" style="border: none !important"    >
-                </b:panel>
-                <b:panel title="Wiadomości" look="primary" collapsed="true" style="border: none !important"   >
-                </b:panel>
+                <!--                <b:panel title="Zaproszenia" look="primary" collapsed="true" style="border: none !important"    >
+                                </b:panel>-->
+                <!--                <b:panel title="Wiadomości" look="primary" collapsed="true" style="border: none !important"   >
+                                </b:panel>-->
                 <b:panel title="Znajomi" look="primary" collapsed="true" style="border: none !important"  >
+                    <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList()}">
+                        <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+                        <b:button outcome="strona_profilowa" look="link" value="#{var.idznajomego.imie} #{var.idznajomego.nazwisko}" >
+                            <f:param name="osoba" value="#{var.idznajomego.iduzytkownika}" />
+                        </b:button>
+                        <br/>
+                    </c:forEach> 
                 </b:panel>
                 <div class="panel panel-footer" style="background: #033C73 !important; color: white">
-  <hr/>
-                        <div align="center">
-                            <p>Dołącz do grona! ♥</p>
-                       </div>
-                      <hr/>
-                        <small><a href="#" style="color: white ">Bunch.pl</a></small><br/>
-                                <small><a href="#" style="color: white">Co nowego?</a></small><br/>
-                                    <small><a href="#"  style="color: white">Wersja mobilna</a></small><br/>
-                                        </div>
-                                        </p:layoutUnit>
-                                        <p:layoutUnit position="center"  >
-                                            <ui:insert name="body"/>
-                                        </p:layoutUnit>     
+                    <hr/>
+                    <div align="center">
+                        <p>Dołącz do grona! ♥</p>
+                    </div>
+                    <hr/>
+                    <small><a href="#" style="color: white ">Bunch.pl</a></small><br/>
+                    <small><a href="#" style="color: white">Co nowego?</a></small><br/>
+                    <small><a href="#"  style="color: white">Wersja mobilna</a></small><br/>
+                </div>
+            </p:layoutUnit>
+            <p:layoutUnit position="center"  >
+                <ui:insert name="body"/>
+            </p:layoutUnit>     
 
-                                        </p:layout>
+        </p:layout>
 
-                                        </h:body>
+    </h:body>
 
-                                        </html>
+</html>

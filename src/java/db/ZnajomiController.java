@@ -132,6 +132,18 @@ public class ZnajomiController implements Serializable {
        ids.stream().distinct().forEach(p->idy.add(p));
        return idy;
     }
+      public List<Integer> getId(List<Znajomi> znajomi,Integer id)
+    {
+       List<Integer> ids = new ArrayList<Integer>();
+       for(Znajomi zna : znajomi)
+       {
+           if (zna.getIduzytkownika().getIduzytkownika()==id)
+               ids.add(zna.getIdznajomego().getIduzytkownika());
+           if (zna.getIdznajomego().getIduzytkownika()==id)
+               ids.add(zna.getIduzytkownika().getIduzytkownika());
+       }
+       return ids;
+    }
     @FacesConverter(forClass = Znajomi.class)
     public static class ZnajomiControllerConverter implements Converter {
 

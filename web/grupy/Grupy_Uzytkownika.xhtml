@@ -11,9 +11,9 @@
 
         <h:form id="GrupyListForm" class="formgrupa">
 
-            <b:dataTable id="datalist" value="#{grupyController.items}" var="item"
+            <b:dataTable id="datalist" value="#{grupyController.items.stream().toList()}" var="item"
                          selectionMode="single"  paginated="false" searching="false">
-                <b:commandButton look="primary" value="#{item.nazwa}"/>
+                <b:commandButton look="primary" value="#{item.nazwa}" />
 
             </b:dataTable>
 

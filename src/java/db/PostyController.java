@@ -146,6 +146,9 @@ public class PostyController implements Serializable {
     items.stream().filter(p->(secondSet.contains(p.getIduzytkownika().getIduzytkownika()))).forEach(p->posty.add(p));
     return posty;
     }
+    //postyController.getPosty(znajomiController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).map(m->m.idznajomego.iduzytkownika).toList()).stream().filter(p->p.idkommentarzposta==0).toList()
+    
+    
     @FacesConverter(forClass = Posty.class)
     public static class PostyControllerConverter implements Converter {
 

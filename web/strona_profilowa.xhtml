@@ -55,9 +55,9 @@
                         </span>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty<span class="badge">#{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi <span class="badge">#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList().size()}</span></a>
+                            <a href="strona_profilowa.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty<span class="badge">#{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
+                            <a href="grupy.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
+                            <a href="znajomi.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi <span class="badge">#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList().size()}</span></a>
                         </span>
                         <span class="pull-right">
                             <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wyślij e-mail"></i></a>

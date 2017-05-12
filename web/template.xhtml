@@ -90,7 +90,7 @@
                         <b:button outcome="strona_profilowa" look="link" value="#{var.idznajomego.imie} #{var.idznajomego.nazwisko}" rendered="#{var.idznajomego.iduzytkownika!=login.iduzytkownika}">
                             <f:param name="osoba" value="#{var.idznajomego.iduzytkownika}" />
                         </b:button>
-                         <b:button outcome="strona_profilowa" look="link" value="#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}" rendered="#{var.iduzytkownika.iduzytkownika!=login.iduzytkownika}">
+                        <b:button outcome="strona_profilowa" look="link" value="#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}" rendered="#{var.iduzytkownika.iduzytkownika!=login.iduzytkownika}">
                             <f:param name="osoba" value="#{var.iduzytkownika.iduzytkownika}" />
                         </b:button>
                         <br/>

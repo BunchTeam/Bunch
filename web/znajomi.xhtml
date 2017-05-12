@@ -68,20 +68,34 @@
                 </div>
                 <hr/>
                 <div class="panel panel-default" >
-                    <center> <h1>Grupy</h1></center>
-                    <c:forEach var="var" items="#{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList()}">
-                        <b:row >
-                            <div class="business-card" style="margin: 20px;" >
+                    <center> <h1>Znajomi</h1></center>
+                    <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList()}">
+                        <b:row rendered="#{login.iduzytkownika!=var.idznajomego.iduzytkownika}">
+                        <div class="business-card" style="margin: 20px;" >
                                 <div class="media" >
                                     <div class="media-left">
                                         <img class="media-object img-circle profile-img" src="images/profil.png"/>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="profil"><a href="#">#{var.idgrupy.nazwa} </a></h4>
+                                        <h4 class="profil"><a href="#">#{var.idznajomego.imie} #{var.idznajomego.nazwisko}</a></h4>
+                                        <div class="miasto">#{var.idznajomego.miasto}</div>
                                     </div>
                                 </div>
-                            </div>
-                        </b:row>
+                        </div>
+                            </b:row>
+                          <b:row rendered="#{login.iduzytkownika!=var.iduzytkownika.iduzytkownika}">
+                        <div class="business-card" style="margin: 20px;" >
+                                <div class="media" >
+                                    <div class="media-left">
+                                        <img class="media-object img-circle profile-img" src="images/profil.png"/>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="profil"><a href="#">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
+                                        <div class="miasto">#{var.iduzytkownika.miasto}</div>
+                                    </div>
+                                </div>
+                        </div>
+                            </b:row>
                         <br/>
                     </c:forEach>
                 </div>

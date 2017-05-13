@@ -12,8 +12,58 @@
         </ui:define> 
 
         <ui:define name="body" > 
-
-            <div class="container" style="margin-top:10px;">
+        <div id="filter-panel" class="collapse filter-panel">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                                             
+                        </div> <!-- form group [rows] -->
+                        <div class="form-group">
+                            <div class="col-md-12">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Imię  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/> 
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Nazwisko  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/><br/><br/></div>
+                            <div class="col-md-12">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Miasto  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/> 
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Kod pocztowy  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/><br/><br/></div>
+                            <div class="col-md-12">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Ulica:  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/>
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Data urodzenia  :  </label>
+                            <b:dateTimePicker showTime="false" format="DD.MM.YYYY"/><br/><br/></div>
+                            <div class="col-md-12">
+                             <label class="filter-col" style="margin-right:0;" for="pref-search">Login  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/> 
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">E-mail  :  </label>
+                            <input type="text" class="form-control input-s" id="pref-search"/>
+                            </div></div><br/><br/>
+                        <div class="form-group">  
+                            <label class="filter-col" style="margin-right:0;" for="pref-orderby">Sortuj  :  </label>
+                            <select id="pref-orderby" class="form-control">
+                                <option>Rosnąco</option>
+                                <option>Malejąco</option>
+                            </select>  
+                           <hr/>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"></span> Szukaj
+                            </button>  
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-default col-md-12" data-toggle="collapse" data-target="#filter-panel">
+            <span class="glyphicon glyphicon-cog"></span> Wyszukiwanie zaawansowane
+        </button>
+            <hr/>
+            <br/>
+         
+            <div class="container" style="margin-top:5px;">
 
                 <div class="tab-content custom-tab-content">
                     <div>

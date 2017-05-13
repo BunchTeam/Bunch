@@ -18,26 +18,19 @@
         <h:body>
             <b:navBar brand="Bunch" brandHref="#" inverse="true">
                 <b:navbarLinks> 
-                    <h:form class="navbar-form navbar-right hidden-md hidden-sm hidden-xs" role="login">
-                        <div class="form-group">                         
-                            <b:inputText type="text" class="form-control" placeholder="Login" id="username" value="#{login.user}">
-                                <f:facet name="prepend">
-                                    <b:icon name="user" />
-                                </f:facet>
-                            </b:inputText>                     
-                        </div>
-                        <div class="form-group">                  
-                            <b:inputText type="password" class="form-control" placeholder="Hasło" id="password" value="#{login.pwd}">
-                                <f:facet name="prepend">
-                                    <b:iconAwesome name="key" />
-                                </f:facet>
-                            </b:inputText>                
+                       <form id="signin" class="navbar-form navbar-right" role="form">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="login" type="login" class="form-control" name="login" value="" placeholder="Login"/>                                        
                         </div>
 
-                        <h:commandButton  type="login" action="#{login.validateUsernamePassword}" value="Zaloguj" class="btn btn-primary"></h:commandButton>
-                        <b:selectBooleanCheckbox value="true" caption="Zapamiętaj mnie" style=" margin-left: 10px;"/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="haslo" type="password" class="form-control" name="haslo" value="" placeholder="Hasło"/>                                        
+                        </div>
 
-                    </h:form>
+                        <button type="submit" class="btn btn-primary">Zaloguj</button>
+                   </form>
                 </b:navbarLinks>
 
             </b:navBar>

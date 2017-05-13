@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/template.xhtml"> 
+        <ui:define name="title"> 
+            <h:outputText value="Bunch"></h:outputText> 
+        </ui:define> 
+
+        <ui:define name="body" > 
+
+            <div class="container" style="margin-top:10px;">
+
+                <div class="tab-content custom-tab-content">
+                    <div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs custom-tab" role="tablist">
+                            <li role="presentation" class="active"><a href="#osoby" aria-controls="osoby" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-user"></i><span class="link-lable"> Osoby</span></a></li>
+                            <li role="presentation"><a href="#grupy" aria-controls="grupy" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-th"></i><span class="link-lable"> Grupy</span></a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="osoby">
+
+                                <div class="row clearfix">
+
+                                    <div class="col-md-12" style="margin-top: auto;">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/profil.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Bartłomiej Zimny</a></h3>
+
+                                                    <p><span class="label label-info">60 znajomych</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dodaj do znajomych</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="well well-md">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/profil.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Angelika Koszyk</a></h3>
+
+                                                    <p><span class="label label-info">60 znajomych</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dodaj do znajomych</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/profil.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Aleksandra Gefert</a></h3>
+
+                                                    <p><span class="label label-info">60 znajomych</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dodaj do znajomych</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/grupa.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Przemysław Jawin</a></h3>
+
+                                                    <p><span class="label label-info">60 znajomych</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dodaj do znajomych</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="grupy">
+                                <div class="row clearfix">
+
+                                    <div class="col-md-12" style="margin-top: auto;">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/grupa.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Programiści</a></h3>
+
+                                                    <p><span class="label label-info">60 członków</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dołącz do grupy</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="well well-md">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/grupa.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Zakochani</a></h3>
+
+                                                    <p><span class="label label-info">60 członków</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dołącz do grupy</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/grupa.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Onaniści</a></h3>
+
+                                                    <p><span class="label label-info">60 członków</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dołącz do grupy</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="well well-xl">
+                                            <div class="media">
+                                                <a class="pull-left" href="#" style="margin: 20px 20px 20px;">
+                                                    <img src="images/grupa.png" class="img-responsive img-circle" width="90" height="90"/>
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h3><a class="media-heading" style="cursor: pointer;
+                                                           ">Romantycy</a></h3>
+
+                                                    <p><span class="label label-info">60 członków</span> <span class="label label-primary">1 zdjęcie</span></p>
+                                                    <p>
+                                                        <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> Dołącz do grupy</a>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </ui:define> 
+    </ui:composition> 
+</html>

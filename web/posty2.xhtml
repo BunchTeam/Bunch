@@ -9,7 +9,29 @@
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
-        <ui:define name="body" > 
+        <ui:define name="body" >
+             <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="pull-left">
+                                <a href="#">
+                                    <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px"/>
+                                </a>
+                            </div>
+
+                             <h:form id="dodaj_post#{var.idposta}">
+                                    <div class="media-body" style="height: 40px;">
+                                        <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
+                                        <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                       <!-- <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a> -->
+                                        <b:commandButton value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}"/>                                     
+                                    </div>
+                                     </h:form>
+                              
+                        </div>
+                    </div>
+                </div>
+                <hr/>
             <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -64,7 +86,7 @@
                                         <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
                                         <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
 <!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
-<b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
+                                        <b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>                                     
                                     </div>
                                      </h:form>
                                 </div>

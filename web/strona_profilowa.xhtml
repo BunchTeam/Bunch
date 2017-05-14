@@ -107,19 +107,24 @@
                         </div>
                         <hr/>
                         
-                            <div class="dropdown" >
+                        <div class="dropdown" >
                                 <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
                                     <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                    <ul class="dropdown-menu" style="z-index: 2!important;">
+                                <ul class="dropdown-menu" style="z-index: 2!important;">
                                     <div class="media">
                                         <div class="pull-left">
                                             <a href="#">
                                                 <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
                                             </a>
                                         </div>
-                                        <div class="media-body" style="height: 40px;">
-                                            <textarea class="form-control" rows="3" placeholder="Skomentuj"></textarea> <a style="float: right;" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>
-                                        </div>
+                                        <h:form id="dodaj_post#{var.idposta}">
+                                            <div class="media-body" style="height: 40px;">
+                                                <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
+                                                <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                                <!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
+                                                <b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
+                                            </div>
+                                        </h:form>
                                     </div>
                                 </ul>
                             </div>

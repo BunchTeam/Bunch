@@ -62,6 +62,66 @@ public class Post implements Serializable{
      //   System.out.println("data = " + sqlDate2);
 
         int i = 0;
+
+            Connection con = null;
+            PreparedStatement ps = null;
+            
+            try {
+                con = DataConnect.getConnection();
+                if (con != null) {
+                    String sql = "INSERT INTO posty(iduzytkownika, tresc, dataposta, idkommentarzposta) VALUES(?,?,?,?)";
+                    ps = con.prepareStatement(sql);   
+                    ps.setInt(1, iduzytkownika);
+                    ps.setString(2, getDodaj());
+                    ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+                    ps.setInt(4, idposta);
+                    i = ps.executeUpdate();
+                    System.out.println("Dodano posta");
+                    setDodaj("");
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getLocalizedMessage());
+            } finally {
+                try {
+                    con.close();
+                    ps.close();
+                } catch (Exception e) {
+                    System.out.println(e.getLocalizedMessage());
+                   // e.printStackTrace();
+                }
+            }
+        
+      
+    
+        // return null;
+    }
+    
+    
+    
+    
+    
+    
+    public void dodajPost2(Integer idposta, Integer iduzytkownika) {
+        
+ 
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String tresc_dodaj = request.getParameter("dodaj_post"+idposta+":tresc_dodaj"+idposta);
+        System.out.println("tresc_dodaj = " + tresc_dodaj);
+        System.out.println(iduzytkownika);
+
+        //Date date2 = new GregorianCalendar().getTime();
+        // System.out.println("data = " + date2);
+
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        //String date3 = formatter.format(date2);
+             //System.out.println("data = " + date3);
+             
+        //java.sql.Date sqlDate2 = java.sql.Date.valueOf( date3 ); 
+     //   System.out.println("data = " + sqlDate2);
+
+        int i = 0;
      
 
             Connection con = null;
@@ -77,10 +137,11 @@ public class Post implements Serializable{
                     ps.setInt(1, iduzytkownika);
                     ps.setString(2, getDodaj());
                     ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
-                    ps.setInt(4, idposta);
+                    ps.setInt(4, 0);
 
                     i = ps.executeUpdate();
                     System.out.println("Dodano posta");
+                    setDodaj("");
                 }
 
             } catch (Exception e) {

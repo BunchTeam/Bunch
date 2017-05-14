@@ -18,14 +18,16 @@
                                     <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px"/>
                                 </a>
                             </div>
-                                    <h:form id="dodaj_post#{var.idposta}">
+                            <div class="media-body">
+                                 <h:form id="dodaj_post#{var.idposta}">
                                     <div class="media-body" style="height: 40px;">
                                         <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
                                         <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
                                        <!-- <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a> -->
                                         <b:commandButton value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}"/>                                     
                                     </div>
-                                     </h:form>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -38,7 +40,7 @@
                                     <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                                 </a>
                             </div>
-                            <h4><a href="#" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
+                            <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
                             </h4>
                             <span>
                                 <div class="navbar-right">
@@ -105,7 +107,7 @@
                                                         </a>
                                                     </div>
 
-                                                    <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                    <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
                                                     <hr/>
                                                     <div class="post-content">
                                                         #{kom.tresc}

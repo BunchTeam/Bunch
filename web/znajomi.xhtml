@@ -5,7 +5,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
@@ -32,14 +33,37 @@
 
                             <hr/>
                             <h3><strong>Miasto</strong></h3>
-                            <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.miasto}</label></h4>
+                            <h4><label   style="color: #333333 !important; font-weight: normal !important;">
+                                    <c:if test="${not empty param.osoba}"> 
+                                        #{uzytkownicyController.getUzytkownicy(param['osoba']).miasto}
+                                    </c:if>
+                                    <c:if test="${empty param.osoba}">
+                                        #{login.miasto}
+                                    </c:if>
+                                </label></h4>
                             <hr/>
                             <h3><strong>Płeć</strong></h3>
-                            <h4><label id="labelplec" style="color: #333333 !important; font-weight: normal !important;">#{login.plectoString()}</label></h4>
-
+                            <h4><label id="labelplec" style="color: #333333 !important; font-weight: normal !important;">
+                                    <c:if test="${not empty param.osoba}">
+                                        #{login.plectoString(uzytkownicyController.getUzytkownicy(param['osoba']).plec)}
+                                    </c:if>
+                                    <c:if test="${empty param.osoba}">
+                                        #{login.plectoString()}
+                                    </c:if>
+                                </label></h4>
                             <hr/>
                             <h3><strong>Data urodzenia</strong></h3>
-                            <h4><label style="color: #333333 !important; font-weight: normal !important;">#{login.dataurodzenia}</label></h4>
+                            <h4><label style="color: #333333 !important; font-weight: normal !important;">
+                                    <c:if test="${not empty param.osoba}"> 
+                                        <h:outputText value="#{uzytkownicyController.getUzytkownicy(param['osoba']).dataurodzenia}">
+                                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                        </h:outputText>
+                                    </c:if><c:if test="${empty param.osoba}">
+                                        <h:outputText value="#{login.dataurodzenia}">
+                                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                        </h:outputText>
+                                    </c:if>
+                                </label></h4>
                             <hr/>
 
                         </div>
@@ -51,13 +75,95 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span>
-                            <h1 class="panel-title pull-left" style="font-size:30px;">#{login.imie}  #{login.nazwisko} <small>#{login.email}</small> <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zweryfikowany profil"></i></h1>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">
+                                <c:if test="${not empty param.osoba}">
+                                    #{uzytkownicyController.getUzytkownicy(param['osoba']).imie} #{uzytkownicyController.getUzytkownicy(param['osoba']).nazwisko}
+                                </c:if>
+                                <c:if test="${empty param.osoba}">
+                                    #{login.imie} #{login.nazwisko}
+                                </c:if>
+                                <small>
+                                    <c:if test="${not empty param.osoba}">
+                                        #{uzytkownicyController.getUzytkownicy(param['osoba']).email}
+                                    </c:if>
+                                    <c:if test="${empty param.osoba}">
+                                        #{login.email}
+                                    </c:if>
+                                </small> 
+                                <i class="fa fa-check text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zweryfikowany profil"></i></h1>
                         </span>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="strona_profilowa.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty<span class="badge">#{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
-                            <a href="grupy.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}</span></a>
-                            <a href="znajomi.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi <span class="badge">#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList().size()}</span></a>
+                           <c:if test="${not empty param.osoba}">
+                                <a href="strona_profilowa.xhtml?osoba=#{param['osoba']}" class="btn btn-link" style="text-decoration:none;">
+                                    <i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==param['osoba']).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}
+                                        </c:if>
+                                    </span>
+                                </a>
+                            </c:if>
+                            <c:if test="${empty param.osoba}">
+                                <a href="strona_profilowa.xhtml" class="btn btn-link" style="text-decoration:none;">
+                                    <i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==param['osoba']).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}
+                                        </c:if>
+                                    </span>
+                                </a>
+                            </c:if>
+                            <c:if test="${not empty param.osoba}">
+                                <a href="grupy.xhtml?osoba=#{param['osoba']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy 
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==param['osoba']).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}
+                                        </c:if>
+                                    </span></a>
+                            </c:if>
+                            <c:if test="${empty param.osoba}">
+                                <a href="grupy.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Grupy 
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==param['osoba']).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{uzytkownicygrupController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()}
+                                        </c:if>
+                                    </span></a>
+                            </c:if>
+                            <c:if test="${not empty param.osoba}">
+                                <a href="znajomi.xhtml?osoba=#{param['osoba']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi 
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==param['osoba'] || p.idznajomego.iduzytkownika==param['osoba'])).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList().size()}
+                                        </c:if>
+                                    </span></a>
+                            </c:if>
+                            <c:if test="${empty param.osoba}">
+                                <a href="znajomi.xhtml" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Znajomi 
+                                    <span class="badge">
+                                        <c:if test="${not empty param.osoba}">
+                                            #{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==param['osoba'] || p.idznajomego.iduzytkownika==param['osoba'])).toList().size()}
+                                        </c:if>
+                                        <c:if test="${empty param.osoba}">
+                                            #{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList().size()}
+                                        </c:if>
+                                    </span></a>
+                            </c:if>
                         </span>
                         <span class="pull-right">
                             <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wyślij e-mail"></i></a>
@@ -69,35 +175,68 @@
                 <hr/>
                 <div class="panel panel-default" >
                     <center> <h1>Znajomi</h1></center>
-                    <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList()}">
-                        <b:row rendered="#{login.iduzytkownika!=var.idznajomego.iduzytkownika}">
-                        <div class="business-card" style="margin: 20px;" >
-                                <div class="media" >
-                                    <div class="media-left">
-                                        <img class="media-object img-circle profile-img" src="images/profil.png"/>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="profil"><a href="#">#{var.idznajomego.imie} #{var.idznajomego.nazwisko}</a></h4>
-                                        <div class="miasto">#{var.idznajomego.miasto}</div>
-                                    </div>
-                                </div>
-                        </div>
-                            </b:row>
-                          <b:row rendered="#{login.iduzytkownika!=var.iduzytkownika.iduzytkownika}">
-                        <div class="business-card" style="margin: 20px;" >
-                                <div class="media" >
-                                    <div class="media-left">
-                                        <img class="media-object img-circle profile-img" src="images/profil.png"/>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="profil"><a href="#">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
-                                        <div class="miasto">#{var.iduzytkownika.miasto}</div>
+                    <c:if test="${not empty param.osoba}">
+                         <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==param['osoba'] || p.idznajomego.iduzytkownika==param['osoba'])).toList()}">
+                            <b:row rendered="#{param['osoba']!=var.idznajomego.iduzytkownika}">
+                                <div class="business-card" style="margin: 20px;" >
+                                    <div class="media" >
+                                        <div class="media-left">
+                                            <img class="media-object img-circle profile-img" src="images/profil.png"/>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="profil"><a href="strona_profilowa.xhtml?osoba=#{var.idznajomego.iduzytkownika}">#{var.idznajomego.imie} #{var.idznajomego.nazwisko}</a></h4>
+                                            <div class="miasto">#{var.idznajomego.miasto}</div>
+                                        </div>
                                     </div>
                                 </div>
-                        </div>
                             </b:row>
-                        <br/>
-                    </c:forEach>
+                            <b:row rendered="#{param['osoba']!=var.iduzytkownika.iduzytkownika}">
+                                <div class="business-card" style="margin: 20px;" >
+                                    <div class="media" >
+                                        <div class="media-left">
+                                            <img class="media-object img-circle profile-img" src="images/profil.png"/>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="profil"><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
+                                            <div class="miasto">#{var.iduzytkownika.miasto}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </b:row>
+                            <br/>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty param.osoba}">
+                        <c:forEach var="var" items="#{znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList()}">
+                            <b:row rendered="#{login.iduzytkownika!=var.idznajomego.iduzytkownika}">
+                                <div class="business-card" style="margin: 20px;" >
+                                    <div class="media" >
+                                        <div class="media-left">
+                                            <img class="media-object img-circle profile-img" src="images/profil.png"/>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="profil"><a href="strona_profilowa.xhtml?osoba=#{var.idznajomego.iduzytkownika}">#{var.idznajomego.imie} #{var.idznajomego.nazwisko}</a></h4>
+                                            <div class="miasto">#{var.idznajomego.miasto}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </b:row>
+                            <b:row rendered="#{login.iduzytkownika!=var.iduzytkownika.iduzytkownika}">
+                                <div class="business-card" style="margin: 20px;" >
+                                    <div class="media" >
+                                        <div class="media-left">
+                                            <img class="media-object img-circle profile-img" src="images/profil.png"/>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="profil"><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
+                                            <div class="miasto">#{var.iduzytkownika.miasto}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </b:row>
+                            <br/>
+                        </c:forEach>
+                    </c:if>   
                 </div>
             </div>
         </ui:define> 

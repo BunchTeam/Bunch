@@ -197,6 +197,15 @@ public class Login implements Serializable {
     public void setPlec1(boolean plec1) {
         this.plec1 = plec1;
     }
+    
+     public String plectoString(Boolean plec) {
+        if (plec) {
+            return "Kobieta";
+        } else {
+            return "Mężczyzna";
+        }
+    }
+    
     public String zarejestruj() {
 
         boolean plecbool;

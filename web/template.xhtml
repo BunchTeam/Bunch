@@ -73,7 +73,7 @@
                     <c:forEach var="var" items="#{grupyController.items.stream().toList()}">
                         <b:iconAwesome name="users"/>
                         <b:button outcome="grupa" look="link" value="#{var.nazwa}" >
-                            <f:param name="id" value="#{var.idgrupy}"/>
+                            <f:param name="grupa" value="#{var.idgrupy}"/>
                         </b:button>
                         <br/>
                     </c:forEach> 

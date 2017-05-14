@@ -24,13 +24,13 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span>
-                            <h1 class="panel-title pull-left" style="font-size:30px;">#{grupyController.getGrupy(param['id']).nazwa}</h1>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">#{grupyController.getGrupy(param['grupa']).nazwa}</h1>
 
                         </span>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="grupa.xhtml?id=#{param['id']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty <span class="badge">#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).filter(p->p.idkommentarzposta==0).toList().size()}</span></a>
-                            <a href="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).toList().size()}</span></a>
+                            <a href="grupa.xhtml?grupa=#{param['grupa']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty <span class="badge">#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).filter(p->p.idkommentarzposta==0).toList().size()}</span></a>
+                            <a href="czlonkowiegrupy.xhtml?grupa=#{param['grupa']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).toList().size()}</span></a>
 
                         </span>
                         <span class="pull-right">
@@ -43,14 +43,14 @@
             </div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="panel panel-default">
-                <c:forEach var="var" items="#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).toList()}">
+                <c:forEach var="var" items="#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).toList()}">
                     <div class="business-card" style="margin: 20px;" >
                         <div class="media" >
                             <div class="media-left">
                                 <img class="media-object img-circle profile-img" src="images/profil.png"/>
                             </div>
                             <div class="media-body">
-                                <h4 class="profil"><a href="#">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
+                                <h4 class="profil"><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}">#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</a></h4>
                                 <div class="miasto">#{var.iduzytkownika.miasto}</div>
                             </div>
                         </div>

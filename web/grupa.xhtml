@@ -24,13 +24,13 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span>
-                            <h1 class="panel-title pull-left" style="font-size:30px;">#{grupyController.getGrupy(param['id']).nazwa}</h1>
+                            <h1 class="panel-title pull-left" style="font-size:30px;">#{grupyController.getGrupy(param['grupa']).nazwa}</h1>
 
                         </span>
                         <br/><br/><hr/>
                         <span class="pull-left">
-                            <a href="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty <span class="badge">#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).filter(p->p.idkommentarzposta==0).toList().size()}</span></a>
-                            <a href="czlonkowiegrupy.xhtml?id=#{param['id']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).toList().size()}</span></a>
+                            <a href="grupa.xhtml?grupa=#{param['grupa']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-files-o" aria-hidden="true"></i> Posty <span class="badge">#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).filter(p->p.idkommentarzposta==0).toList().size()}</span></a>
+                            <a href="czlonkowiegrupy.xhtml?grupa=#{param['grupa']}" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Członkowie <span class="badge">#{uzytkownicygrupController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).toList().size()}</span></a>
 
                         </span>
                         <span class="pull-right">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <c:forEach var="var" items="#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['id']).filter(p->p.idkommentarzposta==0).toList()}" >
+            <c:forEach var="var" items="#{postyController.items.stream().filter(p->p.idgrupy.idgrupy==param['grupa']).filter(p->p.idkommentarzposta==0).toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">
@@ -50,7 +50,7 @@
                                 <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
                             </a>
                         </div>
-                        <h4><a href="#" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
+                        <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
                         </h4>
                         <span>
                             <div class="navbar-right">
@@ -112,7 +112,7 @@
                                                     </a>
                                                 </div>
 
-                                                <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
                                                 <hr/>
                                                 <div class="post-content">
                                                     #{kom.tresc}

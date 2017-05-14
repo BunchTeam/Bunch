@@ -3,21 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
-
-
-
-
-
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <ui:composition template="/template.xhtml"> 
         <ui:define name="title"> 
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
-        <ui:define name="body" >
-            <c:forEach var="var" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==0).toList()}" >
+        <ui:define name="body" > 
+            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">
@@ -55,57 +48,59 @@
                             <br/>
                         </div>
                         <hr/>
-                        <div class="media">
-                            <div class="dropdown">
-                                <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <ul class="dropdown-menu">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                            </a>
-                                        </div>
-                                        <div class="media-body" style="height: 40px;">
-                                            <textarea class="form-control" rows="3" placeholder="Skomentuj"></textarea> <a style="float: right;" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            <hr/>
-                        </div>
-                        <div>
-                            <b:accordion expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
-                                <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
-                                    <hr/>
-                                    <div class="post-content">
-                                        <div class="panel-default">
-                                            <div class="panel-body">
-                                                <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
-                                                    <div class="pull-left">
-                                                        <a href="#">
-                                                            <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                                        </a>
-                                                    </div>
 
-                                                    <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                        <div class="dropdown" >
+                            <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
+                            <ul class="dropdown-menu" style="z-index: 2!important;">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <a href="#">
+                                            <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
+                                        </a>
+                                    </div>
+                                     <h:form id="dodaj_post#{var.idposta}">
+                                    <div class="media-body" style="height: 40px;">
+                                        <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
+                                        <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+<!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
+<b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
+                                    </div>
+                                     </h:form>
+                                </div>
+                            </ul>
+                        </div>
+                        <br/>
+
+                        <b:accordion  style="z-index: -1;" expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
+                            <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
+                                <hr/>
+                                <div class="post-content">
+                                    <div class="panel-default">
+                                        <div class="panel-body">
+                                            <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
+                                                <div class="pull-left">
+                                                    <a href="#">
+                                                        <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
+                                                    </a>
+                                                </div>
+
+                                                <h4><a href="#" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                <hr/>
+                                                <div class="post-content">
+                                                    #{kom.tresc}
                                                     <hr/>
-                                                    <div class="post-content">
-                                                        #{kom.tresc}
-                                                        <hr/>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
-                                </b:panel>
-                            </b:accordion>
-                        </div>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
                     </div>
                 </div>
             </c:forEach>
-        </ui:define>
+        </ui:define> 
     </ui:composition> 
 </html>
-
 

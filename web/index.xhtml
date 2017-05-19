@@ -10,118 +10,121 @@
             <h:outputText value="Bunch"></h:outputText> 
         </ui:define> 
         <ui:define name="body" > 
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px"/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                 <h:form id="dodaj_post#{var.idposta}">
-                                    <div class="media-body" style="height: 40px;">
-                                        <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
-                                        <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
-                                       <!-- <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a> -->
-                                        <b:commandButton value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}"/>                                     
-                                    </div>
-                                </h:form>
-                            </div>
+            <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+
+                $(function () {
+                    $('[data-toggle="popover"]').popover();
+                });
+            </script>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="pull-left">
+                            <a href="#">
+                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px"/>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h:form id="dodaj_post#{var.idposta}">
+                                <div class="media-body" style="height: 40px;">
+                                    <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz co czujesz ;)" ></b:inputTextarea>                           
+
+                                    <b:commandButton class="btn icon-btn btn-success" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                    </b:commandButton>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
-                <hr/>
-                <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <a href="#">
-                                    <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
-                                </a>
-                            </div>
-                            <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
-                            </h4>
-                            <span>
-                                <div class="navbar-right">
-                                    <div class="dropdown">
-                                        <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <i class="fa fa-cog" aria-hidden="true"></i>
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                            <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                            <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </span>
-                            <hr/>
-                            <div class="post-content">
-                                <p>#{var.tresc}</p>
-                            </div>
-                            <hr/>
-                            <div>
-                                <div class="pull-right btn-group-xs">
-                                    <c:forEach var="emo" items="#{emocjeController.items}" >
-                                        #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
-                                    </c:forEach>
-                                </div>
-                                <br/>
-                            </div>
-                            <hr/>
+            </div>
+            <hr/>
+            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="pull-left">
+                            <a href="#">
+                                <img class="media-object img-circle" src="images/profil.png" width="50px" height="50px" style="margin-right:8px; margin-top:-5px;"/>
+                            </a>
+                        </div>
+                        <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
+                        </h4>
 
-                            <div class="dropdown" >
-                                <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                <ul class="dropdown-menu" style="z-index: 2!important;">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <a href="#">
-                                                <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                            </a>
-                                        </div>
-                                        <h:form id="dodaj_post#{var.idposta}">
-                                            <div class="media-body" style="height: 40px;">
-                                                <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
-                                                <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
-                                                <!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
-                                                <b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
-                                            </div>
-                                        </h:form>
-                                    </div>
-                                </ul>
+                        <div class="navbar-right">
+                            <h:form class="pull-right">
+                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+
+                            </h:form>
+                        </div>
+
+                        <hr/>
+                        <div class="post-content">
+                            <p>#{var.tresc}</p>
+                        </div>
+                        <hr/>
+                        <div>
+                            <div class="pull-right btn-group-xs">
+                                <c:forEach var="emo" items="#{emocjeController.items}" >
+                                    #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
+                                </c:forEach>
                             </div>
                             <br/>
+                        </div>
+                        <hr/>
+                        <div class="media-body">
+                            <h:form id="dodaj_post#{var.idposta}">
 
-                            <b:accordion  style="z-index: -1;" expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
-                                <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
-                                    <hr/>
-                                    <div class="post-content">
-                                        <div class="panel-default">
-                                            <div class="panel-body">
-                                                <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
-                                                    <div class="pull-left">
-                                                        <a href="#">
-                                                            <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
-                                                        </a>
-                                                    </div>
+                                <div class="media-body" style="height: 40px;">
+                                    <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
 
-                                                    <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                    <b:commandButton class="btn icon-btn btn-success pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                    </b:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                        <br/>
+
+                        <b:accordion  style="z-index: -1;" expanded-panels="panel#{var.idposta}" rendered="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().size()>0}">
+                            <b:panel id="panel#{var.idposta}" title="Pokaż komentarze">
+                                <hr/>
+                                <div class="post-content">
+                                    <div class="panel-default">
+
+                                        <div class="panel-body">
+                                            <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
+                                                <div class="pull-left">
+                                                    <a href="#">
+                                                        <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>
+                                                    </a>
+                                                </div>
+
+                                                <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                                   <div class="navbar-right">
+                                            <h:form class="pull-right">
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj koemntarz"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
+
+                                            </h:form>
+                                        </div>
+                                                <hr/>
+                                                <div class="post-content">
+                                                    #{kom.tresc}
                                                     <hr/>
-                                                    <div class="post-content">
-                                                        #{kom.tresc}
-                                                        <hr/>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
-                                </b:panel>
-                            </b:accordion>
-                        </div>
+                                </div>
+                            </b:panel>
+                        </b:accordion>
                     </div>
-                </c:forEach>
+                </div>
+            </c:forEach>
         </ui:define> 
     </ui:composition> 
 </html>

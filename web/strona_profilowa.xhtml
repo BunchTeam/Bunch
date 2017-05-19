@@ -166,11 +166,11 @@
                                     </span></a>
                             </c:if>
                         </span>
-                        <span class="pull-right">
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-at" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wyślij e-mail"></i></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-envelope-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Wiadomość"></i></a>
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Ignoruj"></i></a>
-                        </span>
+                        <h:form class="pull-right">
+                            <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Dodaj do znajomych"></i></b:commandButton>
+                            <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-minus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń ze znajomych"></i></b:commandButton>
+                            <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-lg fa-ban" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Zablokuj"></i></b:commandButton>
+                        </h:form>
                     </div>
                 </div>
                 <hr/>
@@ -188,16 +188,11 @@
                                     </h4>
                                     <span>
                                         <div class="navbar-right">
-                                            <div class="dropdown">
-                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                                    <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                                    <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                                </ul>
-                                            </div>
+                                            <h:form class="pull-right">
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+
+                                            </h:form>
                                         </div>
                                     </span>
                                     <hr/>
@@ -215,26 +210,17 @@
                                     </div>
                                     <hr/>
 
-                                    <div class="dropdown" >
-                                        <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                                            <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                        <ul class="dropdown-menu" style="z-index: 2!important;">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <a href="#">
-                                                        <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                                    </a>
-                                                </div>
-                                                <h:form id="dodaj_post#{var.idposta}">
-                                                    <div class="media-body" style="height: 40px;">
-                                                        <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
-                                                        <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
-                                                        <!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
-                                                        <b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
-                                                    </div>
-                                                </h:form>
+                                    <div class="media-body">
+                                        <h:form id="dodaj_post#{var.idposta}">
+
+                                            <div class="media-body" style="height: 40px;">
+                                                <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
+
+                                                <b:commandButton class="btn icon-btn btn-success pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                                </b:commandButton>
                                             </div>
-                                        </ul>
+                                        </h:form>
                                     </div>
                                     <br/>
 
@@ -255,6 +241,11 @@
                                                                     <strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a>
                                                                 – <small><small><a href="#" style="text-decoration:none; color:grey;">
                                                                             <i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                            <h:form class="pull-right">
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
+
+                                                            </h:form>
                                                             <hr/>
                                                             <div class="post-content">
                                                                 #{kom.tresc}
@@ -281,20 +272,14 @@
                                     </div>
                                     <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
                                     </h4>
-                                    <span>
-                                        <div class="navbar-right">
-                                            <div class="dropdown">
-                                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">
-                                                    <li><a href="#"><i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i> Zgłoś</a></li>
-                                                    <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Usuń</a></li>
-                                                </ul>
-                                            </div>
+                                                              <div class="navbar-right">
+                                            <h:form class="pull-right">
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+
+                                            </h:form>
                                         </div>
-                                    </span>
+                                
                                     <hr/>
                                     <div class="post-content">
                                         <p>#{var.tresc}</p>
@@ -310,28 +295,17 @@
                                     </div>
                                     <hr/>
 
-                                    <div class="dropdown" >
-                                        <a class="btn icon-btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">
-                                            <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Skomentuj</a>
-                                        <ul class="dropdown-menu" style="z-index: 2!important;">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <a href="#">
-                                                        <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-left:3px; margin-right:-5px;"/>
-                                                    </a>
-                                                </div>
-                                                <div class="media-body" style="height: 40px;">
-                                                    <h:form id="dodaj_post#{var.idposta}">
-                                                        <div class="media-body" style="height: 40px;">
-                                                            <b:inputTextarea rows="3" value="#{post.dodaj}" ></b:inputTextarea>                           
-                                                            <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
-                                                            <!--                                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Dodaj</a>-->
-                                                            <b:commandButton value="Dodaj" action="#{post.dodajPost(var.idposta,login.iduzytkownika)}"/>
-                                                        </div>
-                                                    </h:form>
-                                                </div>
+                                    <div class="media-body">
+                                        <h:form id="dodaj_post#{var.idposta}">
+
+                                            <div class="media-body" style="height: 40px;">
+                                                <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
+
+                                                <b:commandButton class="btn icon-btn btn-success pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                                </b:commandButton>
                                             </div>
-                                        </ul>
+                                        </h:form>
                                     </div>
                                     <br/>
 
@@ -349,6 +323,11 @@
                                                             </div>
 
                                                             <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
+                                                            <h:form class="pull-right">
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
+
+                                                            </h:form>
                                                             <hr/>
                                                             <div class="post-content">
                                                                 #{kom.tresc}

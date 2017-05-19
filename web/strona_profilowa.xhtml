@@ -189,8 +189,8 @@
                                     <span>
                                         <div class="navbar-right">
                                             <h:form class="pull-right">
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
 
                                             </h:form>
                                         </div>
@@ -216,8 +216,8 @@
                                             <div class="media-body" style="height: 40px;">
                                                 <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
 
-                                                <b:commandButton class="btn icon-btn btn-success pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
-                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                                <b:commandButton class="btn icon-btn btn-primary pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-primary"></span>
                                                 </b:commandButton>
                                             </div>
                                         </h:form>
@@ -242,8 +242,8 @@
                                                                 – <small><small><a href="#" style="text-decoration:none; color:grey;">
                                                                             <i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
                                                             <h:form class="pull-right">
-                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
-                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
 
                                                             </h:form>
                                                             <hr/>
@@ -274,8 +274,8 @@
                                     </h4>
                                                               <div class="navbar-right">
                                             <h:form class="pull-right">
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
 
                                             </h:form>
                                         </div>
@@ -301,8 +301,8 @@
                                             <div class="media-body" style="height: 40px;">
                                                 <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
 
-                                                <b:commandButton class="btn icon-btn btn-success pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
-                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+                                                <b:commandButton class="btn icon-btn btn-primary pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                                    <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-primary"></span>
                                                 </b:commandButton>
                                             </div>
                                         </h:form>
@@ -324,8 +324,8 @@
 
                                                             <h4><a href="strona_profilowa.xhtml?osoba=#{kom.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{kom.iduzytkownika.imie} #{kom.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{kom.dataposta.toGMTString()}</i></a></small></small></h4>
                                                             <h:form class="pull-right">
-                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
-                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-success" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj komentarz"></i></b:commandButton>
+                                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń komentarz"></i></b:commandButton>
 
                                                             </h:form>
                                                             <hr/>

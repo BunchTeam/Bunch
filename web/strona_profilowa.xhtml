@@ -201,10 +201,16 @@
                                     </div>
                                     <hr/>
                                     <div>
-                                        <div class="pull-right btn-group-xs">
-                                            <c:forEach var="emo" items="#{emocjeController.items}" >
-                                                #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
-                                            </c:forEach>
+                                        <div class="media-body" style="height: 40px;">
+                                            <h:form id="dodaj_interakcje#{var.idposta}">
+                                                <div class="media-body" style="height: 40px;">
+                                                    <h:form id="dodaj_interakcje#{var.idposta}">
+                                                        <c:forEach var="emo" items="#{emocjeController.items}" >
+                                                            <b:commandButton value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{emocja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
+                                                        </c:forEach>
+                                                    </h:form>
+                                                </div>
+                                            </h:form>
                                         </div>
                                         <br/>
                                     </div>
@@ -272,24 +278,26 @@
                                     </div>
                                     <h4><a href="strona_profilowa.xhtml?osoba=#{var.iduzytkownika.iduzytkownika}" style="text-decoration:none;"><strong>#{var.iduzytkownika.imie} #{var.iduzytkownika.nazwisko}</strong></a> – <small><small><a href="#" style="text-decoration:none; color:grey;"><i><i class="fa fa-clock-o" aria-hidden="true"></i>#{var.dataposta.toGMTString()}</i></a></small></small>
                                     </h4>
-                                                              <div class="navbar-right">
-                                            <h:form class="pull-right">
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
-                                                <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
+                                    <div class="navbar-right">
+                                        <h:form class="pull-right">
+                                            <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-pencil img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edytuj post"></i></b:commandButton>
+                                            <b:commandButton value="" class="btn btn-link" style="text-decoration:none;"><i class="glyphicon btn-glyphicon glyphicon-minus img-circle text-primary" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Usuń post"></i></b:commandButton>
 
-                                            </h:form>
-                                        </div>
-                                
+                                        </h:form>
+                                    </div>
+
                                     <hr/>
                                     <div class="post-content">
                                         <p>#{var.tresc}</p>
                                     </div>
                                     <hr/>
                                     <div>
-                                        <div class="pull-right btn-group-xs">
-                                            <c:forEach var="emo" items="#{emocjeController.items}" >
-                                                #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
-                                            </c:forEach>
+                                        <div class="media-body" style="height: 40px;">
+                                            <h:form id="dodaj_interakcje#{var.idposta}">
+                                                <c:forEach var="emo" items="#{emocjeController.items}" >
+                                                    <b:commandButton value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{emocja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
+                                                </c:forEach>
+                                            </h:form>
                                         </div>
                                         <br/>
                                     </div>

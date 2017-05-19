@@ -63,11 +63,28 @@
                         <hr/>
                         <div>
                             <div class="pull-right btn-group-xs">
+                                 <h:form id="dodaj_interakcje#{var.idposta}">
                                 <c:forEach var="emo" items="#{emocjeController.items}" >
-                                    #{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}
+                                    <b:commandButton value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{emocja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
                                 </c:forEach>
+                                  </h:form>
                             </div>
                             <br/>
+<!--                              <div>
+                               
+                                      <div class="media-body" style="height: 40px;">
+                                       <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                        <b:commandButton value="lubie" action="#{emocja.dodajEmocja1(var.idposta,login.iduzytkownika)}"/>
+                                       <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                        <b:commandButton value="nie lubie" action="#{emocja.dodajEmocja2(var.idposta,login.iduzytkownika)}"/>
+                                       <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                        <b:commandButton value="super" action="#{emocja.dodajEmocja3(var.idposta,login.iduzytkownika)}"/>
+                                       <a style="float: right;" class="btn icon-btn btn-success" href="#"/>
+                                        <b:commandButton value="hahaha" action="#{emocja.dodajEmocja4(var.idposta,login.iduzytkownika)}"/>
+                                      </div>
+                              
+                                </div>-->
+				<br/>
                         </div>
                         <hr/>
 

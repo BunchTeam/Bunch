@@ -43,7 +43,7 @@ public class Emocja implements Serializable{
     }
     
     
-public void dodajEmocja1(Integer idemocja, Integer idposta, Integer iduzytkownika) {
+public void dodajEmocja(Integer idemocja, Integer idposta, Integer iduzytkownika) {
         
  
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

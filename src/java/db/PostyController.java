@@ -78,7 +78,9 @@ public class PostyController implements Serializable {
 
     public List<Posty> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+//            getFacade().getEntityManager().refresh(this);
+                this.update();
+                items = getFacade().findAll();
         }
         return items;
     }

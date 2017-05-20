@@ -206,7 +206,7 @@
                                                 <div class="media-body" style="height: 40px;">
                                                     <h:form id="dodaj_interakcje#{var.idposta}">
                                                         <c:forEach var="emo" items="#{emocjeController.items}" >
-                                                            <b:commandButton disabled="#{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()>0}" value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{emocja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
+                                                            <b:commandButton  disabled="#{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()>0}" value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{interakcja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
                                                         </c:forEach>
                                                     </h:form>
                                                 </div>
@@ -295,7 +295,7 @@
                                         <div class="media-body" style="height: 40px;">
                                             <h:form id="dodaj_interakcje#{var.idposta}">
                                                 <c:forEach var="emo" items="#{emocjeController.items}" >
-                                                    <b:commandButton disabled="#{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()>0}" value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{emocja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
+                                                    <b:commandButton disabled="#{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()>0}" value="#{emo.nazwa} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{interakcja.dodajEmocja(emo.idemocji,var.idposta,login.iduzytkownika)}"/>
                                                 </c:forEach>
                                             </h:form>
                                         </div>

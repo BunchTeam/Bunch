@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;

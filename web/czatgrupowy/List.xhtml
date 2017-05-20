@@ -14,60 +14,60 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="CzatgrupowyListForm">
-                <p:panel header="#{bundle.ListCzatgrupowyTitle}">
-                    <p:dataTable id="datalist" value="#{czatgrupowyController.items}" var="item"
-                                 selectionMode="single" selection="#{czatgrupowyController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.idczatgrupowy}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="CzatgrupowyListForm">
+                    <p:panel header="#{bundle.ListCzatgrupowyTitle}">
+                        <p:dataTable id="datalist" value="#{czatgrupowyController.items}" var="item"
+                            selectionMode="single" selection="#{czatgrupowyController.selected}"
+                            paginator="true"
+                            rowKey="#{item.idczatgrupowy}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCzatgrupowyTitle_idczatgrupowy}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCzatgrupowyTitle_idczatgrupowy}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idczatgrupowy}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCzatgrupowyTitle_tresc}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tresc}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCzatgrupowyTitle_datawyslania}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.datawyslania}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCzatgrupowyTitle_idgrupy}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idgrupy}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListCzatgrupowyTitle_idnadawcy}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idnadawcy}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{czatgrupowyController.prepareCreate}" update=":CzatgrupowyCreateForm" oncomplete="PF('CzatgrupowyCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CzatgrupowyViewForm" oncomplete="PF('CzatgrupowyViewDialog').show()" disabled="#{empty czatgrupowyController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CzatgrupowyEditForm" oncomplete="PF('CzatgrupowyEditDialog').show()" disabled="#{empty czatgrupowyController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{czatgrupowyController.destroy}" update=":growl,datalist" disabled="#{empty czatgrupowyController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idczatgrupowy}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCzatgrupowyTitle_tresc}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tresc}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCzatgrupowyTitle_datawyslania}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.datawyslania}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCzatgrupowyTitle_idgrupy}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idgrupy}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCzatgrupowyTitle_idnadawcy}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idnadawcy}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{czatgrupowyController.prepareCreate}" update=":CzatgrupowyCreateForm" oncomplete="PF('CzatgrupowyCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CzatgrupowyViewForm" oncomplete="PF('CzatgrupowyViewDialog').show()" disabled="#{empty czatgrupowyController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CzatgrupowyEditForm" oncomplete="PF('CzatgrupowyEditDialog').show()" disabled="#{empty czatgrupowyController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{czatgrupowyController.destroy}" update=":growl,datalist" disabled="#{empty czatgrupowyController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

@@ -4,7 +4,6 @@ import db.util.JsfUtil;
 import db.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -20,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.apache.commons.collections.ComparatorUtils;
 
 @Named("postyController")
 @SessionScoped
@@ -78,9 +78,7 @@ public class PostyController implements Serializable {
 
     public List<Posty> getItems() {
         if (items == null) {
-//            getFacade().getEntityManager().refresh(this);
-                this.update();
-                items = getFacade().findAll();
+            items = getFacade().findAll();
         }
         return items;
     }
@@ -124,33 +122,15 @@ public class PostyController implements Serializable {
     public List<Posty> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-//    public List<Posty> getPosty()
-//    {
-//       List<Posty> posty = new ArrayList<>();
-//       for(Posty p : items)
-//       if (p.getIdkommentarzposta()>0)
-//           posty.add(p);
-//       return posty;
-//    }
-//    public List<Posty> getKomentarze(Integer i)
-//    {
-//       List<Posty> posty = new ArrayList<>();
-//       for(Posty p : items)
-//       if (p.getIdkommentarzposta()==i)
-//           posty.add(p);
-//       return posty;
-//    }
-    public List<Posty> getPosty(List<Integer> id)
-    {
-    List<Posty> items = this.getItems();
-    Set<Integer> secondSet = id.stream().collect(Collectors.toSet());
-    List<Posty> posty  = new ArrayList<>();
-    items.stream().filter(p->(secondSet.contains(p.getIduzytkownika().getIduzytkownika()))).forEach(p->posty.add(p));
-    return posty;
+
+    public List<Posty> getPosty(List<Integer> id) {
+        List<Posty> items = this.getItems();
+        Set<Integer> secondSet = id.stream().collect(Collectors.toSet());
+        List<Posty> posty = new ArrayList<>();
+        this.items.stream().filter(p -> (secondSet.contains(p.getIduzytkownika().getIduzytkownika()))).forEach(p -> posty.add(p));
+        return posty;
     }
-    //postyController.getPosty(znajomiController.items.stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).map(m->m.idznajomego.iduzytkownika).toList()).stream().filter(p->p.idkommentarzposta==0).toList()
-    
-    
+
     @FacesConverter(forClass = Posty.class)
     public static class PostyControllerConverter implements Converter {
 

@@ -116,7 +116,7 @@ public class Uzytkownicygrup implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Uzytkownicygrup[ iduzytkownikagrupy=" + iduzytkownikagrupy + " ]";
+        return "db.Uzytkownicygrup[ iduzytkownikagrupy=" + iduzytkownikagrupy + " ]";
     }
     
 }

@@ -20,8 +20,12 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean
@@ -160,5 +164,5 @@ public class Post implements Serializable{
         
         // return null;
     }
-    
+   
 }

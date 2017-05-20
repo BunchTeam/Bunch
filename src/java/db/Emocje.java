@@ -34,8 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Emocje.findAll", query = "SELECT e FROM Emocje e")
     , @NamedQuery(name = "Emocje.findByIdemocji", query = "SELECT e FROM Emocje e WHERE e.idemocji = :idemocji")
     , @NamedQuery(name = "Emocje.findByNazwa", query = "SELECT e FROM Emocje e WHERE e.nazwa = :nazwa")
-    , @NamedQuery(name = "Emocje.findByIndeksemocji", query = "SELECT e FROM Emocje e WHERE e.indeksemocji = :indeksemocji")})
-public class Emocje implements Serializable {
+    , @NamedQuery(name = "Emocje.findByIndeksemocji", query = "SELECT e FROM Emocje e WHERE e.indeksemocji = :indeksemocji")
+    , @NamedQuery(name = "Emocje.findByEmoji", query = "SELECT e FROM Emocje e WHERE e.emoji = :emoji")})
+public class Emocje implements Serializable, Comparable<Emocje> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,6 +53,9 @@ public class Emocje implements Serializable {
     @NotNull
     @Column(name = "indeksemocji")
     private int indeksemocji;
+    @Size(max = 2147483647)
+    @Column(name = "emoji")
+    private String emoji;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idemocji")
     private Collection<Interakcje> interakcjeCollection;
 
@@ -92,6 +96,14 @@ public class Emocje implements Serializable {
         this.indeksemocji = indeksemocji;
     }
 
+    public String getEmoji() {
+        return emoji;
+    }
+
+    public void setEmoji(String emoji) {
+        this.emoji = emoji;
+    }
+
     @XmlTransient
     public Collection<Interakcje> getInterakcjeCollection() {
         return interakcjeCollection;
@@ -123,7 +135,12 @@ public class Emocje implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Emocje[ idemocji=" + idemocji + " ]";
+        return "db.Emocje[ idemocji=" + idemocji + " ]";
+    }
+
+    @Override
+    public int compareTo(Emocje o) {
+            return this.idemocji.compareTo(o.idemocji);
     }
     
 }

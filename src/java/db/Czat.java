@@ -136,7 +136,7 @@ public class Czat implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Czat[ idczat=" + idczat + " ]";
+        return "db.Czat[ idczat=" + idczat + " ]";
     }
     
 }

@@ -131,7 +131,7 @@ public class Powiadomieniaopostach implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Powiadomieniaopostach[ idpowiadomienia=" + idpowiadomienia + " ]";
+        return "db.Powiadomieniaopostach[ idpowiadomienia=" + idpowiadomienia + " ]";
     }
     
 }

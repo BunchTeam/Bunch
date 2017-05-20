@@ -145,7 +145,7 @@ public class Interakcje implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Interakcje[ idinterakcji=" + idinterakcji + " ]";
+        return "db.Interakcje[ idinterakcji=" + idinterakcji + " ]";
     }
     
 }

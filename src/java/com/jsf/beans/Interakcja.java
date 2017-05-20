@@ -43,7 +43,7 @@ public class Interakcja implements Serializable{
     }
     
     
-public void dodaInterakcja(Integer idemocja, Integer idposta, Integer iduzytkownika) {
+public void dodajInterakcja(Integer idemocja, Integer idposta, Integer iduzytkownika) {
         
  
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

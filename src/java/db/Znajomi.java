@@ -134,7 +134,7 @@ public class Znajomi implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Znajomi[ idznajomosci=" + idznajomosci + " ]";
+        return "db.Znajomi[ idznajomosci=" + idznajomosci + " ]";
     }
     
 }

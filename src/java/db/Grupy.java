@@ -131,7 +131,7 @@ public class Grupy implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Grupy[ idgrupy=" + idgrupy + " ]";
+        return "db.Grupy[ idgrupy=" + idgrupy + " ]";
     }
     
 }

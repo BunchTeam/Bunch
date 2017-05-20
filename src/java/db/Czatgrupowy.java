@@ -136,7 +136,7 @@ public class Czatgrupowy implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Czatgrupowy[ idczatgrupowy=" + idczatgrupowy + " ]";
+        return "db.Czatgrupowy[ idczatgrupowy=" + idczatgrupowy + " ]";
     }
     
 }

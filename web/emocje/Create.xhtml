@@ -18,6 +18,8 @@
                         <p:inputText id="nazwa" value="#{emocjeController.selected.nazwa}" title="#{bundle.CreateEmocjeTitle_nazwa}" required="true" requiredMessage="#{bundle.CreateEmocjeRequiredMessage_nazwa}"/>
                         <p:outputLabel value="#{bundle.CreateEmocjeLabel_indeksemocji}" for="indeksemocji" />
                         <p:inputText id="indeksemocji" value="#{emocjeController.selected.indeksemocji}" title="#{bundle.CreateEmocjeTitle_indeksemocji}" required="true" requiredMessage="#{bundle.CreateEmocjeRequiredMessage_indeksemocji}"/>
+                        <p:outputLabel value="#{bundle.CreateEmocjeLabel_emoji}" for="emoji" />
+                        <p:inputText id="emoji" value="#{emocjeController.selected.emoji}" title="#{bundle.CreateEmocjeTitle_emoji}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{emocjeController.create}" value="#{bundle.Save}" update="display,:EmocjeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmocjeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmocjeCreateDialog.hide()"/>

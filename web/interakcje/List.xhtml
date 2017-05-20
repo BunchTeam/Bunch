@@ -14,60 +14,60 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="InterakcjeListForm">
-                <p:panel header="#{bundle.ListInterakcjeTitle}">
-                    <p:dataTable id="datalist" value="#{interakcjeController.items}" var="item"
-                                 selectionMode="single" selection="#{interakcjeController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.idinterakcji}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="InterakcjeListForm">
+                    <p:panel header="#{bundle.ListInterakcjeTitle}">
+                        <p:dataTable id="datalist" value="#{interakcjeController.items}" var="item"
+                            selectionMode="single" selection="#{interakcjeController.selected}"
+                            paginator="true"
+                            rowKey="#{item.idinterakcji}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInterakcjeTitle_idinterakcji}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListInterakcjeTitle_idinterakcji}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idinterakcji}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListInterakcjeTitle_datainterakcji}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.datainterakcji}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListInterakcjeTitle_idemocji}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idemocji}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListInterakcjeTitle_idposta}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idposta}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListInterakcjeTitle_iduzytkownika}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.iduzytkownika}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{interakcjeController.prepareCreate}" update=":InterakcjeCreateForm" oncomplete="PF('InterakcjeCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":InterakcjeViewForm" oncomplete="PF('InterakcjeViewDialog').show()" disabled="#{empty interakcjeController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":InterakcjeEditForm" oncomplete="PF('InterakcjeEditDialog').show()" disabled="#{empty interakcjeController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{interakcjeController.destroy}" update=":growl,datalist" disabled="#{empty interakcjeController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idinterakcji}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInterakcjeTitle_datainterakcji}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.datainterakcji}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInterakcjeTitle_idemocji}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idemocji}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInterakcjeTitle_idposta}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idposta}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListInterakcjeTitle_iduzytkownika}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.iduzytkownika}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{interakcjeController.prepareCreate}" update=":InterakcjeCreateForm" oncomplete="PF('InterakcjeCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":InterakcjeViewForm" oncomplete="PF('InterakcjeViewDialog').show()" disabled="#{empty interakcjeController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":InterakcjeEditForm" oncomplete="PF('InterakcjeEditDialog').show()" disabled="#{empty interakcjeController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{interakcjeController.destroy}" update=":growl,datalist" disabled="#{empty interakcjeController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

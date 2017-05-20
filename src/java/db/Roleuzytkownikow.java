@@ -207,7 +207,7 @@ public class Roleuzytkownikow implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Roleuzytkownikow[ idroli=" + idroli + " ]";
+        return "db.Roleuzytkownikow[ idroli=" + idroli + " ]";
     }
     
 }

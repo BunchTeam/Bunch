@@ -184,7 +184,7 @@ public class Posty implements Serializable {
 
     @Override
     public String toString() {
-        return "lib.Posty[ idposta=" + idposta + " ]";
+        return "db.Posty[ idposta=" + idposta + " ]";
     }
     
 }

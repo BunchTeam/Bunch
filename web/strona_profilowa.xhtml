@@ -299,6 +299,7 @@
                                                         <h1>    <b:commandButton disabled="#{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().stream().filter(p->p.iduzytkownika.iduzytkownika==login.iduzytkownika).toList().size()>0}" value=" #{emocja.getEmocja(emo.emoji)} #{interakcjeController.items.stream().filter(p->p.idposta.idposta==var.idposta).toList().stream().filter(p->p.idemocji.idemocji==emo.idemocji).toList().size()}" action="#{interakcja.dodajInterakcja(emo.idemocji,var.idposta,login.iduzytkownika)}" style="float: left;"/></h1>
                                                     </c:forEach>
                                                 </h:form>
+                                                  </h:form>
                                         </div>
                                         <br/>
                                     </div>

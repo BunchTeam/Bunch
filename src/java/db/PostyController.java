@@ -4,6 +4,7 @@ import db.util.JsfUtil;
 import db.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,7 +29,7 @@ public class PostyController implements Serializable {
     @EJB
     private db.PostyFacade ejbFacade;
     private List<Posty> items = null;
-    private Posty selected;
+    private Posty selected = new Posty();
 
     public PostyController() {
     }
@@ -63,7 +64,30 @@ public class PostyController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+ public void create(Uzytkownicy iduzytkownika) {
+        this.selected.setIduzytkownika(iduzytkownika);
+        this.selected.setZgloszony(Boolean.FALSE);
+        this.selected.setIdgrupy(null);
+        this.selected.setIdkommentarzposta(0);
+        this.selected.setDataposta(new Timestamp(System.currentTimeMillis()));
+       persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PostyCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        this.selected.setTresc("");
+    }
+ public void create(Uzytkownicy iduzytkownika,Integer idposta) {
+        this.selected.setIduzytkownika(iduzytkownika);
+        this.selected.setZgloszony(Boolean.FALSE);
+        this.selected.setIdgrupy(null);
+        this.selected.setIdkommentarzposta(idposta);
+        this.selected.setDataposta(new Timestamp(System.currentTimeMillis()));
+       persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PostyCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        this.selected.setTresc("");
+    }
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PostyUpdated"));
     }

@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Posty.findByDataposta", query = "SELECT p FROM Posty p WHERE p.dataposta = :dataposta")
     , @NamedQuery(name = "Posty.findByIdkommentarzposta", query = "SELECT p FROM Posty p WHERE p.idkommentarzposta = :idkommentarzposta")
     , @NamedQuery(name = "Posty.findByZgloszony", query = "SELECT p FROM Posty p WHERE p.zgloszony = :zgloszony")})
-public class Posty implements Serializable {
+public class Posty implements Serializable, Comparable<Posty> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -88,6 +88,11 @@ public class Posty implements Serializable {
         this.dataposta = dataposta;
     }
 
+//    public Posty(String tresc, Date dataposta, Uzytkownicy iduzytkownika) {
+//        this.tresc = tresc;
+//        this.dataposta = dataposta;
+//        this.iduzytkownika = iduzytkownika;
+//    }
     public Integer getIdposta() {
         return idposta;
     }
@@ -186,5 +191,14 @@ public class Posty implements Serializable {
     public String toString() {
         return "db.Posty[ idposta=" + idposta + " ]";
     }
-    
+
+    @Override
+    public int compareTo(Posty o) {
+        if (this.dataposta.before(o.dataposta)) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
 }

@@ -30,8 +30,8 @@
                         <div class="media-body">
                             <h:form id="dodaj_post#{var.idposta}">
                                 <div class="media-body" style="height: 40px;">
-                                    <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz co czujesz ;)" ></b:inputTextarea>                           
-                                    <b:commandButton class="btn icon-btn btn-primary" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                    <b:inputTextarea rows="3" value="#{postyController.selected.tresc}" placeholder="Napisz co czujesz ;)" ></b:inputTextarea>                           
+                                    <b:commandButton class="btn icon-btn btn-primary" value="Dodaj" action="#{postyController.create(login.uzytkownik)}">
                                         <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-primary"></span>
                                     </b:commandButton>
                                 </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <hr/>
-            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList()}" >
+            <c:forEach var="var" items="#{postyController.getPosty(znajomiController.tolist(znajomiController.items.stream().filter(p->(p.iduzytkownika.iduzytkownika==login.iduzytkownika || p.idznajomego.iduzytkownika==login.iduzytkownika)).toList(),login.iduzytkownika)).stream().filter(p->p.idkommentarzposta==0).toList().stream().sorted().toList()}" >
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="pull-left">
@@ -77,9 +77,9 @@
                             <h:form id="dodaj_post#{var.idposta}">
 
                                 <div class="media-body" style="height: 40px;">
-                                    <b:inputTextarea rows="3" value="#{post.dodaj}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
+                                    <b:inputTextarea rows="3" value="#{postyController.selected.tresc}" placeholder="Napisz komentarz..." ></b:inputTextarea>                           
 
-                                    <b:commandButton class="btn icon-btn btn-primary pull-right" value="Dodaj" action="#{post.dodajPost2(var.idposta,login.iduzytkownika)}">
+                                    <b:commandButton class="btn icon-btn btn-primary pull-right" value="Dodaj" action="#{postyController.create(login.uzytkownik,var.idposta)}">
                                         <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-primary"></span>
                                     </b:commandButton>
                                 </div>
@@ -94,7 +94,7 @@
                                     <div class="panel-default">
 
                                         <div class="panel-body">
-                                            <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList()}" >   
+                                            <c:forEach var="kom" items="#{postyController.items.stream().filter(p->p.idkommentarzposta==var.idposta).toList().stream().sorted().toList()}" >   
                                                 <div class="pull-left">
                                                     <a href="#">
                                                         <img class="media-object img-circle" src="images/profil.png" width="35px" height="35px" style="margin-right:8px; margin-top:-5px;"/>

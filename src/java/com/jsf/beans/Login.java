@@ -51,7 +51,8 @@ public class Login implements Serializable {
     private boolean plec1;
 
     private String imienazwisko;
-
+    
+    private Uzytkownicy uzytkownik;
     /////////////
     public Integer getIduzytkownika() {
         return iduzytkownika;
@@ -204,6 +205,14 @@ public class Login implements Serializable {
         } else {
             return "Mężczyzna";
         }
+    }
+
+    public Uzytkownicy getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(Uzytkownicy uzytkownik) {
+        this.uzytkownik = uzytkownik;
     }
     
     public String zarejestruj() {
@@ -679,6 +688,7 @@ public class Login implements Serializable {
                         setUlica(rs.getString("ulica"));
                         setZgloszony(rs.getBoolean("zgloszony"));
                         setIduzytkownika(rs.getInt("iduzytkownika"));
+                        setUzytkownik(new Uzytkownicy(iduzytkownika, msg, miasto, email, imie, nazwisko, miasto, zgloszony, plec));
                         // setImieNazwisko(rs.getString("imie")+" "+rs.getString("nazwisko"));
                         found = true;
                     }

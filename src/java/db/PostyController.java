@@ -16,17 +16,14 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.persistence.PostLoad;
-import javax.persistence.PreUpdate;
 import org.apache.commons.collections.ComparatorUtils;
 
 @Named("postyController")
-@ViewScoped
+@SessionScoped
 public class PostyController implements Serializable {
 
     @EJB

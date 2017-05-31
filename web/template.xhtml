@@ -70,7 +70,7 @@
                 </h:form>
                 <hr/>
                 <b:panel title="Grupy" look="primary" collapsed="true" style="border: none !important"   >
-                    <c:forEach var="var" items="#{grupyController.items.stream().toList()}">
+                    <c:forEach var="var" items="#{grupyController.items}">
                         <b:iconAwesome name="users"/>
                         <b:button outcome="grupa" look="link" value="#{var.nazwa}" >
                             <f:param name="grupa" value="#{var.idgrupy}"/>

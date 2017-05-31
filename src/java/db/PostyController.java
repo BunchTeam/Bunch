@@ -20,10 +20,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 import org.apache.commons.collections.ComparatorUtils;
 
 @Named("postyController")
-@SessionScoped
+@ViewScoped
 public class PostyController implements Serializable {
 
     @EJB

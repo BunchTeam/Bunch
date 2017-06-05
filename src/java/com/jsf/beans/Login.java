@@ -396,7 +396,8 @@ public class Login implements Serializable {
                     ps.setInt(10, 2);
                     ps.setBoolean(11, false);
                     ps.setBoolean(12, isPlec());
-
+                    login_rej="";
+                    
                     i = ps.executeUpdate();
                     System.out.println("Dodano uzytkownika");
                     FacesContext.getCurrentInstance().addMessage(

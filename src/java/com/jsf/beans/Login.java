@@ -23,13 +23,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Size;
 
 @ManagedBean
 @SessionScoped
 public class Login implements Serializable {
 
     private static final long serialVersionUID = 1094801825228386363L;
-
     private String pwd;
     private String msg;
     private String user;
@@ -51,8 +51,9 @@ public class Login implements Serializable {
     private boolean plec1;
 
     private String imienazwisko;
-    
+
     private Uzytkownicy uzytkownik;
+
     /////////////
     public Integer getIduzytkownika() {
         return iduzytkownika;
@@ -198,8 +199,8 @@ public class Login implements Serializable {
     public void setPlec1(boolean plec1) {
         this.plec1 = plec1;
     }
-    
-     public String plectoString(Boolean plec) {
+
+    public String plectoString(Boolean plec) {
         if (plec) {
             return "Kobieta";
         } else {
@@ -214,7 +215,7 @@ public class Login implements Serializable {
     public void setUzytkownik(Uzytkownicy uzytkownik) {
         this.uzytkownik = uzytkownik;
     }
-    
+
     public String zarejestruj() {
 
         boolean plecbool;
@@ -398,16 +399,29 @@ public class Login implements Serializable {
 
                     i = ps.executeUpdate();
                     System.out.println("Dodano uzytkownika");
+                    FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Dodany użytkownika",
+                            "Rejestracja utworzona pomyślnie"
+                           ));
                 }
 
             } catch (Exception e) {
-                System.out.println(e);
+                  FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Podaj poprawne dane",
+                            "Wpisz poprawne dane"));
             } finally {
                 try {
                     con.close();
                     ps.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                     FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Podaj poprawne dane",
+                            "Wpisz poprawne dane"));
                 }
             }
         }
@@ -563,7 +577,6 @@ public class Login implements Serializable {
 //            plecbool1 = false;
 //            System.out.println("error ");
 //        }
-
 //        String profile_date_year = request.getParameter("formaImie:profile_date_year");
 //        //  System.out.println("profile_date_year = " + profile_date_year);
 //        int rok = Integer.parseInt(profile_date_year);
@@ -574,12 +587,11 @@ public class Login implements Serializable {
 //        //   System.out.println("profile_date_day = " + profile_date_day);
 //        int dzien = Integer.parseInt(profile_date_day);
 //
-        
         // System.out.println("data = " + date2);
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(getDataurodzenia());
         Date date2 = new GregorianCalendar(gc.get(GregorianCalendar.YEAR), GregorianCalendar.MONTH - 1, GregorianCalendar.DAY_OF_MONTH).getTime();
- Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date3 = formatter.format(date2);
         setDataurodzenia(date2);
         //System.out.println("data = " + date3);
@@ -629,6 +641,11 @@ public class Login implements Serializable {
                 ps.close();
             } catch (Exception e) {
                 System.out.println("Error ->" + e.getMessage());
+                 FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "wpisz popraw dane",
+                            "Wpisz poprawne dane"));
                 return (null);
             }
         } else {
@@ -649,6 +666,11 @@ public class Login implements Serializable {
                 ps.close();
             } catch (Exception e) {
                 System.out.println("Error ->" + e.getMessage());
+                 FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Popraw dane",
+                            "Wpisz poprawne dane"));
                 return (null);
             }
         }
@@ -694,7 +716,7 @@ public class Login implements Serializable {
                     }
                     rs.close();
                 } catch (Exception e) {
-                    System.out.println("Error validateUsernamePassword ->" + e.getMessage());
+
                     return (null);
                 }
 
@@ -708,6 +730,8 @@ public class Login implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Bledny login lub haslo",
                             "Wpisz poprawne dane"));
+            setPwd("");
+
             return "login";
         }
 

@@ -19,6 +19,7 @@
              <b:navBar brand="Bunch" brandHref="#" inverse="true">
                 <b:navbarLinks> 
                     <h:form id="signin" class="navbar-form navbar-right" role="login">
+                        <p:growl id="growl" showDetail="true" sticky="true"/>
                         <div class="form-group">                         
                             <b:inputText type="text" class="form-control" placeholder="Login" id="username" value="#{login.user}">
                                 <f:facet name="prepend">
@@ -34,7 +35,7 @@
                             </b:inputText>                
                         </div>
 
-                        <h:commandButton  type="login" action="#{login.validateUsernamePassword}" value="Zaloguj" class="btn btn-primary"></h:commandButton>
+                        <h:commandButton  type="login" action="#{login.validateUsernamePassword}" value="Zaloguj" class="btn btn-primary" ></h:commandButton>
                         <b:selectBooleanCheckbox value="true" caption="Zapamiętaj mnie" style=" margin-left: 10px;"/>
 
                     </h:form>
@@ -49,32 +50,32 @@
                 <h:message for="imie_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Nazwisko</label>
+                <label for="Last_name">Nazwisko</label>
                 <h:inputText class="form-control" id="nazwisko_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
                 <h:message for="nazwisko_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Login</label>
+                <label for="Login">Login</label>
                 <h:inputText class="form-control" id="login_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
                 <h:message for="login_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Hasło</label>
+                <label for="Password">Hasło</label>
                 <h:inputSecret class="form-control" id="haslo_rej" required="true" requiredMessage="Pole nie może być puste"/>  
                 <h:message for="haslo_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Powtórz hasło</label>
+                <label for="Password">Powtórz hasło</label>
                 <h:inputSecret class="form-control" id="powtorzhaslo_rej" required="true" requiredMessage="Pole nie może być puste"/>  
                 <h:message for="powtorzhaslo_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Miasto</label>
+                <label for="City">Miasto</label>
                 <h:inputText class="form-control" id="miasto_rej" required="true" requiredMessage="Pole nie może być puste"></h:inputText>  
                 <h:message for="miasto_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Email</label>
+                <label for="Email">Email</label>
                 <h:inputText class="form-control" id="email_rej" required="true" requiredMessage="Pole nie może być puste" validatorMessage="Proszę o wpisanie poprawnego emailu">
                      <f:validateRegex
 		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -82,10 +83,11 @@
                 <h:message for="email_rej" style="color:red" />
                 <br></br>
 
-                <label>Data urodzenia</label>
-                <b:dateTimePicker value="#{login.dataurodzenia}" showTime="false" format="DD.MM.YYYY" required="true" requiredMessage="Pole nie może być puste" required-message="Proszę o wpisanie "/> 
+                <label for="Data_urodzenia">Data urodzenia</label>
+                <b:dateTimePicker id="date_rej" value="#{login.dataurodzenia}" showTime="false" format="DD.MM.YYYY" required="true" requiredMessage="Pole nie może być puste" required-message="Proszę o wpisanie daty"/> 
+                <h:message for="date_rej" style="color:red" />
                 <br/><br/>
-                <label for="First_name">Płeć</label>
+                <label for="Sex">Płeć</label>
                 <b:selectOneMenu value="#{login.plec}">
                     <f:selectItem itemLabel="Mężczyzna" itemValue="false"/>
                     <f:selectItem itemLabel="Kobieta" itemValue="true"/>
@@ -94,12 +96,16 @@
                 <br></br>
 
 
-                <label for="First_name">Kod pocztowy</label>
-                <h:inputText class="form-control" id="kod_rej"></h:inputText>  
+                <label for="Kod_pocztowy">Kod pocztowy</label>
+                <h:inputText class="form-control" id="kod_rej" validatorMessage="Proszę o wpisanie poprawnego kodu pocztowego">
+                    <f:validateRegex pattern="([0-9])([0-9])-([0-9])([0-9])([0-9])"/>
+                </h:inputText>  
+                <h:message for="kod_rej" style="color:red" />
                 <br></br>
 
-                <label for="First_name">Ulica</label>
-                <h:inputText class="form-control" id="ulica_rej"></h:inputText>   
+                <label for="Ulica">Ulica</label>
+                <h:inputText class="form-control" id="ulica_rej"></h:inputText>
+                <h:message for="ulica_rej" style="color:red" />
                 <br></br>
 
 
